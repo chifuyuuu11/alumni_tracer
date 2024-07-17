@@ -25,12 +25,12 @@ if (isset($_POST['submit'])) {
         $insert_data = mysqli_query($conn, "UPDATE tbl_users SET firstname = '$firstname', middlename = '$middlename',
         lastname = '$lastname', role_id = '$role', campus_id='$campus', email = '$email', contact = '$contact',
         username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
-        $_SESSION['success'] = true;
+        $_SESSION['updated'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);
 
     } else {
         echo 1;
-        $_SESSION['username_exist'] = true;
+        $_SESSION['error'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);
 
     }

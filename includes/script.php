@@ -92,3 +92,43 @@
     });
   });
 </script>
+<script>
+  $(function() {
+
+  });
+
+  <?php
+  if (isset($_SESSION['success'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully added!", 'Success')
+    });
+    <?php
+  } elseif (isset($_SESSION['error'])) {
+    ?>
+    $(function() {
+      toastr.error("Username already exists.", 'Error')
+    });
+  <?php
+  } elseif (isset($_SESSION['deleted'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully deleted!", 'Success')
+    });
+  <?php
+  } elseif (isset($_SESSION['updated'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully updated!", 'Success')
+    });
+  <?php
+  }
+
+  unset($_SESSION['success']);
+  unset($_SESSION['error']);
+  unset($_SESSION['deleted']);
+  unset($_SESSION['updated']);
+  ?>
+    
+
+</script>

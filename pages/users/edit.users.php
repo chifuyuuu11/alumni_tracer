@@ -75,15 +75,15 @@ $user_id = $_GET['user_id'];
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" id="firstname" name="firstname" value=<?php echo $row['firstname']?> placeholder="First Name" required>
+                                    <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $row['firstname']?>" placeholder="First Name" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="middlename">Middle Name</label>
-                                    <input type="text" class="form-control" id="middlename" name="middlename" value=<?php echo $row['middlename']?> placeholder="Middle Name" >
+                                    <input type="text" class="form-control" id="middlename" name="middlename" value="<?php echo $row['middlename']?>" placeholder="Middle Name" >
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" id="lastname" name="lastname" value=<?php echo $row['lastname']?> placeholder="Last Name" required>
+                                    <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row['lastname']?>" placeholder="Last Name" required>
                                 </div>
                             </div>
 
@@ -135,18 +135,18 @@ $user_id = $_GET['user_id'];
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="email">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" value=<?php echo $row['email']?> placeholder="Enter email" required>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']?>" placeholder="Enter email" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="contact">Contact Number</label>
-                                    <input type="text" class="form-control" id="contact" name="contact" value=<?php echo $row['contact']?> placeholder="Contact Number" required>
+                                    <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $row['contact']?>" placeholder="Contact Number" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" value=<?php echo $row['username']?> placeholder="Username" required>
+                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']?>" placeholder="Username" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="password">Password</label>
