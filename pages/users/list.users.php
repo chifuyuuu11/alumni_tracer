@@ -1,0 +1,148 @@
+<?php
+require '../../includes/conn.php';
+require '../../includes/session.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Users List</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <?php require '../../includes/link.php'; ?>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?php require '../../includes/navbar.php'; ?>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="../../index3.html" class="brand-link">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">AdminLTE 3</span>
+            </a>
+
+            <!-- Sidebar -->
+            <?php require '../../includes/sidebar.php'; ?>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Users List</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Users List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Users List and Info</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fullname</th>
+                                    <th>Role</th>
+                                    <th>Campus</th>
+                                    <th>Email</th>
+                                    <th>Contact Number</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
+                                LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
+                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id");
+                                while ($row = mysqli_fetch_array($info)) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row['fullname']; ?></td>
+                                        <td><?php echo $row['role']; ?></td>
+                                        <td><?php echo $row['campus']; ?></td>
+                                        <td><?php echo $row['email']; ?></td>
+                                        <td><?php echo $row['contact']; ?></td>
+                                        <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
+                                                class="btn btn-block btn-primary">Update</a>
+                                            <button type="button" class="btn btn-block btn-danger" data-toggle="modal"
+                                                data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="modal-default<?php echo $row['user_id']; ?>" tabindex="-1"
+                                        aria-labelledby="modal-defaultLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modal-defaultLabel">Confirm Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname']?></b> account?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Cancel</button>
+                                                    <a href="usersData/ctrl.delete.users.php?user_id=<?php echo $row['user_id']; ?>"
+                                                        type="button" class="btn btn-danger">Delete</a>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+        </div>
+        <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+        <?php require '../../includes/footer.php'; ?>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <?php require '../../includes/script.php'; ?>
+</body>
+
+</html>
