@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 
     } else {
         echo 1;
-        $_SESSION['error'] = true;
+        $_SESSION['error_update'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);
 
     }

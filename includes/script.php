@@ -122,12 +122,50 @@
       toastr.success("Successfully updated!", 'Success')
     });
   <?php
+  } elseif (isset($_SESSION['error_update'])) {
+    ?>
+    $(function() {
+      toastr.error("Update error.", 'Error')
+    });
+  <?php
+  } elseif (isset($_SESSION['role'])){
+    ?>
+    $(function() {
+      toastr.success("Role added!", 'Success')
+    });
+  <?php
+  } elseif (isset($_SESSION['role_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Role already exist.", 'Error')
+    });
+  <?php
+  } elseif (isset($_SESSION['campus'])){
+    ?>
+    $(function() {
+      toastr.success("Campus added!", 'Success')
+    });
+  <?php
+  } elseif (isset($_SESSION['campus_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Campus already exist.", 'Error')
+    });
+  <?php
   }
+  
+  
+  
 
   unset($_SESSION['success']);
   unset($_SESSION['error']);
   unset($_SESSION['deleted']);
   unset($_SESSION['updated']);
+  unset($_SESSION['error_update']);
+  unset($_SESSION['role']);
+  unset($_SESSION['role_exist']);
+  unset($_SESSION['campus']);
+  unset($_SESSION['campus_exist']);
   ?>
     
 
