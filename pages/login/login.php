@@ -1,5 +1,9 @@
+<?php
+require '../../includes/conn.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,79 +17,138 @@
   <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <style>
+    .login-page {
+      background-image: url('../../dist/img/bg.jpg');
+      background-size: cover;
+    }
+
+    .card {
+      background-image: url("../../dist/img/white.jpg");
+      height: 460px;
+      width: 350px;
+      border-radius: 15px;
+      overflow: auto;
+      object-fit: fill;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .error input {
+      border-color: red;
+    }
+  </style>
 </head>
+
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-
-      <form action="../../index3.html" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+  <div class="row justify-content-center">
+    <div class="login-box">
+      <!-- /.login-logo -->
+      <div class="card card-outline card-danger">
+        <div class="card-header text-center">
+          <div class="sfac-logo">
+            <img src="../../dist/img/sfac.png" alt="sfac" style="width:80px;height:80px;">
+          </div>
+          <a href="https://stfrancis.edu.ph/" style="color: black;">
+            <h4><b>Saint Francis of Assisi College</b></h4>
+          </a>
+          <p>Online Alumni Tracking System</p>
+        </div>
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-auto"></div>
+              <div class="col">
+                <p class="login-box-msg">Sign in to your account.</p>
+                <form id="loginForm" action="usersData/ctrl.login.php" method="POST">
+                  <div class="input-group mb-3">
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Username" required>
+                    <p class="error username-error"></p>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                    <p class="error password-error"></p>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8"></div>
+                    <!-- /.col -->
+                    <div class="col-md-4">
+                      <button type="submit" name="signin" class="btn btn-danger btn-block">Sign In</button>
+                      <p class="success-message"></p>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <p class="mb-1">
+                    <a href="forgot.password.php">I forgot my password</a>
+                  </p>
+                </form>
+                <?php
+                session_start();
+                if (isset($_SESSION['error'])) {
+                  $error = $_SESSION['error'];
+                  echo "<script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      toastr.options = {
+                        'closeButton': true,
+                        'debug': false,
+                        'newestOnTop': false,
+                        'progressBar': true,
+                        'positionClass': 'toast-top-right',
+                        'preventDuplicates': false,
+                        'onclick': null,
+                        'showDuration': '300',
+                        'hideDuration': '1000',
+                        'timeOut': '5000',
+                        'extendedTimeOut': '1000',
+                        'showEasing': 'swing',
+                        'hideEasing': 'linear',
+                        'showMethod': 'fadeIn',
+                        'hideMethod': 'fadeOut'
+                      };
+                      if ('$error' == 'wrong_username') {
+                        toastr.error('Invalid username.');
+                      } else if ('$error' == 'wrong_password') {
+                        toastr.error('Incorrect password.');
+                      }
+                    });
+                  </script>";
+                  unset($_SESSION['error']);
+                }
+                ?>
+              </div>
             </div>
           </div>
+          <p class="mb-0"></p>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
+        <!-- /.card-body -->
       </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      <!-- /.card -->
     </div>
-    <!-- /.login-card-body -->
+    <!-- /.login-box -->
   </div>
-</div>
-<!-- /.login-box -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Toastr -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
+
 </html>

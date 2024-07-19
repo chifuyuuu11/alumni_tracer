@@ -22,19 +22,9 @@ require '../../includes/session.php';
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-            </a>
-
             <!-- Sidebar -->
             <?php require '../../includes/sidebar.php'; ?>
             <!-- /.sidebar -->
-        </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -64,7 +54,7 @@ require '../../includes/session.php';
                     <div class="card-header">
                         <h3 class="card-title">User Info</h3>
                     </div>
-                    <form class="form" method="POST" action="usersdata/ctrl.add.users.php">
+                    <form class="form" method="POST" action="usersData/ctrl.add.users.php">
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-4">

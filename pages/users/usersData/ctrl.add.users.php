@@ -29,7 +29,7 @@ if (isset($_POST ['submit'])) {
 
     } else {
         echo 1;
-        $_SESSION['error'] = true;
+        $_SESSION['username_exist'] = true;
         header("location: ../add.users.php");
 
     }

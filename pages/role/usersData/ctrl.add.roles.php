@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_roles (role) VALUES ('$role')");
 
         $_SESSION['role'] = true;
-        header("location: ../../role/add.role.php");
+        header("location: ../add.roles.php");
 
     } else {
         echo 1;
         $_SESSION['role_exist'] = true;
-        header("location: ../../role/add.role.php");
+        header("location: ../add.roles.php");
 
     }
 }

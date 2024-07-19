@@ -15,12 +15,12 @@ if (isset($_POST ['submit'])) {
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_campus (campus) VALUES ('$campus')");
         
         $_SESSION['campus'] = true;
-        header("location: ../../campus/add.campus.php");
+        header("location: ../add.campus.php");
 
     } else {
         echo 1;
         $_SESSION['campus_exist'] = true;
-        header("location: ../../campus/add.campus.php");
+        header("location: ../add.campus.php");
 
     }
 }

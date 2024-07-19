@@ -1,5 +1,7 @@
 <?php
   require '../../includes/conn.php';
+  require '../../includes/session.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

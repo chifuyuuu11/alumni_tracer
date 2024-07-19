@@ -104,7 +104,7 @@
       toastr.success("Successfully added!", 'Success')
     });
     <?php
-  } elseif (isset($_SESSION['error'])) {
+  } elseif (isset($_SESSION['username_exist'])) {
     ?>
     $(function() {
       toastr.error("Username already exists.", 'Error')
@@ -158,7 +158,7 @@
   
 
   unset($_SESSION['success']);
-  unset($_SESSION['error']);
+  unset($_SESSION['username_exist']);
   unset($_SESSION['deleted']);
   unset($_SESSION['updated']);
   unset($_SESSION['error_update']);

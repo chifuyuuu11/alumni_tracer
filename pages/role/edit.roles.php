@@ -1,6 +1,8 @@
 <?php
 require '../../includes/conn.php';
 require '../../includes/session.php';
+
+$role_id = $_GET['role_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +10,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Add Role</title>
+    <title>AdminLTE 3 | Edit Role</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -22,19 +24,9 @@ require '../../includes/session.php';
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-            </a>
-
             <!-- Sidebar -->
             <?php require '../../includes/sidebar.php'; ?>
             <!-- /.sidebar -->
-        </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -42,12 +34,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add Role</h1>
+                            <h1>Edit Role</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add Role</li>
+                                <li class="breadcrumb-item active">Edit Role</li>
                             </ol>
                         </div>
                     </div>
@@ -62,14 +54,18 @@ require '../../includes/session.php';
                 <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">User Role</h3>
+                        <h3 class="card-title">Edit Role</h3>
                     </div>
-                    <form class="form" method="POST" action="../users/usersData/ctrl.add.roles.php">
+                    <form class="form" action="usersData/ctrl.edit.roles.php?role_id=<?php echo $role_id;?>" method="POST" >
+                    <?php
+                    $info = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$role_id'");
+                    while ($row = mysqli_fetch_array($info)) {
+                    ?>
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="form-group col-md-10">
-                                    <label for="role">Add Role</label>
-                                    <input type="text" class="form-control" id="role" name="role" placeholder="Enter Role" required>
+                                    <label for="role">Edit Role</label>
+                                    <input type="text" class="form-control" id="role" name="role" value="<?php echo $row['role']?>" placeholder="Enter Role" required>
                                 </div>
                             </div>
                         </div>
@@ -77,6 +73,9 @@ require '../../includes/session.php';
                         <div class="card-footer">
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </div>
+                    <?php
+                    }
+                    ?>
                     </form>
                 </div>
                 </div>

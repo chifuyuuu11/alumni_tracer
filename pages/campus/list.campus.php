@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Users List</title>
+    <title>AdminLTE 3 | Campus List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -32,12 +32,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Users List</h1>
+                            <h1>Campus List</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Users List</li>
+                                <li class="breadcrumb-item active">Campus List</li>
                             </ol>
                         </div>
                     </div>
@@ -49,41 +49,31 @@ require '../../includes/session.php';
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Users List and Info</h3>
+                        <h3 class="card-title">Campus List and Settings</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Fullname</th>
-                                    <th>Role</th>
                                     <th>Campus</th>
-                                    <th>Email</th>
-                                    <th>Contact Number</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
-                                LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id");
+                                $info = mysqli_query($conn, "SELECT * FROM tbl_campus");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $row['fullname']; ?></td>
-                                        <td><?php echo $row['role']; ?></td>
                                         <td><?php echo $row['campus']; ?></td>
-                                        <td><?php echo $row['email']; ?></td>
-                                        <td><?php echo $row['contact']; ?></td>
-                                        <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
-                                                class="btn btn-primary">Update</a>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
+                                        <td><a href="edit.campus.php?campus_id=<?php echo $row['campus_id']; ?>" type="button"
+                                                class="btn btn-primary btn-sm m-1">Update</a>
+                                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                                                data-target="#modal-default<?php echo $row['campus_id']; ?>">Delete</a>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="modal-default<?php echo $row['user_id']; ?>" tabindex="-1"
+                                    <div class="modal fade" id="modal-default<?php echo $row['campus_id']; ?>" tabindex="-1"
                                         aria-labelledby="modal-defaultLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -95,12 +85,12 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname']?></b> account?</p>
+                                                    <p> Are you sure you want to delete <b><?php echo $row['campus']?></b> campus?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Cancel</button>
-                                                    <a href="usersData/ctrl.delete.users.php?user_id=<?php echo $row['user_id']; ?>"
+                                                    <a href="usersData/ctrl.delete.campus.php?campus_id=<?php echo $row['campus_id']; ?>"
                                                         type="button" class="btn btn-danger">Delete</a>
                                                 </div>
                                             </div>
