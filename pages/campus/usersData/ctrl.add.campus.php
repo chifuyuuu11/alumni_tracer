@@ -13,6 +13,8 @@ if (isset($_POST ['submit'])) {
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_campus (campus) VALUES ('$campus')");
+
+        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Campus', '$campus', 'ctrl.add.campus.php')");
         
         $_SESSION['campus'] = true;
         header("location: ../add.campus.php");
