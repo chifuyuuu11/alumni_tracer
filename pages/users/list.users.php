@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Users List</title>
+    <title>Alumni Tracer | Users List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
