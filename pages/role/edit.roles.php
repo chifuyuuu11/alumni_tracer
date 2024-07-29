@@ -10,7 +10,7 @@ $role_id = $_GET['role_id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Edit Role</title>
+    <title>Alumni Tracer | Edit Role</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
