@@ -143,12 +143,29 @@
             </li>
           </ul>
         </li>
-        <a href="../form/list.php" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
             <p>
-              List Forms
+              Forms List
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="../form/alumni.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Alumni List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../form/student.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Student List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
