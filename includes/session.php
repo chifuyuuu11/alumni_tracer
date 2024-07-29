@@ -1,9 +1,9 @@
 <?php
-ob_start();
 session_start();
-
-if (isset($_SESSION['user_id'])) {
-    header("Location: ../dashboard/index.php");
-
+if (isset($_SESSION['role'])) {
+    header("location: pages/dashboard/index.php");
+} else {
+    header("location: pages/login/login.php");
 }
+
 ?>

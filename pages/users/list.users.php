@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Users List</title>
+    <title>Alumni Tracer | Users List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -22,9 +22,9 @@ require '../../includes/session.php';
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-            <!-- Sidebar -->
-            <?php require '../../includes/sidebar.php'; ?>
-            <!-- /.sidebar -->
+        <!-- Sidebar -->
+        <?php require '../../includes/sidebar.php'; ?>
+        <!-- /.sidebar -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -56,6 +56,7 @@ require '../../includes/session.php';
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Fullname</th>
                                     <th>Role</th>
                                     <th>Campus</th>
@@ -72,6 +73,14 @@ require '../../includes/session.php';
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
+                                        <td>
+                                            <?php
+                                            if (!empty(base64_encode($row['img']))) {
+                                                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img zoom " alt="User image" style="height: 80px; width: 100px">';
+                                            } else {
+                                                echo ' <img src="../../docs/assets/img/user.png" class="img zoom" alt="User image"  style="height: 80px; width: 100px">';
+                                            } ?>
+                                        </td>
                                         <td><?php echo $row['fullname']; ?></td>
                                         <td><?php echo $row['role']; ?></td>
                                         <td><?php echo $row['campus']; ?></td>
@@ -95,7 +104,8 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname']?></b> account?</p>
+                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname'] ?></b>
+                                                        account?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"

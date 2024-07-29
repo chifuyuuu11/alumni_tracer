@@ -10,7 +10,7 @@ $user_id = $_GET['user_id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Edit User</title>
+    <title>Alumni Tracer | Edit User</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
