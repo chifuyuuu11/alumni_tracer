@@ -136,12 +136,12 @@ require '../../includes/session.php';
                                         <div class="form-group col-md-6">
                                             <label for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username"
-                                                placeholder="Username" required>
+                                                placeholder="Username" required autocomplete="off">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="password">Password</label>
                                             <input type="password" class="form-control" id="password" name="password"
-                                                placeholder="Password" required>
+                                                placeholder="Password" required autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

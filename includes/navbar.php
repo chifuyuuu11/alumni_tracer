@@ -62,7 +62,7 @@
           <i class="fas fa-user mr-2"></i> Edit Account
         </a>
         <div class="dropdown-divider"></div>
-        <a href="../login/userData/ctrl.logout.php" class="dropdown-item dropdown-footer"><b>Log Out</b></a>
+        <a href="../login/usersData/ctrl.logout.php" class="dropdown-item dropdown-footer"><b>Log Out</b></a>
       </div>
     </li>
   </ul>
