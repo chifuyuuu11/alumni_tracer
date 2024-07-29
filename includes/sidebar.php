@@ -10,7 +10,21 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <?php
+        $info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$_SESSION[user_id]'");
+        $row = mysqli_fetch_array($info);
+        if (!empty($row['img'])) {
+          ?>
+          <img style="width: 40px; height: 40px;" src="data:image/jpeg;base64,<?php echo base64_encode($row['img']) ?>"
+            class="img-circle elevation-2 mt-2" alt="User Image">
+          <?php
+        } else {
+          ?>
+          <img style="width: 40px; height: 40px;" src="../../docs/assets/img/user.png" class="img-circle elevation-2 mt-2"
+            alt="User Image">
+          <?php
+        }
+        ?>
       </div>
       <div class="info">
         <a href="#" class="d-block"><?php echo $_SESSION['fullname']; ?></a>

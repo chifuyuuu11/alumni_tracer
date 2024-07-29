@@ -18,16 +18,13 @@ if (isset($_POST['signin'])) {
             $_SESSION['fullname'] = $row['fullname'];
             $_SESSION['user_role'] = $row['role']; 
             header("location: ../../dashboard/index.php");
-            exit();
         } else {
             $_SESSION['error'] = 'wrong_password';
             header("location: ../login.php");
-            exit();
         }
     } else {
         $_SESSION['error'] = 'wrong_username';
         header("location: ../login.php");
-        exit();
     }
 }
 ?>
