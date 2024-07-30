@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_roles (role) VALUES ('$role')");
 
+        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Role', '$role', 'ctrl.add.roles.php')");
+
         $_SESSION['role'] = true;
         header("location: ../add.roles.php");
 

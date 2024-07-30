@@ -25,7 +25,10 @@ if (isset($_POST ['submit'])) {
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
         (img, firstname, middlename, lastname, campus_id, role_id, contact, email, username, password)
         VALUES
-        ('$img', '$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass')");
+        ('$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass')");
+
+        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'ctrl.add.users.php')");
+
         $_SESSION['success'] = true;
         header("location: ../add.users.php");
 
