@@ -19,13 +19,9 @@ require '../../includes/session.php';
     <div class="wrapper">
         <!-- Navbar -->
         <?php require '../../includes/navbar.php'; ?>
-        <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-        <!-- Sidebar -->
         <?php require '../../includes/sidebar.php'; ?>
-        <!-- /.sidebar -->
-        <!-- Content Wrapper. Contains page content -->
+
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -104,7 +100,8 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname'] ?></b>
+                                                    <p> Are you sure you want to delete
+                                                        <b><?php echo $row['fullname'] ?></b>
                                                         account?</p>
                                                 </div>
                                                 <div class="modal-footer">

@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Users List</title>
+    <title>Alumni Tracer | Student List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -32,12 +32,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Users List</h1>
+                            <h1>Online Registrations</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Users List</li>
+                                <li class="breadcrumb-item active">Online Registrations</li>
                             </ol>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ require '../../includes/session.php';
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Users List and Info</h3>
+                <h3 class="card-title">Online Registrations</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -57,27 +57,25 @@ require '../../includes/session.php';
                   <thead>
                   <tr>
                     <th>Fullname</th>
-                    <th>Role</th>
-                    <th>Campus</th>
+           
                     <th>Email</th>
                     <th>Contact Number</th>
+                    <th>Remark</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php
-                  $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
-                  LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                  LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id ORDER BY lastname");
+                  $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
+                  ORDER BY lastname ");
                   while ($row = mysqli_fetch_array($info)) {
                   ?>
                   <tr>
                   <td><?php echo $row['fullname'];?></td>
-                  <td><?php echo $row['role'];?></td>
-                  <td><?php echo $row['campus'];?></td>
                   <td><?php echo $row['email'];?></td>
-                  <td><?php echo $row['contact'];?></td>
-                  <td>Update</td>
+                  <td><?php echo $row['contact_no'];?></td>
+                  <td><?php echo $row['status'];?></td>
+                  <td><button class="btn btn-primary mx-1">Admit</button> <button class="btn btn-danger mx-1">Delete</button></td>
                   </tr>
                   <?php
                   }

@@ -17,25 +17,16 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100" width="100">
   </div>
 
   <!-- Navbar -->
   <?php require '../../includes/navbar.php'; ?>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+  <!-- Sidebar -->
+  <?php require '../../includes/sidebar.php'; ?>
 
-    <!-- Sidebar -->
-    <?php require '../../includes/sidebar.php'; ?>
-    <!-- /.sidebar -->
-  </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -183,6 +174,28 @@
                 <i class="ion ion-pie-graph"></i>
               </div>
               <a href="list.superadmin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Online Registration</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="../registration/list.registration.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -34981,16 +34981,27 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   height: 100vh;
   -ms-flex-pack: center;
   justify-content: center;
+  background-image: url('../../dist/img/bg.jpg');
+  background-size: cover;
 }
 
-.login-box,
-.register-box {
+.login-box {
   width: 360px;
 }
 
+.register-box {
+  width: 860px;
+}
+
 @media (max-width: 576px) {
-  .login-box,
   .register-box {
+    margin-top: .5rem;
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-box{
     margin-top: .5rem;
     width: 90%;
   }
