@@ -26,8 +26,7 @@ $role_id = $_GET['role_id'];
         <!-- Main Sidebar Container -->
             <!-- Sidebar -->
             <?php require '../../includes/sidebar.php'; ?>
-            <!-- /.sidebar -->
-        <!-- Content Wrapper. Contains page content -->
+    
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
