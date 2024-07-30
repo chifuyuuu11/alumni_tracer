@@ -6,9 +6,9 @@ if (isset($_POST['submit'])) {
 
     $role = mysqli_real_escape_string($conn, $_POST['role']);
 
-    $select_user = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role = '$role'");
+    $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role = '$role'");
 
-    $check = mysqli_num_rows($select_user);
+    $check = mysqli_num_rows($select_role);
 
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);

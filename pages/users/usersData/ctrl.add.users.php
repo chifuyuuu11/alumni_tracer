@@ -4,6 +4,8 @@ require '../../../includes/session.php';
 
 if (isset($_POST ['submit'])) {
 
+    $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
+
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
@@ -21,7 +23,7 @@ if (isset($_POST ['submit'])) {
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
-        (firstname, middlename, lastname, campus_id, role_id, contact, email, username, password)
+        (img, firstname, middlename, lastname, campus_id, role_id, contact, email, username, password)
         VALUES
         ('$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass')");
 

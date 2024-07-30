@@ -6,9 +6,9 @@ if (isset($_POST ['submit'])) {
 
     $campus = mysqli_real_escape_string($conn, $_POST['campus']);
 
-    $select_user = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus = '$campus'");
+    $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus = '$campus'");
 
-    $check = mysqli_num_rows($select_user);
+    $check = mysqli_num_rows($select_campus);
 
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);

@@ -7,7 +7,7 @@ require '../../includes/conn.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Alumni Tracer | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -63,7 +63,7 @@ require '../../includes/conn.php';
         <div class="card-body">
           <div class="container">
             <div class="row">
-              <div class="col-auto"></div>
+           
               <div class="col">
                 <p class="login-box-msg">Sign in to your account.</p>
                 <form id="loginForm" action="usersData/ctrl.login.php" method="POST">
@@ -86,15 +86,16 @@ require '../../includes/conn.php';
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-8"></div>
+                    <div class="col"></div>
                     <!-- /.col -->
-                    <div class="col-md-4">
-                      <button type="submit" name="signin" class="btn btn-danger btn-block">Sign In</button>
-                      <p class="success-message"></p>
+                    <div class="col-md-auto">
+                      <a href="../registration/add.registration.php" name="signin" class="btn btn-primary ">Register</a>
+                      <button type="submit" name="signin" class="btn btn-danger ">Sign In</button>
+                
                     </div>
                     <!-- /.col -->
                   </div>
-                  <p class="mb-1">
+                  <p class="my-3">
                     <a href="forgot.password.php">I forgot my password</a>
                   </p>
                 </form>

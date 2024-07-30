@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Users List</title>
+    <title>Alumni Tracer | Users List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -19,13 +19,9 @@ require '../../includes/session.php';
     <div class="wrapper">
         <!-- Navbar -->
         <?php require '../../includes/navbar.php'; ?>
-        <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
-            <!-- Sidebar -->
-            <?php require '../../includes/sidebar.php'; ?>
-            <!-- /.sidebar -->
-        <!-- Content Wrapper. Contains page content -->
+        <?php require '../../includes/sidebar.php'; ?>
+
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -56,6 +52,7 @@ require '../../includes/session.php';
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Fullname</th>
                                     <th>Role</th>
                                     <th>Campus</th>
@@ -72,6 +69,14 @@ require '../../includes/session.php';
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
+                                        <td>
+                                            <?php
+                                            if (!empty(base64_encode($row['img']))) {
+                                                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img zoom " alt="User image" style="height: 80px; width: 100px">';
+                                            } else {
+                                                echo ' <img src="../../docs/assets/img/user.png" class="img zoom" alt="User image"  style="height: 80px; width: 100px">';
+                                            } ?>
+                                        </td>
                                         <td><?php echo $row['fullname']; ?></td>
                                         <td><?php echo $row['role']; ?></td>
                                         <td><?php echo $row['campus']; ?></td>
@@ -79,6 +84,10 @@ require '../../includes/session.php';
                                         <td><?php echo $row['contact']; ?></td>
                                         <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
                                                 class="btn btn-primary">Update</a>
+                                                <?php if (($row['role'] == 'Alumni')){ ?>
+                                                <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>" type="button"
+                                                class="btn btn-info">Send Email</a>
+                                                <?php }?>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                         </td>
@@ -95,7 +104,9 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['fullname']?></b> account?</p>
+                                                    <p> Are you sure you want to delete
+                                                        <b><?php echo $row['fullname'] ?></b>
+                                                        account?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
