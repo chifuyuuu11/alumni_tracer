@@ -152,6 +152,12 @@
       toastr.error("Campus already exist.", 'Error')
     });
   <?php
+  } elseif (isset($_SESSION['email'])){
+    ?>
+    $(function() {
+      toastr.success("Please check your email.", 'Email Sent!')
+    });
+  <?php
   }
   
   
@@ -166,6 +172,7 @@
   unset($_SESSION['role_exist']);
   unset($_SESSION['campus']);
   unset($_SESSION['campus_exist']);
+  unset($_SESSION['email']);
   ?>
     
 

@@ -88,6 +88,10 @@ require '../../includes/session.php';
                                         <td><?php echo $row['contact']; ?></td>
                                         <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
                                                 class="btn btn-primary">Update</a>
+                                                <?php if (($row['role'] == 'Alumni')){ ?>
+                                                <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>" type="button"
+                                                class="btn btn-info">Send Email</a>
+                                                <?php }?>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                         </td>
