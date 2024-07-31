@@ -21,9 +21,19 @@
       <?php
             $info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$_SESSION[user_id]'");
             $row = mysqli_fetch_array($info);
+            if (!empty($row['img'])) {
+              ?>
+              <img style="width: 30px; height: 30px;"
+                src="data:image/jpeg;base64,<?php echo base64_encode($row['img']) ?>" alt="User Avatar"
+                class="img-size-50 img-circle mr-3">
+              <?php
+            } else {
+              ?>
+              <img style="width: 30px; height: 30px;" src="../../docs/assets/img/user.png" alt="User Avatar"
+                class="img-size-50 img-circle mr-3">
+              <?php
+            }
             ?>
-        <img style="width: 30px; height: 30px;" src="data:image/jpeg;base64,<?php echo base64_encode($row['img']) ?>"
-          class="user-image img-circle img-size-32">
         <span class="badge badge-warning navbar-badge"></span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

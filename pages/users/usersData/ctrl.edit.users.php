@@ -6,6 +6,8 @@ $user_id = $_GET['user_id'];
 
 if (isset($_POST['submit'])) {
 
+    $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
+
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
@@ -22,7 +24,7 @@ if (isset($_POST['submit'])) {
 
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
-        $insert_data = mysqli_query($conn, "UPDATE tbl_users SET firstname = '$firstname', middlename = '$middlename',
+        $insert_data = mysqli_query($conn, "UPDATE tbl_users SET img = '$img', firstname = '$firstname', middlename = '$middlename',
         lastname = '$lastname', role_id = '$role', campus_id='$campus', email = '$email', contact = '$contact',
         username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
 
