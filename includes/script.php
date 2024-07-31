@@ -158,6 +158,12 @@
       toastr.success("Please check your email.", 'Email Sent!')
     });
   <?php
+  } elseif (isset($_SESSION['success_admit'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully admitted", 'Success')
+    });
+  <?php
   }
   
   
@@ -173,6 +179,7 @@
   unset($_SESSION['campus']);
   unset($_SESSION['campus_exist']);
   unset($_SESSION['email']);
+  unset($_SESSION['success_admit']);
   ?>
     
 
