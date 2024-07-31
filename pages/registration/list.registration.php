@@ -53,23 +53,37 @@ require '../../includes/session.php';
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                <form method="GET">
+                    <div class="row justify-content-center">
+                        <div class="form-group col-4">
+                            <label>Search</label>
+                            <input type="text" class="form-control" id="firstname" name="search"
+                            placeholder="Search first name, last name, ...">
+                        </div>
+                        <div class="sol-auto">
+                            <button class="btn btn-primary mt-4">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>Fullname</th>
-           
-                    <th>Email</th>
-                    <th>Contact Number</th>
-                    <th>Remark</th>
-                    <th>Action</th>
-                  </tr>
+                    <tr>
+                        <th>Fullname</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <?php
-                  $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
-                  ORDER BY lastname ");
-                  while ($row = mysqli_fetch_array($info)) {
-                  ?>
+                    <?php
+                    if (isset($_GET['search'])) {
+                        $search = mysqli_real_escape_string($conn, $_GET['search']);
+                    
+                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
+                    ORDER BY lastname ");
+                    while ($row = mysqli_fetch_array($info)) {
+                    ?>
                   <tr>
                   <td><?php echo $row['fullname'];?></td>
                   <td><?php echo $row['email'];?></td>
@@ -79,6 +93,7 @@ require '../../includes/session.php';
                   </tr>
                   <?php
                   }
+                }
                   ?>
                   </tbody>
                 </table>
