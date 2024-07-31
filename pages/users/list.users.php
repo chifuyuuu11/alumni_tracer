@@ -49,6 +49,21 @@ require '../../includes/session.php';
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <form method="GET">
+                            <div class="row justify-content-center">
+                                <div class="form-group col-4">
+                                    <label>Search</label>
+                                    <input type="text" class="form-control" id="firstname" name="search"
+                                    placeholder="Search first name, last name, ...">
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-primary mt-4">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
@@ -63,9 +78,13 @@ require '../../includes/session.php';
                             </thead>
                             <tbody>
                                 <?php
+                                if (isset($_GET['search'])) {
+                                    $search = mysqli_real_escape_string($conn, $_GET['search']);
+                                    
                                 $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
                                 LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id");
+                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
+                                WHERE (lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR role LIKE '%$search%' OR campus LIKE '%$search%')");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
@@ -84,10 +103,10 @@ require '../../includes/session.php';
                                         <td><?php echo $row['contact']; ?></td>
                                         <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
                                                 class="btn btn-primary">Update</a>
-                                                <?php if (($row['role'] == 'Alumni')){ ?>
-                                                <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>" type="button"
-                                                class="btn btn-info">Send Email</a>
-                                                <?php }?>
+                                            <?php if (($row['role'] == 'Alumni')) { ?>
+                                                <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>"
+                                                    type="button" class="btn btn-info">Send Email</a>
+                                            <?php } ?>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                         </td>
@@ -106,7 +125,8 @@ require '../../includes/session.php';
                                                 <div class="modal-body">
                                                     <p> Are you sure you want to delete
                                                         <b><?php echo $row['fullname'] ?></b>
-                                                        account?</p>
+                                                        account?
+                                                    </p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
@@ -121,6 +141,7 @@ require '../../includes/session.php';
                                     </div>
                                     <?php
                                 }
+                            }
                                 ?>
                             </tbody>
                         </table>
