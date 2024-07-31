@@ -22,8 +22,8 @@ require '../../includes/session.php';
         <!-- /.navbar -->
 
         <!-- Sidebar -->
-            <?php require '../../includes/sidebar.php'; ?>
-            <!-- /.sidebar -->
+        <?php require '../../includes/sidebar.php'; ?>
+        <!-- /.sidebar -->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -105,13 +105,13 @@ require '../../includes/session.php';
 
         </section>
         <!-- /.content -->
-    <?php require '../../includes/footer.php'; ?>
+        <?php require '../../includes/footer.php'; ?>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
