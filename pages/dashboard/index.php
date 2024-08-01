@@ -168,7 +168,7 @@
 
                 <h3><?php echo $row ?></h3>
 
-                <p>Staff</p>
+                <p>Super Admin</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person"></i>

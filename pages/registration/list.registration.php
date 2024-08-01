@@ -47,74 +47,59 @@ require '../../includes/session.php';
             <!-- Main content -->
             <section class="content">
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Online Registrations</h3>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Online Registrations</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form method="GET">
+                    <div class="row justify-content-center">
+                        <div class="form-group col-4">
+                            <label>Search</label>
+                            <input type="text" class="form-control" id="firstname" name="search"
+                            placeholder="Search first name, last name, ...">
+                        </div>
+                        <div class="sol-auto">
+                            <button class="btn btn-primary mt-4">Search</button>
+                        </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Fullname</th>
-                                    <th>Email</th>
-                                    <th>Contact Number</th>
-                                    <th>Remark</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
-                  ORDER BY lastname ");
-                                while ($row = mysqli_fetch_array($info)) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row['fullname']; ?></td>
-                                        <td><?php echo $row['email']; ?></td>
-                                        <td><?php echo $row['contact_no']; ?></td>
-                                        <td><?php echo $row['status']; ?></td>
-                                        <td><a href="admit.registration.php?reg_id=<?php echo $row['reg_id']; ?>"
-                                                type="button" class="btn btn-primary mx-1">Admit</a>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#modal-default<?php echo $row['reg_id']; ?>">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="modal-default<?php echo $row['reg_id']; ?>" tabindex="-1"
-                                        aria-labelledby="modal-defaultLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modal-defaultLabel">Confirm Delete</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p> Are you sure you want to delete
-                                                        <b><?php echo $row['fullname'] ?></b>
-                                                        registration?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Cancel</button>
-                                                    <a href="usersData/ctrl.delete.registration.php?reg_id=<?php echo $row['reg_id']; ?>"
-                                                        type="button" class="btn btn-danger">Delete</a>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                    <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
+                </form>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                        <th>Fullname</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    if (isset($_GET['search'])) {
+                        $search = mysqli_real_escape_string($conn, $_GET['search']);
+                    
+                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
+                    ORDER BY lastname ");
+                    while ($row = mysqli_fetch_array($info)) {
+                    ?>
+                  <tr>
+                  <td><?php echo $row['fullname'];?></td>
+                  <td><?php echo $row['email'];?></td>
+                  <td><?php echo $row['contact_no'];?></td>
+                  <td><?php echo $row['status'];?></td>
+                  <td><button class="btn btn-primary mx-1">Admit</button> <button class="btn btn-danger mx-1">Delete</button></td>
+                  </tr>
+                  <?php
+                  }
+                }
+                  ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
         </div>
         <!-- /.card -->
 
