@@ -164,6 +164,12 @@
       toastr.success("Successfully admitted", 'Success')
     });
   <?php
+  } elseif (isset($_SESSION['invalid_otp'])){
+    ?>
+    $(function() {
+      toastr.error("Invalid OTP!", 'Error')
+    });
+  <?php
   }
   
   
@@ -180,6 +186,7 @@
   unset($_SESSION['campus_exist']);
   unset($_SESSION['email']);
   unset($_SESSION['success_admit']);
+  unset($_SESSION['invalid_otp']);
   ?>
     
 

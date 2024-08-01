@@ -65,7 +65,7 @@ require '../../includes/session.php';
                                 <?php
                                 $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
                                 LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id");
+                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id ORDER BY lastname");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>

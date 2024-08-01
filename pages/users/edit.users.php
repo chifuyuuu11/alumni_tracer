@@ -2,7 +2,11 @@
 require '../../includes/conn.php';
 require '../../includes/session.php';
 
-$user_id = $_GET['user_id'];
+if(isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+} else {
+    $user_id = $_SESSION['user_id'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,44 +61,60 @@ $user_id = $_GET['user_id'];
                             <div class="card-header">
                                 <h3 class="card-title">User Info</h3>
                             </div>
-                            <form action="usersData/ctrl.edit.users.php?user_id=<?php echo $user_id; ?>" method="POST"
-                                enctype="multipart/form-data">
-                                <?php
-                                $info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$user_id'");
-                                while ($row = mysqli_fetch_array($info)) {
-                                    ?>
-                                    <div class="card-body">
+                            <div class="card-body">
+                                <form action="usersData/ctrl.edit.users.php?user_id=<?php echo $user_id; ?>"
+                                    method="POST" enctype="multipart/form-data">
+                                    <?php
+                                    $info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$user_id'");
+                                    while ($row = mysqli_fetch_array($info)) {
+                                        ?>
                                         <div class="row justify-content-center">
                                             <div class="form-group">
                                                 <div class="text-center">
                                                     <?php
                                                     if (!empty($row['img'])) {
-                                                    ?>
+                                                        ?>
                                                         <img class="img-fluid img-bordered img-circle p-1"
-                                                        src="data:image/jpeg;base64, <?php echo base64_encode($row['img']);?> "
-                                                        alt="User profile picture"
-                                                        style="width: 145px; height: 145px; margin-bottom: 10px;">
+                                                            src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?> "
+                                                            alt="User profile picture"
+                                                            style="width: 145px; height: 145px; margin-bottom: 10px;">
                                                         <?php
                                                     } else {
                                                         ?>
-                                                    <img style="width: 130px; height: 130px;" 
-                                                    src="../../docs/assets/img/user.png" alt="User Avatar" 
-                                                    class="img-size-50 img-circle mr-3">
-                                                    <?php
+                                                        <img style="width: 130px; height: 130px;"
+                                                            src="../../docs/assets/img/user.png" alt="User Avatar"
+                                                            class="img-size-50 img-circle mr-3">
+                                                        <?php
                                                     }
                                                     ?>
                                                 </div>
                                                 <label for="exampleInputFile">Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                      <input type="file" class="custom-file-input" name="img"
+                                                        <input required type="file" class="custom-file-input" name="img"
                                                             id="exampleInputFile">
                                                         <label class="custom-file-label" for="exampleInputFile">Choose
                                                             file</label>
                                                     </div>
+                                                    <button type="submit" name="upload" class="btn btn-primary">
+                                                        <span>Upload</span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php
+                                    }
+                                    ?>
+                                </form>
+
+
+                                <form action="usersData/ctrl.edit.users.php?user_id=<?php echo $user_id; ?>"
+                                    method="POST" enctype="multipart/form-data">
+                                    <?php
+                                    $info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$user_id'");
+                                    while ($row = mysqli_fetch_array($info)) {
+                                        ?>
+                                    <div class="card-body"></div>
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">First Name</label>
@@ -122,7 +142,8 @@ $user_id = $_GET['user_id'];
                                                     $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_role)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['role_id'] ?>"><?php echo $row1['role'] ?>
+                                                        <option value="<?php echo $row1['role_id'] ?>">
+                                                            <?php echo $row1['role'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -131,7 +152,8 @@ $user_id = $_GET['user_id'];
                                                     $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE NOT role_id = '$row[role_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_role)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['role_id'] ?>"><?php echo $row1['role'] ?>
+                                                        <option value="<?php echo $row1['role_id'] ?>">
+                                                            <?php echo $row1['role'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -146,7 +168,8 @@ $user_id = $_GET['user_id'];
                                                     while ($row1 = mysqli_fetch_array($select_campus)) {
                                                         ?>
                                                         <option value="<?php echo $row1['campus_id'] ?>">
-                                                            <?php echo $row1['campus'] ?></option>
+                                                            <?php echo $row1['campus'] ?>
+                                                        </option>
                                                         <?php
                                                     }
                                                     ?>
@@ -155,7 +178,8 @@ $user_id = $_GET['user_id'];
                                                     while ($row1 = mysqli_fetch_array($select_campus)) {
                                                         ?>
                                                         <option value="<?php echo $row1['campus_id'] ?>">
-                                                            <?php echo $row1['campus'] ?></option>
+                                                            <?php echo $row1['campus'] ?>
+                                                        </option>
                                                         <?php
                                                     }
                                                     ?>
@@ -189,20 +213,20 @@ $user_id = $_GET['user_id'];
                                                     placeholder="Password" required>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <!-- /.card-body -->
                                     <div class="card-footer">
                                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                     <?php
-                                }
-                                ?>
-                            </form>
+                                    }
+                                    ?>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.card-footer-->
-        </div>
         <!-- /.card -->
         </section>
         <!-- /.content -->
