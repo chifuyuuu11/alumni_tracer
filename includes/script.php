@@ -145,11 +145,23 @@
     $(function() {
       toastr.success("Campus added!", 'Success')
     });
+    <?php
+  } elseif (isset($_SESSION['work'])){
+    ?>
+    $(function() {
+      toastr.success("Work added!", 'Success')
+    });
   <?php
   } elseif (isset($_SESSION['campus_exist'])){
     ?>
     $(function() {
       toastr.error("Campus already exist.", 'Error')
+    });
+    <?php
+  } elseif (isset($_SESSION['work_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Work already exist.", 'Error')
     });
   <?php
   } elseif (isset($_SESSION['email'])){
@@ -183,6 +195,8 @@
   unset($_SESSION['role']);
   unset($_SESSION['role_exist']);
   unset($_SESSION['campus']);
+  unset($_SESSION['work']);
+  unset($_SESSION['work_exist']);
   unset($_SESSION['campus_exist']);
   unset($_SESSION['email']);
   unset($_SESSION['success_admit']);
