@@ -33,7 +33,7 @@ class PDF extends FPDF
         $this->Cell(196.5, 2, '96 Bayanan, City of Bacoor, Cavite', 0, 1, 'C');
         // Alumni //
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(190, 18, 'ALUMNI LIST', 0, 1, 'C');
+        $this->Cell(190, 18, 'STUDENT LIST', 0, 1, 'C');
 
         $this->SetFont('Arial', '', 12);
         $this->Cell(75, 7, 'Name', 'B, T, L, R', 0);
@@ -66,7 +66,7 @@ $pdf->SetFont('Arial', '', 11);
 // $pdf->Cell(40, 7, 'Contact', 'B, T, L R', 1);
 
 $x = 1;
-$select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users WHERE role_id = 1 ORDER BY lastname");
+$select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users WHERE role_id = 3 ORDER BY lastname");
 while ($row = mysqli_fetch_array($select_alumni)) {
     $pdf->Cell(6, 7, $x. '.', 0, 0);
 

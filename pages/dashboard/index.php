@@ -68,7 +68,7 @@
                 <p>Total Users</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.users.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -89,7 +89,7 @@
                 <p>Alumni</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.alumni.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -110,7 +110,7 @@
                 <p>Admin</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.admin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -130,7 +130,7 @@
                 <p>Student</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.student.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -150,7 +150,7 @@
                 <p>Registrar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.registrar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -171,7 +171,7 @@
                 <p>Super Admin</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="list.superadmin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -184,7 +184,7 @@
             <div class="small-box bg-warning">
               <div class="inner">
               <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations");
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
                 $row = mysqli_num_rows($select_users);
                 ?>
 
@@ -193,7 +193,7 @@
                 <p>Online Registration</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="../registration/list.registration.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
