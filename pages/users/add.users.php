@@ -54,7 +54,7 @@ require '../../includes/session.php';
                                 <div class="card-body">
                                     <div class="row justify-content-center">
                                         <div class="form-group">
-                                            <label for="exampleInputFile">File input</label>
+                                            <label for="exampleInputFile">image</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" name="img" id="exampleInputFile">
