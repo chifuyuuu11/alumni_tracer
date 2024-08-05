@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-danger elevation-4">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link">
+  <a href="#" class="brand-link bg-danger">
     <img src="../../docs/assets/img/SFAC-Logo.jpg" alt="SFAC Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
     <span class="brand-text font-weight-light">Alumni Tracer</span>
@@ -28,7 +28,7 @@
       </div>
       <div class="info">
         <a href="#" class="d-block"><?php echo $_SESSION['fullname']; ?></a>
-        <a href="#" class="d-block"><?php echo $_SESSION['user_role']; ?></a>
+        <a href="#" class="d-block"><b><?php echo $_SESSION['user_role']; ?></b></a>
       </div>
     </div>
 

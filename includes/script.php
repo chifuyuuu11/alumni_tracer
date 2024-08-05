@@ -175,7 +175,7 @@
     ?>
     $(function() {
       toastr.error("Program already exist.", 'Error')
-});
+    });
     <?php
   } elseif (isset($_SESSION['civilstat'])){
     ?>
@@ -239,15 +239,12 @@
   unset($_SESSION['work']);
   unset($_SESSION['work_exist']);
   unset($_SESSION['campus_exist']);
-
   unset($_SESSION['program']);
   unset($_SESSION['program_exist']);
-
   unset($_SESSION['civilstat']);
   unset($_SESSION['civilstat_exist']);
   unset($_SESSION['aftergrad']);
   unset($_SESSION['aftergrad_exist']);
-
   unset($_SESSION['email']);
   unset($_SESSION['success_admit']);
   ?>

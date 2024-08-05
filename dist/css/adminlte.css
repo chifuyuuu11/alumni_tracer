@@ -35009,6 +35009,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box .card,
 .register-box .card {
+  border-radius: 15px;
   margin-bottom: 0;
 }
 

@@ -40,7 +40,7 @@ require '../../includes/conn.php';
       <div class="card-body">
         <p class="login-box-msg">Fill up this form to register.</p>
 
-        <form action="usersData/ctrl.add.registration.php" method="post">
+        <form action="usersData/ctrl.add.registration.php" method="POST">
           <div class="row">
             <div class="col-md-4 form-group mb-3">
               <label>First Name</label>
@@ -79,7 +79,7 @@ require '../../includes/conn.php';
               <select required class="form-control select2" id="gender" name="gender">
                 <option value="" disabled selected>Select Gender</option>
                 <?php
-                $select_role = mysqli_query($conn, "SELECT * FROM tbl_gender");
+                $select_role = mysqli_query($conn, "SELECT * FROM tbl_genders");
                 while ($row = mysqli_fetch_array($select_role)) {
                   ?>
                   <option value="<?php echo $row['gender_id'] ?>"><?php echo $row['gender'] ?>

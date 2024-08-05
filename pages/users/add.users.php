@@ -121,7 +121,7 @@ require '../../includes/session.php';
                                             <select required class="form-control select2" id="gender" name="gender">
                                                 <option value="" disabled selected>Select Gender</option>
                                                 <?php
-                                                $select_gender = mysqli_query($conn, "SELECT * FROM tbl_gender");
+                                                $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
                                                 while ($row = mysqli_fetch_array($select_gender)) {
                                                     ?>
                                                     <option value="<?php echo $row['gender_id'] ?>"><?php echo $row['gender'] ?>
