@@ -52,6 +52,15 @@ require '../../includes/session.php';
                         <form method="GET">
                             <div class="row justify-content-center">
                                 <div class="form-group col-4">
+                                    <input type="text" class="form-control" id="firstname" name="search"
+                                        placeholder="Search first name, last name, ...">
+                                </div>
+                                <div class="form-group-append">
+                                    <span class="form-group-text"><button class="btn btn-primary">Search</button></span>
+                                </div>
+                            </div>
+                            <!-- <div class="row justify-content-center">
+                                <div class="form-group col-4">
                                     <label>Search</label>
                                     <input type="text" class="form-control" id="firstname" name="search"
                                         placeholder="Search first name, last name, ...">
@@ -59,7 +68,7 @@ require '../../includes/session.php';
                                 <div class="col-auto">
                                     <button class="btn btn-primary mt-4">Search</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
 
@@ -152,7 +161,8 @@ require '../../includes/session.php';
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure you want to send <b><?php echo $row['email']?></b> an email?</p>
+                                                        <p>Are you sure you want to send <b><?php echo $row['email'] ?></b> an
+                                                            email?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
