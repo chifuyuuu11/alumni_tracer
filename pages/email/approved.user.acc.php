@@ -53,7 +53,7 @@ $mailContent = '<h1 style="color:red;">Welcome Franciscan !</h1>
                     <p>We look forward to your participation in our alumni community.</p>
                     <p>Note :</p>
                      <p>To ensure the security of your account, please do not share your login credentials with anyone and consider changing your password regularly.</p>
-                     <h2>Academics. <i style="color:red;">Beyond!</i></h2>';
+                     <h2>Academics. <i style="color:red;">And Beyond!</i></h2>';
                      
 
     $mail->Body = $mailContent;
