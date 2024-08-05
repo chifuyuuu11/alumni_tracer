@@ -121,7 +121,7 @@ $reg_id = $_GET['reg_id'];
                                         <label for="gender">Gender</label>
                                                 <select required class="form-control select2" id="gender" name="gender">
                                                     <?php
-                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_gender WHERE gender_id = '$row[gender_id]'");
+                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id = '$row[gender_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_gender)) {
                                                         ?>
                                                         <option value="<?php echo $row1['gender_id'] ?>">
@@ -131,7 +131,7 @@ $reg_id = $_GET['reg_id'];
                                                     }
                                                     ?>
                                                     <?php
-                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_gender WHERE NOT gender_id = '$row[gender_id]'");
+                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE NOT gender_id = '$row[gender_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_gender)) {
                                                         ?>
                                                         <option value="<?php echo $row1['gender_id'] ?>">

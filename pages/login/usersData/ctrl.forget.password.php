@@ -133,7 +133,7 @@ if (isset($_POST['change-password'])) {
 
         if ($result) {
             sendPasswordChangeEmail($email);
-            $_SESSION['password_reset_success'] = true;
+            $_SESSION['password_success'] = true;
             header('Location: ../login.php?password_reset=success');
             exit();
         } else {

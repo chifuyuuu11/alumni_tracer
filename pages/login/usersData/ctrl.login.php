@@ -20,11 +20,11 @@ if (isset($_POST['signin'])) {
             $_SESSION['user_role'] = $row['role']; 
             header("location: ../../dashboard/index.php");
         } else {
-            $_SESSION['error'] = 'wrong_password';
+            $_SESSION['error'] = 'Wrong Password';
             header("location: ../login.php");
         }
     } else {
-        $_SESSION['error'] = 'wrong_username';
+        $_SESSION['error'] = 'Wrong Username';
         header("location: ../login.php");
     }
 }
