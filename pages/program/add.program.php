@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Add Campus</title>
+    <title>Alumni Tracer | Add Program</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -31,12 +31,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add Campus</h1>
+                            <h1>Add Program</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add Campus</li>
+                                <li class="breadcrumb-item active">Add Program</li>
                             </ol>
                         </div>
                     </div>
@@ -49,14 +49,14 @@ require '../../includes/session.php';
                 <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">User's Campus</h3>
+                        <h3 class="card-title">User's Program</h3>
                     </div>
-                    <form class="form" method="POST" action="usersData/ctrl.add.campus.php">
+                    <form class="form" method="POST" action="usersData/ctrl.add.program.php">
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="form-group col-md-10">
-                                    <label for="campus">Campus</label>
-                                    <input type="text" class="form-control" id="campus" name="campus" placeholder="Enter Campus" required>
+                                    <label for="program">Program</label>
+                                    <input type="text" class="form-control" id="program" name="program" placeholder="Enter Program" required>
                                 </div>
                             </div>
                         </div>
