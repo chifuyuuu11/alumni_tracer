@@ -1,7 +1,7 @@
 <?php
 require '../../includes/conn.php';
 session_start();
-$user_id = $_GET['user_id'];
+$reg_id = $_GET['reg_id'];
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -12,7 +12,7 @@ require '../PHPMailer/src/Exception.php';
 require '../PHPMailer/src/PHPmailer.php';
 require '../PHPMailer/src/SMTP.php';
 
-$info = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$user_id'"); 
+$info = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE reg_id = '$reg_id'"); 
 $row = mysqli_fetch_array($info) ;
 $email= $row['email'];
 
@@ -32,15 +32,15 @@ $mail->Password  = 'islqiaavsjlrgoyf';
 $mail->setFrom('sfacbacoor1981@gmail.com','SFAC-Bacoor');
 $mail->addAddress($email);
 
-$username =  $row['username'];
-$password = $row['username'];
+$username =  $_GET['username'];
+$password = $_GET['username'];
 $firstname = $row['firstname'];
 
 
 
 
 
-$mail->Subject ='Your Account have been approved';
+$mail->Subject ='Your Account have been Approved';
 $mail->isHTML(true);
 $mailContent = '<h1 style="color:red;">Welcome Franciscan !</h1>
                     <p><strong>Dear</strong> <span style="color:black;">' . htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8') . '</span></p>
@@ -52,20 +52,22 @@ $mailContent = '<h1 style="color:red;">Welcome Franciscan !</h1>
                     <p>Please log in to the Alumni System at your earliest convenience to explore the features available to you. If you encounter any issues or have any questions, feel free to contact our support team.</p>
                     <p>We look forward to your participation in our alumni community.</p>
                     <p>Note :</p>
-                     <p>To ensure the security of your account, please do not share your login credentials with anyone and consider changing your password regularly.</p>';
+                     <p>To ensure the security of your account, please do not share your login credentials with anyone and consider changing your password regularly.</p>
+                     <h2>Academics. <i style="color:red;">Beyond!</i></h2>';
+                     
 
     $mail->Body = $mailContent;
 
+$mail->send();
+$_SESSION['email'] = true;
+header("location: ../registration/list.registration.php");
+} catch(Exception $e){
+    echo $email;
+    echo "HI PRETTY";
+}
+    
+    
 
-    $mail->send();
-    echo 'Message has been sent';
-    } catch(Exception $e){
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    
-    
-    $_SESSION['email'] = true;
-    header("location: ../users/edit.users.php");
  
 ?>
 

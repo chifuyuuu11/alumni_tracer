@@ -11,6 +11,10 @@ if (isset($_POST ['submit'])) {
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
     $campus = mysqli_real_escape_string($conn, $_POST['campus']);
+    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    $civilstat = mysqli_real_escape_string($conn, $_POST['civilstat']);
+    $birthdate = mysqli_real_escape_string($conn, $_POST['birthdate']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -23,9 +27,9 @@ if (isset($_POST ['submit'])) {
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
-        (img, firstname, middlename, lastname, campus_id, role_id, contact, email, username, password)
+        (img, firstname, middlename, lastname, campus_id, role_id, gender_id, civil_id, birthdate, address, contact, email, username, password)
         VALUES
-        ('$img', '$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass')");
+        ('$img', '$firstname', '$middlename', '$lastname', '$campus', '$role', '$gender', '$civilstat', '$birthdate', '$address', '$contact', '$email', '$username', '$hashed_pass')");
 
         $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'ctrl.add.users.php')");
 

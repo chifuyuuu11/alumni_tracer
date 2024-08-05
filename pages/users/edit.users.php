@@ -142,7 +142,7 @@ if(isset($_GET['user_id'])) {
                                                     $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_role)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['role_id'] ?>">
+                                                        <option selected value="<?php echo $row1['role_id'] ?>">
                                                             <?php echo $row1['role'] ?>
                                                         </option>
                                                         <?php
@@ -167,7 +167,7 @@ if(isset($_GET['user_id'])) {
                                                     $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus_id = '$row[campus_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_campus)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['campus_id'] ?>">
+                                                        <option selected value="<?php echo $row1['campus_id'] ?>">
                                                             <?php echo $row1['campus'] ?>
                                                         </option>
                                                         <?php
@@ -188,6 +188,62 @@ if(isset($_GET['user_id'])) {
                                         </div>
 
                                         <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="gender">Gender</label>
+                                            <select required class="form-control select2" id="gender" name="gender">
+                                                <?php
+                                                $select_gender = mysqli_query($conn, "SELECT * FROM tbl_gender WHERE gender_id = '$row[gender_id]'");
+                                                while ($row1 = mysqli_fetch_array($select_gender)) {
+                                                    ?>
+                                                    <option selected value="<?php echo $row1['gender_id'] ?>"><?php echo $row1['gender'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                $select_gender = mysqli_query($conn, "SELECT * FROM tbl_gender WHERE NOT gender_id = '$row[gender_id]'");
+                                                while ($row1 = mysqli_fetch_array($select_gender)) {
+                                                    ?>
+                                                    <option value="<?php echo $row1['gender_id'] ?>"><?php echo $row1['gender'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="civilstat">Civil Status</label>
+                                            <select required class="form-control select2" id="civilstat" name="civilstat">
+                                                <?php
+                                                $select_status = mysqli_query($conn, "SELECT * FROM tbl_cvlstat WHERE civil_id = '$row[civil_id]'");
+                                                while ($row1 = mysqli_fetch_array($select_status)) {
+                                                    ?>
+                                                    <option selected value="<?php echo $row1['civil_id'] ?>"><?php echo $row1['civilstat'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <?php
+                                                $select_status = mysqli_query($conn, "SELECT * FROM tbl_cvlstat WHERE NOT civil_id = '$row[civil_id]'");
+                                                while ($row1 = mysqli_fetch_array($select_status)) {
+                                                    ?>
+                                                    <option value="<?php echo $row1['civil_id'] ?>"><?php echo $row1['civilstat'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="birthdate">Birthdate</label>
+                                            <input type="text" class="form-control" id="birthdate" name="birthdate" value="<?php echo $row['birthdate']?>"
+                                                placeholder="Birthdate" required>
+                                        </div>
+                                    </div>
+
+
+
+                                        <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="email">Email address</label>
                                                 <input type="email" class="form-control" id="email" name="email"
@@ -199,6 +255,15 @@ if(isset($_GET['user_id'])) {
                                                     value="<?php echo $row['contact'] ?>" placeholder="Contact Number"
                                                     required>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address"
+                                            value="<?php echo $row['address']?>"
+                                            placeholder="Address" required>
+                                        </div>
                                         </div>
 
                                         <div class="row">

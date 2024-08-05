@@ -1,5 +1,7 @@
 <?php
 session_start();
+require '../../includes/conn.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +59,38 @@ session_start();
             </div>
           </div>
           <div class="row">
+            <div class="col-md-6 form-group mb-3">
+              <label for="role">Role</label>
+              <select required class="form-control select2" id="role" name="role">
+                <option value="" disabled selected>Select Role</option>
+                <?php
+                $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles");
+                while ($row = mysqli_fetch_array($select_role)) {
+                  ?>
+                  <option value="<?php echo $row['role_id'] ?>"><?php echo $row['role'] ?>
+                  </option>
+                  <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+            <label for="gender">Gender</label>
+              <select required class="form-control select2" id="gender" name="gender">
+                <option value="" disabled selected>Select Gender</option>
+                <?php
+                $select_role = mysqli_query($conn, "SELECT * FROM tbl_gender");
+                while ($row = mysqli_fetch_array($select_role)) {
+                  ?>
+                  <option value="<?php echo $row['gender_id'] ?>"><?php echo $row['gender'] ?>
+                  </option>
+                  <?php
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-8 form-group mb-3">
               <label>Email</label>
               <input type="email" name="email" class="form-control">
@@ -107,7 +141,7 @@ session_start();
     <?php
       if ($_SESSION['success_register']) {
     ?>
-    toastr.success('Registration Success!.');
+    toastr.success('Registration Success!<p><strong> Please wait for the email.</strong></p>');
     <?php
       }
 

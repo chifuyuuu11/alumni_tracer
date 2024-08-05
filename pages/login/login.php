@@ -7,10 +7,11 @@ require '../../includes/conn.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alumni Tracer | Log in</title>
+  <title>AdminLTE 3 | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -35,7 +36,7 @@ require '../../includes/conn.php';
       overflow: auto;
       object-fit: fill;
     }
-
+    
     .error {
       color: red;
     }
@@ -63,12 +64,13 @@ require '../../includes/conn.php';
         <div class="card-body">
           <div class="container">
             <div class="row">
-           
+              <div class="col-auto"></div>
               <div class="col">
                 <p class="login-box-msg">Sign in to your account.</p>
                 <form id="loginForm" action="usersData/ctrl.login.php" method="POST">
                   <div class="input-group mb-3">
-                    <input type="text" id="username" class="form-control" name="username" placeholder="Username" required>
+                    <input type="text" id="username" class="form-control" name="username" placeholder="Username"
+                      required>
                     <p class="error username-error"></p>
                     <div class="input-group-append">
                       <div class="input-group-text">
@@ -77,7 +79,8 @@ require '../../includes/conn.php';
                     </div>
                   </div>
                   <div class="input-group mb-3">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password"
+                      required>
                     <p class="error password-error"></p>
                     <div class="input-group-append">
                       <div class="input-group-text">
@@ -90,12 +93,12 @@ require '../../includes/conn.php';
                     <!-- /.col -->
                     <div class="col-md-auto">
                       <a href="../registration/add.registration.php" name="signin" class="btn btn-primary ">Register</a>
-                      <button type="submit" name="signin" class="btn btn-danger ">Sign In</button>
-                
+                      <button type="submit" name="signin" class="btn btn-danger">Sign In</button>
+                      <p class="success-message"></p>
                     </div>
                     <!-- /.col -->
                   </div>
-                  <p class="my-3">
+                  <p class="mb-1">
                     <a href="forgot.password.php">I forgot my password</a>
                   </p>
                 </form>
@@ -132,6 +135,33 @@ require '../../includes/conn.php';
                   unset($_SESSION['error']);
                 }
                 ?>
+                <?php
+                if (isset($_GET['password_reset']) && $_GET['password_reset'] == 'success') {
+                  echo "<script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    toastr.options = {
+                      'closeButton': true,
+                      'debug': false,
+                      'newestOnTop': false,
+                      'progressBar': true,
+                      'positionClass': 'toast-top-right',
+                      'preventDuplicates': false,
+                      'onclick': null,
+                      'showDuration': '300',
+                      'hideDuration': '1000',
+                      'timeOut': '8000',
+                      'extendedTimeOut': '1000',
+                      'showEasing': 'swing',
+                      'hideEasing': 'linear',
+                      'showMethod': 'fadeIn',
+                      'hideMethod': 'fadeOut'
+                    };
+                    toastr.success('Your password has successfully been updated!');
+                  });!');
+                </script>";
+                }
+                ?>
+
               </div>
             </div>
           </div>
@@ -143,7 +173,7 @@ require '../../includes/conn.php';
     </div>
     <!-- /.login-box -->
   </div>
-  
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Bootstrap 4 -->
