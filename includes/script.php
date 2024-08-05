@@ -159,10 +159,29 @@
     });
     <?php
 
+  } elseif (isset($_SESSION['attained'])){
+    ?>
+    $(function() {
+      toastr.success("Grade Level Attained added!", 'Success')
+    });
+    <?php
+  } elseif (isset($_SESSION['program'])){
+    ?>
+    $(function() {
+      toastr.success("Program added!", 'Success')
+    });
+    <?php
+  } elseif (isset($_SESSION['program_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Program already exist.", 'Error')
+});
+    <?php
   } elseif (isset($_SESSION['civilstat'])){
     ?>
     $(function() {
       toastr.success("Civil Status added!", 'Success')
+
     });
   <?php
   } elseif (isset($_SESSION['civilstat_exist'])){
@@ -220,14 +239,21 @@
   unset($_SESSION['error_update']);
   unset($_SESSION['role']);
   unset($_SESSION['role_exist']);
+  unset($_SESSION['attained']);
+  unset($_SESSION['attained_exist']);
   unset($_SESSION['campus']);
   unset($_SESSION['work']);
   unset($_SESSION['work_exist']);
   unset($_SESSION['campus_exist']);
+
+  unset($_SESSION['program']);
+  unset($_SESSION['program_exist']);
+
   unset($_SESSION['civilstat']);
   unset($_SESSION['civilstat_exist']);
   unset($_SESSION['aftergrad']);
   unset($_SESSION['aftergrad_exist']);
+
   unset($_SESSION['email']);
   unset($_SESSION['success_admit']);
   unset($_SESSION['invalid_otp']);
