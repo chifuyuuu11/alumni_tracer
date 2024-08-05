@@ -54,7 +54,7 @@ require '../../includes/session.php';
                                 <div class="form-group col-4">
                                     <label>Search</label>
                                     <input type="text" class="form-control" id="firstname" name="search"
-                                    placeholder="Search first name, last name, ...">
+                                        placeholder="Search first name, last name, ...">
                                 </div>
                                 <div class="col-auto">
                                     <button class="btn btn-primary mt-4">Search</button>
@@ -80,68 +80,92 @@ require '../../includes/session.php';
                                 <?php
                                 if (isset($_GET['search'])) {
                                     $search = mysqli_real_escape_string($conn, $_GET['search']);
-                                    
-                                $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
+
+                                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
                                 LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
                                 LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
                                 WHERE (lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR role LIKE '%$search%' OR campus LIKE '%$search%')");
-                                while ($row = mysqli_fetch_array($info)) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?php
-                                            if (!empty(base64_encode($row['img']))) {
-                                                echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img zoom " alt="User image" style="height: 80px; width: 100px">';
-                                            } else {
-                                                echo ' <img src="../../docs/assets/img/user.png" class="img zoom" alt="User image"  style="height: 80px; width: 100px">';
-                                            } ?>
-                                        </td>
-                                        <td><?php echo $row['fullname']; ?></td>
-                                        <td><?php echo $row['role']; ?></td>
-                                        <td><?php echo $row['campus']; ?></td>
-                                        <td><?php echo $row['email']; ?></td>
-                                        <td><?php echo $row['contact']; ?></td>
-                                        <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
-                                                class="btn btn-primary">Update</a>
-                                            <?php if (($row['role'] == 'Alumni')) { ?>
-                                                <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>"
-                                                    type="button" class="btn btn-info">Send Email</a>
-                                            <?php } ?>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <div class="modal fade" id="modal-default<?php echo $row['user_id']; ?>" tabindex="-1"
-                                        aria-labelledby="modal-defaultLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modal-defaultLabel">Confirm Delete</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true"></span>
-                                                    </button>
+                                    while ($row = mysqli_fetch_array($info)) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php
+                                                if (!empty(base64_encode($row['img']))) {
+                                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img zoom " alt="User image" style="height: 80px; width: 100px">';
+                                                } else {
+                                                    echo ' <img src="../../docs/assets/img/user.png" class="img zoom" alt="User image"  style="height: 80px; width: 100px">';
+                                                } ?>
+                                            </td>
+                                            <td><?php echo $row['fullname']; ?></td>
+                                            <td><?php echo $row['role']; ?></td>
+                                            <td><?php echo $row['campus']; ?></td>
+                                            <td><?php echo $row['email']; ?></td>
+                                            <td><?php echo $row['contact']; ?></td>
+                                            <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
+                                                    class="btn btn-primary">Update</a>
+                                                <?php if (($row['role'] == 'Alumni')) { ?>
+                                                    <button type="button" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
+                                                        Email</button>
+                                                <?php } ?>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <div class="modal fade" id="modal-default<?php echo $row['user_id']; ?>" tabindex="-1"
+                                            aria-labelledby="modal-defaultLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal-defaultLabel">Confirm Delete</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p> Are you sure you want to delete
+                                                            <b><?php echo $row['fullname'] ?></b>
+                                                            account?
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <a href="usersData/ctrl.delete.users.php?user_id=<?php echo $row['user_id']; ?>"
+                                                            type="button" class="btn btn-danger">Delete</a>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <p> Are you sure you want to delete
-                                                        <b><?php echo $row['fullname'] ?></b>
-                                                        account?
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Cancel</button>
-                                                    <a href="usersData/ctrl.delete.users.php?user_id=<?php echo $row['user_id']; ?>"
-                                                        type="button" class="btn btn-danger">Delete</a>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <div class="modal fade" id="confirmModal<?php echo $row['user_id']; ?>" tabindex="-1"
+                                            aria-labelledby="confirmModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmModalLabel">Confirm Send</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to send <b><?php echo $row['email']?></b> an email?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cancel</button>
+                                                        <a href="../email/send.email.php?user_id=<?php echo $row['user_id']; ?>"
+                                                            type="button" class="btn btn-info">Send</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- /.modal-content -->
                                         </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                    <?php
+                                        <?php
+                                    }
                                 }
-                            }
                                 ?>
                             </tbody>
                         </table>

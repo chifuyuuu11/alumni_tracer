@@ -88,7 +88,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-plus-square"></i>
             <p>
-              Extras
+              Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -139,6 +139,81 @@
                   <a href="../campus/list.campus.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Campus List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  After Graduation
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/add.after.grad.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add After Graduation</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/list.after.grad.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>After Graduation List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  Civil Status
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/add.civil.stat.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Civil Status</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/list.civil.stat.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Civil Status List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  Work
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/add.work.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add Work</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/list.work.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Work List</p>
                   </a>
                 </li>
               </ul>
@@ -200,7 +275,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-plus-square"></i>
             <p>
-              Extras
+              Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -312,7 +387,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-plus-square"></i>
             <p>
-              Extras
+              Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -424,7 +499,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon far fa-plus-square"></i>
             <p>
-              Extras
+              Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>

@@ -37,7 +37,7 @@ if (isset($_POST['upload'])){
         lastname = '$lastname', role_id = '$role', campus_id='$campus', email = '$email', contact = '$contact',
         username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
         $_SESSION['updated'] = true;
-        header("location: ../edit.users.php?user_id=". $user_id);
+        header("location: ../../email/email.php?user_id=". $user_id);
 
     } else {
         echo 1;

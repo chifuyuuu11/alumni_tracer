@@ -119,7 +119,7 @@
   } elseif (isset($_SESSION['updated'])){
     ?>
     $(function() {
-      toastr.success("Successfully updated!", 'Success')
+      toastr.success("Successfully updated! <p><strong> Please check your email.</strong></p>", 'Success')
     });
   <?php
   } elseif (isset($_SESSION['error_update'])) {
