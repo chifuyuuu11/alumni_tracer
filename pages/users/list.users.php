@@ -122,6 +122,10 @@ require '../../includes/session.php';
                                                         data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
                                                         Email</button>
                                                 <?php } ?>
+                                                <?php if (($row['role'] == 'Student')) { ?>
+                                                    <a href="../student/add.student.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Student Info</a>
+
+                                                <?php } ?>
                                                 <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                             </td>
