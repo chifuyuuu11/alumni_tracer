@@ -62,7 +62,7 @@ if (isset($_GET['user_id'])) {
                                 <h3 class="card-title">Alumni Info</h3>
                             </div>
                             <div class="card-body">
-                                <form action="usersData/ctrl.edit.users.php?user_id=<?php echo $user_id; ?>"
+                                <form action="usersData/ctrl.edit.alumni.php?user_id=<?php echo $user_id; ?>"
                                     method="POST" enctype="multipart/form-data">
                                     <?php
                                     $info = mysqli_query($conn, "SELECT *, CONCAT(firstname, ' ', middlename, ' ', lastname) AS fullname FROM tbl_alumni
@@ -75,14 +75,14 @@ if (isset($_GET['user_id'])) {
                                         <div class="row">
                                             <div class="form-group col-md-8">
                                                 <label for="firstname">Fullname</label>
-                                                <input type="text" class="form-control" id="firstname" name="firstname"
-                                                    value="<?php echo $row['fullname'] ?>" placeholder="First Name" readonly
+                                                <input type="text" class="form-control" id="fullname" name="fullname"
+                                                    value="<?php echo $row['fullname'] ?>" placeholder="Full Name" readonly
                                                     >
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Role</label>
-                                                <input type="text" class="form-control" id="firstname" name="firstname"
-                                                    value="<?php echo $row['role'] ?>" placeholder="First Name" readonly
+                                                <input type="text" class="form-control" id="role" name="role"
+                                                    value="<?php echo $row['role'] ?>" placeholder="Role" readonly
                                                     >
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@ if (isset($_GET['user_id'])) {
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Batch</label>
-                                                <input type="text" class="form-control" id="firstname" name="firstname"
+                                                <input type="text" class="form-control" id="batch" name="batch"
                                                     value="<?php echo $row['batch'] ?>" placeholder="Batch" 
                                                     >
                                             </div>
