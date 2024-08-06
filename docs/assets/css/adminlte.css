@@ -34961,6 +34961,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   font-size: 2.1rem;
   font-weight: 300;
   margin-bottom: .9rem;
+  margin-top: .9rem;
   text-align: center;
 }
 
@@ -34998,7 +34999,8 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box .card,
 .register-box .card {
-  margin-bottom: 0;
+  border-radius: 15px;
+  margin-bottom: 0; 
 }
 
 .login-card-body,

@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Campus List</title>
+    <title>Alumni Tracer | Campus List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -24,8 +24,7 @@ require '../../includes/session.php';
         <!-- Main Sidebar Container -->
             <!-- Sidebar -->
             <?php require '../../includes/sidebar.php'; ?>
-            <!-- /.sidebar -->
-        <!-- Content Wrapper. Contains page content -->
+    
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">

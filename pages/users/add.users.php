@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Add User</title>
+    <title>Alumni Tracer | Add User</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -19,13 +19,9 @@ require '../../includes/session.php';
     <div class="wrapper">
         <!-- Navbar -->
         <?php require '../../includes/navbar.php'; ?>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <!-- Sidebar -->
+        
         <?php require '../../includes/sidebar.php'; ?>
-        <!-- /.sidebar -->
-        <!-- Content Wrapper. Contains page content -->
+
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -56,18 +52,6 @@ require '../../includes/session.php';
                             </div>
                             <form class="form" enctype="multipart/form-data" method="POST" action="usersData/ctrl.add.users.php">
                                 <div class="card-body">
-                                    <div class="row justify-content-center">
-                                        <div class="form-group">
-                                            <label for="exampleInputFile">Image</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input required type="file" class="custom-file-input" name="img" id="exampleInputFile">
-                                                    <label class="custom-file-label" for="exampleInputFile">Choose
-                                                        file</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="firstname">First Name</label>
@@ -120,6 +104,44 @@ require '../../includes/session.php';
                                     </div>
 
                                     <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="gender">Gender</label>
+                                            <select required class="form-control select2" id="gender" name="gender">
+                                                <option value="" disabled selected>Select Gender</option>
+                                                <?php
+                                                $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
+                                                while ($row = mysqli_fetch_array($select_gender)) {
+                                                    ?>
+                                                    <option value="<?php echo $row['gender_id'] ?>"><?php echo $row['gender'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="civilstat">Civil Status</label>
+                                            <select required class="form-control select2" id="civilstat" name="civilstat">
+                                                <option value="" disabled selected>Select Civil Status</option>
+                                                <?php
+                                                $select_status = mysqli_query($conn, "SELECT * FROM tbl_cvlstat");
+                                                while ($row = mysqli_fetch_array($select_status)) {
+                                                    ?>
+                                                    <option value="<?php echo $row['civil_id'] ?>"><?php echo $row['civilstat'] ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="birthdate">Birthdate</label>
+                                            <input type="text" class="form-control" id="birthdate" name="birthdate"
+                                                placeholder="Birthdate" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="email">Email address</label>
                                             <input type="email" class="form-control" id="email" name="email"
@@ -133,15 +155,24 @@ require '../../includes/session.php';
                                     </div>
 
                                     <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="Address" required>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username"
-                                                placeholder="Username" required>
+                                                placeholder="Username" required autocomplete="off">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="password">Password</label>
                                             <input type="password" class="form-control" id="password" name="password"
-                                                placeholder="Password" required>
+                                                placeholder="Password" required autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

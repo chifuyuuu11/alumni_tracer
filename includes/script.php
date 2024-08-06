@@ -119,7 +119,7 @@
   } elseif (isset($_SESSION['updated'])){
     ?>
     $(function() {
-      toastr.success("Successfully updated!", 'Success')
+      toastr.success("Successfully updated! <p><strong> Please check your email.</strong></p>", 'Success')
     });
   <?php
   } elseif (isset($_SESSION['error_update'])) {
@@ -145,11 +145,80 @@
     $(function() {
       toastr.success("Campus added!", 'Success')
     });
+    <?php
+  } elseif (isset($_SESSION['work'])){
+    ?>
+    $(function() {
+      toastr.success("Work added!", 'Success')
+    });
   <?php
   } elseif (isset($_SESSION['campus_exist'])){
     ?>
     $(function() {
       toastr.error("Campus already exist.", 'Error')
+    });
+    <?php
+
+  } elseif (isset($_SESSION['attained'])){
+    ?>
+    $(function() {
+      toastr.success("Grade Level Attained added!", 'Success')
+    });
+    <?php
+  } elseif (isset($_SESSION['program'])){
+    ?>
+    $(function() {
+      toastr.success("Program added!", 'Success')
+    });
+    <?php
+  } elseif (isset($_SESSION['program_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Program already exist.", 'Error')
+    });
+    <?php
+  } elseif (isset($_SESSION['civilstat'])){
+    ?>
+    $(function() {
+      toastr.success("Civil Status added!", 'Success')
+
+    });
+  <?php
+  } elseif (isset($_SESSION['civilstat_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Civil Status already exist.", 'Error')
+});
+   <?php
+  } elseif (isset($_SESSION['work_exist'])){
+    ?>
+    $(function() {
+      toastr.error("Work already exist.", 'Error')
+
+    });
+  <?php
+    } elseif (isset($_SESSION['aftergrad'])){
+      ?>
+      $(function() {
+        toastr.success("Life After Graduation added!", 'Success')
+      });
+    <?php
+    } elseif (isset($_SESSION['aftergrad_exist'])){
+      ?>
+      $(function() {
+        toastr.error("Entered Life After Graduation already exist.", 'Error')
+      });
+    <?php
+  } elseif (isset($_SESSION['email'])){
+    ?>
+    $(function() {
+      toastr.success("Please check your email.", 'Email Sent!')
+    });
+  <?php
+  } elseif (isset($_SESSION['success_admit'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully admitted", 'Success')
     });
   <?php
   }
@@ -164,8 +233,20 @@
   unset($_SESSION['error_update']);
   unset($_SESSION['role']);
   unset($_SESSION['role_exist']);
+  unset($_SESSION['attained']);
+  unset($_SESSION['attained_exist']);
   unset($_SESSION['campus']);
+  unset($_SESSION['work']);
+  unset($_SESSION['work_exist']);
   unset($_SESSION['campus_exist']);
+  unset($_SESSION['program']);
+  unset($_SESSION['program_exist']);
+  unset($_SESSION['civilstat']);
+  unset($_SESSION['civilstat_exist']);
+  unset($_SESSION['aftergrad']);
+  unset($_SESSION['aftergrad_exist']);
+  unset($_SESSION['email']);
+  unset($_SESSION['success_admit']);
   ?>
     
 

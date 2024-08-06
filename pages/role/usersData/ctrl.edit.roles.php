@@ -16,6 +16,9 @@ if (isset($_POST['submit'])) {
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "UPDATE tbl_roles SET role = '$role' WHERE role_id = '$role_id'");
+
+        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Edit Roles', '$role', 'ctrl.edit.roles.php')");
+
         $_SESSION['updated'] = true;
         header("location: ../edit.roles.php?role_id=". $role_id);
 

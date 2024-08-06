@@ -1,14 +1,13 @@
 <?php
-  require '../../includes/conn.php';
   require '../../includes/session.php';
-
+  require '../../includes/conn.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Alumni Tracer | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <?php require '../../includes/link.php'; ?>
@@ -18,25 +17,16 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100" width="100">
   </div>
 
   <!-- Navbar -->
   <?php require '../../includes/navbar.php'; ?>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+  <!-- Sidebar -->
+  <?php require '../../includes/sidebar.php'; ?>
 
-    <!-- Sidebar -->
-    <?php require '../../includes/sidebar.php'; ?>
-    <!-- /.sidebar -->
-  </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -50,7 +40,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -63,66 +53,158 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Total Users</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.users.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-olive">
+              <div class="inner">
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=1");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Alumni</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.alumni.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
+                $row = mysqli_num_rows($select_users);
+                ?>
 
-                <p>New Orders</p>
+                <h3><?php echo $row ?></h3>
+
+                <p>Admin</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-person"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="list.admin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gray">
+              <div class="inner">
+                <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Student</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.student.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-lightblue">
+              <div class="inner">
+                <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Registrar</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.registrar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-purple">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
+                $row = mysqli_num_rows($select_users);
+                ?>
 
-                <p>Bounce Rate</p>
+                <h3><?php echo $row ?></h3>
+
+                <p>Super Admin</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="list.superadmin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <!-- ./col -->
+
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
+                $row = mysqli_num_rows($select_users);
+                ?>
 
-                <p>User Registrations</p>
+                <h3><?php echo $row ?></h3>
+
+                <p>Online Registration</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="../registration/list.registration.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+              <!-- /.card-body -->
             </div>
-          </div>
-          <!-- ./col -->
+            <!-- /.card -->
+          </section>
+          <!-- right col -->
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
