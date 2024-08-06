@@ -26,6 +26,9 @@ if (isset($_POST['submit'])) {
     $_SESSION['alumni_info_updated'] = true;
     header("location: ../add.alumni.info?user_id=". $user_id);
 
+    // $_SESSION['error_alumni_info_update'] = true;
+    // header("location: ../add.alumni.info?user_id=". $user_id);
+
 }
 
 ?>
