@@ -22,17 +22,13 @@ if (isset($_POST['submit'])) {
 
     $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$role', 'Edit Alumni Info', '$fullname', 'ctrl.edit.alumni.php')");
 
-    if (true) {
-        $insert_data = mysqli_query($conn, "UPDATE tbl_alumni SET role = '$role', attained_id = '$attained', program_id = '$program', batch = '$batch', aftergrad_id = '$aftergrad', work_id = '$work', current_work = '$current_work', company_name = '$company_name', company_address = '$company_address', scale = '$scale', experience = '$experience', suggestion = '$suggestion' WHERE user_id = '$user_id'");
+    if ($insert_data) {
         $_SESSION['alumni_info_updated'] = true;
         header("location: ../add.alumni.info?user_id=". $user_id);
-
     } else {
-        echo 1;
         $_SESSION['error_alumni_info_update'] = true;
         header("location: ../add.alumni.info?user_id=". $user_id);
-
-    }
+    };
 }
 
 ?>
