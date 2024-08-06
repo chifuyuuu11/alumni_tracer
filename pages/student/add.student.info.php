@@ -65,10 +65,10 @@ if (isset($_GET['user_id'])) {
                                 <form action="usersData/ctrl.edit.student.info.php?user_id=<?php echo $user_id; ?>"
                                     method="POST" enctype="multipart/form-data">
                                     <?php
-                                    $info = mysqli_query($conn, "SELECT *, CONCAT(firstname, ' ', middlename, ' ', lastname) AS fullname FROM tbl_student_info
-                                    LEFT JOIN tbl_users ON tbl_users.user_id = tbl_student_info.user_id
+                                    $info = mysqli_query($conn, "SELECT *, CONCAT(firstname, ' ', middlename, ' ', lastname) AS fullname FROM tbl_students
+                                    LEFT JOIN tbl_users ON tbl_users.user_id = tbl_students.user_id
                                     LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                                    WHERE tbl_student_info.user_id = '$user_id'");
+                                    WHERE tbl_students.user_id = '$user_id'");
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
 

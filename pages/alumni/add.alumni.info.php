@@ -219,21 +219,21 @@ if (isset($_GET['user_id'])) {
                                             <div class="form-group col-md-6">
                                                 <label for="scale">From 1-10 (1 is the lowest and 10 is the highest) rate your level of satisfaction during your stay at SFAC:</label>
                                                 <input type="number" class="form-control" id="scale" name="scale" min="1" max="10"
-                                                    value="" placeholder="1 to 10">   
+                                                value="<?php echo $row['scale'] ?>" placeholder="1 to 10">   
                                             </div>    
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="experience">Briefly describe your unforgettable moments at SFAC/SAS.</label>
                                                 <input type="text" class="form-control" id="experience" name="experience"
-                                                    value="" placeholder="When I was at SFAC/SAS ...">  
+                                                value="<?php echo $row['experience'] ?>" placeholder="When I was at SFAC/SAS ...">  
                                             </div>    
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="suggestion">What do you want SFAC to improve? Please give us your suggestions.</label>
                                                 <input type="text" class="form-control" id="suggestion" name="suggestion"
-                                                    value="" placeholder="My suggestions for SFAC/SAS ...">  
+                                                value="<?php echo $row['suggestion'] ?>" placeholder="My suggestions for SFAC/SAS ...">  
                                             </div>    
                                         </div>
 
