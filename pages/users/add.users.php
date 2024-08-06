@@ -52,18 +52,6 @@ require '../../includes/session.php';
                             </div>
                             <form class="form" enctype="multipart/form-data" method="POST" action="usersData/ctrl.add.users.php">
                                 <div class="card-body">
-                                    <div class="row justify-content-center">
-                                        <div class="form-group">
-                                            <label for="exampleInputFile">image</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="img" id="exampleInputFile">
-                                                    <label class="custom-file-label" for="exampleInputFile">Choose
-                                                        file</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="firstname">First Name</label>
