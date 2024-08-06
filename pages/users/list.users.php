@@ -93,7 +93,11 @@ require '../../includes/session.php';
                                     $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
                                 LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
                                 LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
-                                WHERE (lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR role LIKE '%$search%' OR campus LIKE '%$search%')");
+                                WHERE (lastname LIKE '%$search%'
+                                OR firstname LIKE '%$search%'
+                                OR middlename LIKE '%$search%'
+                                OR role LIKE '%$search%'
+                                OR campus LIKE '%$search%')");
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <tr>
@@ -111,13 +115,14 @@ require '../../includes/session.php';
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact']; ?></td>
                                             <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
-                                                    class="btn btn-primary">Update</a>
+                                                    class="btn my-1 btn-info">Update</a>
                                                 <?php if (($row['role'] == 'Alumni')) { ?>
-                                                    <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Alumni Info</a>
+                                                    <button type="button" class="btn my-1 btn-primary" data-toggle="modal"
                                                         data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
                                                         Email</button>
                                                 <?php } ?>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                             </td>
                                         </tr>

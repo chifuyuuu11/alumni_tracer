@@ -4,8 +4,6 @@ require '../../../includes/session.php';
 
 if (isset($_POST ['submit'])) {
 
-    $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
-
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
@@ -27,9 +25,17 @@ if (isset($_POST ['submit'])) {
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
-        (img, firstname, middlename, lastname, campus_id, role_id, gender_id, civil_id, birthdate, address, contact, email, username, password)
+        (firstname, middlename, lastname, campus_id, role_id, gender_id, civil_id, birthdate, address, contact, email, username, password)
         VALUES
-        ('$img', '$firstname', '$middlename', '$lastname', '$campus', '$role', '$gender', '$civilstat', '$birthdate', '$address', '$contact', '$email', '$username', '$hashed_pass')");
+        ('$firstname', '$middlename', '$lastname', '$campus', '$role', '$gender', '$civilstat', '$birthdate', '$address', '$contact', '$email', '$username', '$hashed_pass')");
+
+        if ($role == 1) {
+            $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
+            $id = mysqli_fetch_array($select_user);
+
+            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES        ('$id[user_id]')");
+
+        }
 
         $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'ctrl.add.users.php')");
 
