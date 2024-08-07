@@ -127,6 +127,18 @@
     $(function() {
       toastr.error("Update error.", 'Error')
     });
+    <?php
+  } elseif (isset($_SESSION['alumni_info_updated'])){
+    ?>
+    $(function() {
+      toastr.success("Successfully updated alumni info!", 'Success')
+    });
+  <?php
+  } elseif (isset($_SESSION['error_alumni_info_update'])) {
+    ?>
+    $(function() {
+      toastr.error("Update error.", 'Error')
+    });
   <?php
   } elseif (isset($_SESSION['role'])){
     ?>
@@ -228,6 +240,8 @@
 
   unset($_SESSION['success']);
   unset($_SESSION['username_exist']);
+  unset($_SESSION['alumni_info_updated']);
+  unset($_SESSION['error_alumni_info_update']);
   unset($_SESSION['deleted']);
   unset($_SESSION['updated']);
   unset($_SESSION['error_update']);
