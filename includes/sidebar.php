@@ -298,6 +298,7 @@
       <?php
       } else if($_SESSION['user_role'] == "Admin") {
       ?>
+      <!-- <li class="nav-header">EXAMPLES</li> -->
       <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
@@ -323,41 +324,41 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
+            <i class="nav-icon fas fa-cogs"></i>
             <p>
               Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+          <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-user-tie nav-icon"></i>
                 <p>
-                  Role
+                  After Graduation
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../role/add.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Role</p>
+                  <a href="../aftergrad/add.after.grad.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add After Graduation</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../role/list.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Role List</p>
+                  <a href="../aftergrad/list.after.grad.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>After Graduation List</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-school nav-icon"></i>
                 <p>
                   Campus
                   <i class="fas fa-angle-left right"></i>
@@ -366,7 +367,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../campus/add.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Campus</p>
                   </a>
                 </li>
@@ -374,77 +375,65 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../campus/list.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-list nav-icon"></i>
                     <p>Campus List</p>
                   </a>
                 </li>
               </ul>
             </li>
-          </ul>
-        </li>
-        <!-- <li class="nav-header">FPDF</li> -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>
-              Forms List
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../form/alumni.list.php" class="nav-link">
-                <i class="fas fa-list nav-icon"></i>
-                <p>Alumni List</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../form/student.list.php" class="nav-link">
-                <i class="fas fa-list nav-icon"></i>
-                <p>Student List</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <?php
-      } else if($_SESSION['user_role'] == "Alumni") {
-      ?>
-      <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-            <p>
-              Users
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../users/add.users.php" class="nav-link">
-                <i class="fas fa-user-plus nav-icon"></i>
-                <p>Add User</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../users/list.users.php" class="nav-link">
-                <i class="fas fa-list nav-icon"></i>
-                <p>Users List</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              Settings
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-star-half-alt nav-icon"></i>
+                <p>
+                  Civil Status
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/add.civil.stat.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Civil Status</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/list.civil.stat.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Civil Status List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+                <p>
+                  Program
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/add.program.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Program</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/list.program.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Program List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tag nav-icon"></i>
                 <p>
                   Role
                   <i class="fas fa-angle-left right"></i>
@@ -453,7 +442,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../role/add.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Role</p>
                   </a>
                 </li>
@@ -461,7 +450,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../role/list.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-list nav-icon"></i>
                     <p>Role List</p>
                   </a>
                 </li>
@@ -469,25 +458,50 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-user-md nav-icon"></i>
                 <p>
-                  Campus
+                  Work
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../campus/add.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Campus</p>
+                  <a href="../work/add.work.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Work</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../campus/list.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Campus List</p>
+                  <a href="../work/list.work.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Work List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-layer-group nav-icon"></i>
+                <p>
+                  Year Level
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/add.attained.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Year Level</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/list.attained.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Year Level List</p>
                   </a>
                 </li>
               </ul>
@@ -547,41 +561,41 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
+            <i class="nav-icon fas fa-cogs"></i>
             <p>
               Settings
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+          <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-user-tie nav-icon"></i>
                 <p>
-                  Role
+                  After Graduation
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../role/add.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Role</p>
+                  <a href="../aftergrad/add.after.grad.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add After Graduation</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../role/list.roles.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Role List</p>
+                  <a href="../aftergrad/list.after.grad.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>After Graduation List</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fas fa-school nav-icon"></i>
                 <p>
                   Campus
                   <i class="fas fa-angle-left right"></i>
@@ -590,7 +604,7 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../campus/add.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Campus</p>
                   </a>
                 </li>
@@ -598,8 +612,609 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="../campus/list.campus.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <i class="fas fa-list nav-icon"></i>
                     <p>Campus List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-star-half-alt nav-icon"></i>
+                <p>
+                  Civil Status
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/add.civil.stat.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Civil Status</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/list.civil.stat.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Civil Status List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+                <p>
+                  Program
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/add.program.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Program</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/list.program.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Program List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tag nav-icon"></i>
+                <p>
+                  Role
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/add.roles.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Role</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/list.roles.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Role List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-md nav-icon"></i>
+                <p>
+                  Work
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/add.work.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Work</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/list.work.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Work List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-layer-group nav-icon"></i>
+                <p>
+                  Year Level
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/add.attained.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Year Level</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/list.attained.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Year Level List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-header">FPDF</li> -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              Forms List
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="../form/alumni.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Alumni List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../form/student.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Student List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <?php
+      } else if($_SESSION['user_role'] == "Admin") {
+      ?>
+      <!-- <li class="nav-header">EXAMPLES</li> -->
+      <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Users
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="../users/add.users.php" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Add User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../users/list.users.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Users List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cogs"></i>
+            <p>
+              Settings
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tie nav-icon"></i>
+                <p>
+                  After Graduation
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/add.after.grad.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add After Graduation</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/list.after.grad.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>After Graduation List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-school nav-icon"></i>
+                <p>
+                  Campus
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../campus/add.campus.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Campus</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../campus/list.campus.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Campus List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-star-half-alt nav-icon"></i>
+                <p>
+                  Civil Status
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/add.civil.stat.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Civil Status</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/list.civil.stat.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Civil Status List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+                <p>
+                  Program
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/add.program.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Program</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/list.program.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Program List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tag nav-icon"></i>
+                <p>
+                  Role
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/add.roles.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Role</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/list.roles.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Role List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-md nav-icon"></i>
+                <p>
+                  Work
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/add.work.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Work</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/list.work.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Work List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-layer-group nav-icon"></i>
+                <p>
+                  Year Level
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/add.attained.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Year Level</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/list.attained.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Year Level List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-header">FPDF</li> -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              Forms List
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="../form/alumni.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Alumni List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../form/student.list.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Student List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <?php
+      } else if($_SESSION['user_role'] == "Alumni") {
+      ?>
+      <!-- <li class="nav-header">EXAMPLES</li> -->
+      <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Users
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="../users/add.users.php" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Add User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../users/list.users.php" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Users List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cogs"></i>
+            <p>
+              Settings
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tie nav-icon"></i>
+                <p>
+                  After Graduation
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/add.after.grad.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add After Graduation</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../aftergrad/list.after.grad.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>After Graduation List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-school nav-icon"></i>
+                <p>
+                  Campus
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../campus/add.campus.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Campus</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../campus/list.campus.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Campus List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-star-half-alt nav-icon"></i>
+                <p>
+                  Civil Status
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/add.civil.stat.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Civil Status</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../civil/list.civil.stat.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Civil Status List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+                <p>
+                  Program
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/add.program.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Program</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../program/list.program.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Program List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tag nav-icon"></i>
+                <p>
+                  Role
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/add.roles.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Role</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../role/list.roles.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Role List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-md nav-icon"></i>
+                <p>
+                  Work
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/add.work.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Work</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../work/list.work.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Work List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-layer-group nav-icon"></i>
+                <p>
+                  Year Level
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/add.attained.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Year Level</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../attained/list.attained.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Year Level List</p>
                   </a>
                 </li>
               </ul>
