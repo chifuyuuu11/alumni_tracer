@@ -113,12 +113,12 @@ if (isset($_GET['user_id'])) {
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Program</label>
-                                                <select required class="form-control select2" id="program" name="program">
+                                                <select required class="form-control select2" id="program" name="program" disabled>
                                                     <?php
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_program WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program'] ?>
+                                                        <option value="<?php echo $row1['program_id'] ?>" ><?php echo $row1['program'] ?> 
                                                         </option>
                                                         <?php
                                                     }
@@ -266,6 +266,7 @@ if (isset($_GET['user_id'])) {
 
     <!-- jQuery -->
     <?php require '../../includes/script.php'; ?>
+<script src="./usersData/script.alumni.js"></script>
 </body>
 
 </html>

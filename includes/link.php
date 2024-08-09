@@ -32,6 +32,8 @@
 <!-- summernote -->
 <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+<!-- Date picker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
 
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
