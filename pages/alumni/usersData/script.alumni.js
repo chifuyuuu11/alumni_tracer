@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    $('#program').prop('disabled', true).val("");
+
     $('#attained').on('change', function() {
         var attained_id = $(this).val();
         var collegeIds = [16, 17, 18, 19, 20];
@@ -6,7 +9,7 @@ $(document).ready(function() {
         if (collegeIds.includes(parseInt(attained_id))) {
             $('#program').prop('disabled', false);
         } else {
-            $('#program').prop('disabled', true);
+            $('#program').prop('disabled', true).val("");
         }
     });
 
