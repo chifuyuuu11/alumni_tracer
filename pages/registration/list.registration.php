@@ -54,14 +54,13 @@ require '../../includes/session.php';
                     <!-- /.card-header -->
                     <div class="card-body">
                         <form method="GET">
-                            <div class="row justify-content-center">
+                        <div class="row justify-content-center">
                                 <div class="form-group col-4">
-                                    <label>Search</label>
                                     <input type="text" class="form-control" id="firstname" name="search"
                                         placeholder="Search first name, last name, ...">
                                 </div>
-                                <div class="sol-auto">
-                                    <button class="btn btn-primary mt-4">Search</button>
+                                <div class="form-group-append">
+                                    <span class="form-group-text"><button class="btn btn-primary">Search</button></span>
                                 </div>
                             </div>
                         </form>

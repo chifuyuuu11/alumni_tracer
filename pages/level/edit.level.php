@@ -2,7 +2,7 @@
 require '../../includes/conn.php';
 require '../../includes/session.php';
 
-$attained_id = $_GET['attained_id'];
+$level_id = $_GET['level_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,16 +55,16 @@ $attained_id = $_GET['attained_id'];
                     <div class="card-header">
                         <h3 class="card-title">Edit Grade Level Attained</h3>
                     </div>
-                    <form class="form" action="usersData/ctrl.edit.attained.php?attained_id=<?php echo $attained_id;?>" method="POST" >
+                    <form class="form" action="usersData/ctrl.edit.level.php?level_id=<?php echo $level_id;?>" method="POST" >
                     <?php
-                    $info = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$attained_id'");
+                    $info = mysqli_query($conn, "SELECT * FROM tbl_levels WHERE level_id = '$level_id'");
                     while ($row = mysqli_fetch_array($info)) {
                     ?>
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="form-group col-md-10">
-                                    <label for="attained">Edit Grade Level Attained</label>
-                                    <input type="text" class="form-control" id="attained" name="attained" value="<?php echo $row['attained']?>" placeholder="Enter Grade Level Attained" required>
+                                    <label for="level">Edit Grade Level Attained</label>
+                                    <input type="text" class="form-control" id="level" name="level" value="<?php echo $row['level']?>" placeholder="Enter Grade Level Attained" required>
                                 </div>
                             </div>
                         </div>

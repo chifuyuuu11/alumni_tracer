@@ -170,6 +170,31 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
+                <i class="fas fa-university nav-icon"></i>
+                <p>
+                  Department
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/add.department.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Department</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/list.department.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Department List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>
                   Program
@@ -253,7 +278,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/add.attained.php" class="nav-link">
+                  <a href="../level/add.level.php" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Year Level</p>
                   </a>
@@ -261,7 +286,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/list.attained.php" class="nav-link">
+                  <a href="../level/list.level.php" class="nav-link">
                     <i class="fas fa-list nav-icon"></i>
                     <p>Year Level List</p>
                   </a>
@@ -408,6 +433,31 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
+                <i class="fas fa-university nav-icon"></i>
+                <p>
+                  Department
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/add.department.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Department</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/list.department.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Department List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>
                   Program
@@ -491,7 +541,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/add.attained.php" class="nav-link">
+                  <a href="../level/add.level.php" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Year Level</p>
                   </a>
@@ -499,7 +549,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/list.attained.php" class="nav-link">
+                  <a href="../level/list.level.php" class="nav-link">
                     <i class="fas fa-list nav-icon"></i>
                     <p>Year Level List</p>
                   </a>
@@ -645,6 +695,31 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
+                <i class="fas fa-university nav-icon"></i>
+                <p>
+                  Department
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/add.department.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Department</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/list.department.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Department List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>
                   Program
@@ -728,7 +803,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/add.attained.php" class="nav-link">
+                  <a href="../level/add.level.php" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Year Level</p>
                   </a>
@@ -736,7 +811,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/list.attained.php" class="nav-link">
+                  <a href="../level/list.level.php" class="nav-link">
                     <i class="fas fa-list nav-icon"></i>
                     <p>Year Level List</p>
                   </a>
@@ -858,6 +933,31 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
+                <i class="fas fa-university nav-icon"></i>
+                <p>
+                  Department
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/add.department.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Department</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/list.department.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Department List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="fas fa-star-half-alt nav-icon"></i>
                 <p>
                   Civil Status
@@ -966,7 +1066,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/add.attained.php" class="nav-link">
+                  <a href="../level/add.level.php" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Year Level</p>
                   </a>
@@ -974,7 +1074,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/list.attained.php" class="nav-link">
+                  <a href="../level/list.level.php" class="nav-link">
                     <i class="fas fa-list nav-icon"></i>
                     <p>Year Level List</p>
                   </a>
@@ -1121,6 +1221,31 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
+                <i class="fas fa-university nav-icon"></i>
+                <p>
+                  Department
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/add.department.php" class="nav-link">
+                    <i class="fas fa-plus-circle nav-icon"></i>
+                    <p>Add Department</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="../department/list.department.php" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Department List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
                 <i class="fas fa-user-friends nav-icon"></i>
                 <p>
                   Program
@@ -1204,7 +1329,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/add.attained.php" class="nav-link">
+                  <a href="../level/add.level.php" class="nav-link">
                     <i class="fas fa-plus-circle nav-icon"></i>
                     <p>Add Year Level</p>
                   </a>
@@ -1212,7 +1337,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../attained/list.attained.php" class="nav-link">
+                  <a href="../level/list.level.php" class="nav-link">
                     <i class="fas fa-list nav-icon"></i>
                     <p>Year Level List</p>
                   </a>

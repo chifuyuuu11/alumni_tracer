@@ -97,7 +97,7 @@ require '../../includes/session.php';
                                 OR firstname LIKE '%$search%'
                                 OR middlename LIKE '%$search%'
                                 OR role LIKE '%$search%'
-                                OR campus LIKE '%$search%')");
+                                OR campus LIKE '%$search%') ORDER BY lastname");
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <tr>

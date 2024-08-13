@@ -18,12 +18,13 @@ if (isset($_POST ['submit'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $select_user = mysqli_query($conn, "SELECT * FROM tbl_users WHERE username = '$username'");
-
+    $select_user = mysqli_query($conn, "SELECT * FROM tbl_users WHERE email = '$email'");
     $check = mysqli_num_rows($select_user);
 
-    if ($check == 0) {
-        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+    $select_user1 = mysqli_query($conn, "SELECT * FROM tbl_users WHERE username = '$username'");
+    $check2 = mysqli_num_rows($select_user1);
+
+    if ($check == 0 && $check2 == 0) {
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
         (firstname, middlename, lastname, campus_id, role_id, gender_id, civil_id, birthdate, address, contact, email, username, password)
         VALUES
@@ -49,8 +50,15 @@ if (isset($_POST ['submit'])) {
         header("location: ../add.users.php");
 
     } else {
-        echo 1;
-        $_SESSION['username_exist'] = true;
+        if ($check != 0 && $check2 != 0) {
+            $_SESSION['username&email_exist'] = true;
+        } else if  ($check != 0) {
+            $_SESSION['email_exist'] = true;
+        } else if ($check2 != 0) {
+            $_SESSION['username_exist'] = true;
+     
+        }
+
         header("location: ../add.users.php");
 
     }

@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Registrar List</title>
+    <title>Alumni Tracer | Program Chairperson List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -32,12 +32,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Registrar List</h1>
+                            <h1>Program Chairperson List</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Registrar List</li>
+                                <li class="breadcrumb-item active">Program Chairperson List</li>
                             </ol>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ require '../../includes/session.php';
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Registrar List and Info</h3>
+                <h3 class="card-title">Program Chairperson List and Info</h3>
               </div>
               <!-- /.card-header -->
                     <div class="card-body">
@@ -85,7 +85,7 @@ require '../../includes/session.php';
                             $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
                             LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id 
                             LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
-                            WHERE (lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR role LIKE '%$search%' OR campus LIKE '%$search%') AND tbl_roles.role_id=5 ORDER BY lastname");
+                            WHERE (lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR role LIKE '%$search%' OR campus LIKE '%$search%') AND tbl_roles.role_id=6 ORDER BY lastname");
                             while ($row = mysqli_fetch_array($info)) {
                         ?>
                         <tr>

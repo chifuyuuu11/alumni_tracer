@@ -95,33 +95,12 @@
             </div>
           </div>
 
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-              <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
-                $row = mysqli_num_rows($select_users);
-                ?>
-
-                <h3><?php echo $row ?></h3>
-
-                <p>Admin</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person"></i>
-              </div>
-              <a href="list.admin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-gray">
               <div class="inner">
                 <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
                 $row = mysqli_num_rows($select_users);
                 ?>
 
@@ -136,33 +115,13 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-lightblue">
-              <div class="inner">
-                <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
-                $row = mysqli_num_rows($select_users);
-                ?>
-
-                <h3><?php echo $row ?></h3>
-
-                <p>Registrar</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person"></i>
-              </div>
-              <a href="list.registrar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
               <?php 
-                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
                 $row = mysqli_num_rows($select_users);
                 ?>
 
@@ -177,6 +136,69 @@
             </div>
           </div>
           <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+              <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Admin</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.admin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-lightblue">
+              <div class="inner">
+                <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Registrar</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.registrar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <?php 
+                $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=6");
+                $row = mysqli_num_rows($select_users);
+                ?>
+
+                <h3><?php echo $row ?></h3>
+
+                <p>Program Chairperson</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="list.program.chairperson.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        
 
           <!-- ./col -->
           <div class="col-lg-3 col-6">

@@ -31,12 +31,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Add Grade Level Attained</h1>
+                            <h1>Add Grade Level</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Add Grade Level Attained</li>
+                                <li class="breadcrumb-item active">Add Grade Level</li>
                             </ol>
                         </div>
                     </div>
@@ -49,14 +49,14 @@ require '../../includes/session.php';
                 <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">User's Grade Level Attained</h3>
+                        <h3 class="card-title">Add Grade Level </h3>
                     </div>
-                    <form class="form" method="POST" action="usersData/ctrl.add.attained.php">
+                    <form class="form" method="POST" action="usersData/ctrl.add.level.php">
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <div class="form-group col-md-10">
-                                    <label for="attained">Grade Level Attained</label>
-                                    <input type="text" class="form-control" id="attained" name="attained" placeholder="Enter Grade Level Attained" required>
+                                    <label for="level">Grade Level</label>
+                                    <input type="text" class="form-control" id="level" name="level" placeholder="Enter Grade Level" required>
                                 </div>
                             </div>
                         </div>

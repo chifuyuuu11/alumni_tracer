@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Grade Level Attained List</title>
+    <title>Alumni Tracer | Department List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -31,12 +31,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Grade Level Attained List</h1>
+                            <h1>Department List</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Grade Level Attained List</li>
+                                <li class="breadcrumb-item active">Department List</li>
                             </ol>
                         </div>
                     </div>
@@ -48,31 +48,31 @@ require '../../includes/session.php';
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Grade Level Attained List and Settings</h3>
+                        <h3 class="card-title">Department List and Settings</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Grade Attained</th>
+                                    <th>Department</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $info = mysqli_query($conn, "SELECT * FROM tbl_attained");
+                                $info = mysqli_query($conn, "SELECT * FROM tbl_department");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $row['attained']; ?></td>
-                                        <td><a href="edit.attained.php?attained_id=<?php echo $row['attained_id']; ?>" type="button"
-                                                class="btn btn-primary btn-sm m-1">Update</a>
-                                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
-                                                data-target="#modal-default<?php echo $row['attained_id']; ?>">Delete</a>
-                                        </td>
+                                    <td><?php echo $row['department']; ?></td>
+                                    <td><a href="edit.department.php?dept_id=<?php echo $row['dept_id']; ?>" type="button"
+                                                    class="btn btn-primary btn-sm m-1">Update</a>
+                                        <button type="button" class="btn btn-danger btn-sm m-1"data-toggle="modal"
+                                                    data-target="#modal-default<?php echo $row['dept_id']; ?>">Delete</a>
+                                     </td>
                                     </tr>
-                                    <div class="modal fade" id="modal-default<?php echo $row['attained_id']; ?>" tabindex="-1"
+                                    <div class="modal fade" id="modal-default<?php echo $row['dept_id']; ?>" tabindex="-1"
                                         aria-labelledby="modal-defaultLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -84,12 +84,12 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['attained']?></b> attained?</p>
+                                                    <p> Are you sure you want to delete <b><?php echo $row['department']?></b> department?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Cancel</button>
-                                                    <a href="usersData/ctrl.delete.attained.php?attained_id=<?php echo $row['attained_id']; ?>"
+                                                    <a href="usersData/ctrl.delete.department.php?dept_id=<?php echo $row['dept_id']; ?>"
                                                         type="button" class="btn btn-danger">Delete</a>
                                                 </div>
                                             </div>

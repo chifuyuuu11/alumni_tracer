@@ -66,7 +66,7 @@ $pdf->SetFont('Arial', '', 11);
 // $pdf->Cell(40, 7, 'Contact', 'B, T, L R', 1);
 
 $x = 1;
-$select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users WHERE role_id = 3 ORDER BY lastname");
+$select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users WHERE role_id = 2 ORDER BY lastname");
 while ($row = mysqli_fetch_array($select_alumni)) {
     $pdf->Cell(6, 7, $x. '.', 0, 0);
 
