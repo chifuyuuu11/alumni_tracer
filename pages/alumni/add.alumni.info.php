@@ -115,19 +115,19 @@ if (isset($_GET['user_id'])) {
                                                 <label for="firstname">Program</label>
                                                 <select required class="form-control select2" id="program" name="program">
                                                     <?php
-                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_program WHERE program_id = '$row[program_id]'");
+                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program'] ?>
+                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                     <?php
-                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_program WHERE NOT program_id = '$row[program_id]'");
+                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program'] ?>
+                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }

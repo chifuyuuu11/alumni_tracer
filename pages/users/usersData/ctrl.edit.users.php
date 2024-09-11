@@ -55,8 +55,8 @@ if (isset($_POST['upload'])){
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "UPDATE tbl_users SET username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
-        $_SESSION['email_update'] = true;
-        header("location: ../../email/email.php?user_id=". $user_id);
+        $_SESSION['updated'] = true;
+        header("location: ../edit.users.php?user_id=". $user_id);
 
     } else {
         $_SESSION['error_update'] = true;
