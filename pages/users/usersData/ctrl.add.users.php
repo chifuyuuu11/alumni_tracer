@@ -25,6 +25,7 @@ if (isset($_POST ['submit'])) {
     $check2 = mysqli_num_rows($select_user1);
 
     if ($check == 0 && $check2 == 0) {
+        $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
         $insert_data = mysqli_query($conn, "INSERT INTO tbl_users
         (firstname, middlename, lastname, campus_id, role_id, gender_id, civil_id, birthdate, address, contact, email, username, password)
         VALUES
