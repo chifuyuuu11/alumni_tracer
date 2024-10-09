@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
 
   $check = mysqli_num_rows($select_user);
 
-  if ($check == 0) {
+  if ($check == 0 ) {
     $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
     $insert_reg = mysqli_query($conn, "INSERT INTO tbl_users
     (firstname, middlename, lastname, role_id, contact, email, username, password, attained_id, program_id, batch )
@@ -32,8 +32,18 @@ if(isset($_POST['submit'])) {
 
     $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Admit Users', '$firstname $lastname', 'ctrl.admit.registration.php')");
 
+
+    $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
+    $id = mysqli_fetch_array($select_user);
+
+    $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES        ('$id[user_id]')");
     $_SESSION['success_admit'] = true;
     header("location: ../../email/approved.user.acc.php?reg_id=". $reg_id."&username=". $username);
+
+    
+
+
+    
 
 } else {
     echo 1;
