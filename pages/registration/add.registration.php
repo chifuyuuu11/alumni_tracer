@@ -35,7 +35,7 @@ require '../../includes/conn.php';
           <div class="row">
             <div class="col-md-4 form-group mb-3">
               <label>First Name</label>
-              <input type="text" name="firstname" class="form-control">
+              <input type="text" name="firstname" class="form-control ">
 
             </div>
             <div class="col-md-4 form-group mb-3">
@@ -111,7 +111,8 @@ require '../../includes/conn.php';
             </div>
             <div class="col-md-4 form-group mb-3">
               <label>Contact Number</label>
-              <input type="text" name="contact_no" class="form-control">
+              <input type="number" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" min="00000000000001"
+                max="9999999999999" oninput="if(this.value.length > 13) this.value = this.value.slice(0, 13)">
 
             </div>
 

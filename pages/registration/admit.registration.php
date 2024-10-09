@@ -77,59 +77,72 @@ $reg_id = $_GET['reg_id'];
                                     </div>
 
                                     <div class="row">
-                                            <div class="form-group col-md-4">
-                                                <label for="firstname">Highest Level Attained at SFAC</label>
-                                                <select required class="form-control select2" id="attained" name="attained">
+                                        <div class="form-group col-md-4">
+                                        <label for="role">Role</label>
+                                                <select required class="form-control select2" id="role" name="role">
                                                     <?php
-                                                    $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
-                                                    while ($row1 = mysqli_fetch_array($select_attained)) {
+                                                    $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_role)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option value="<?php echo $row1['role_id'] ?>">
+                                                            <?php echo $row1['role'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                     <?php
-                                                    $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
-                                                    while ($row1 = mysqli_fetch_array($select_attained)) {
+                                                    $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE NOT role_id = '$row[role_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_role)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
-                                                        </option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="firstname">Program</label>
-                                                <select required class="form-control select2" id="program" name="program">
-                                                    <?php
-                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
-                                                    while ($row1 = mysqli_fetch_array($select_program)) {
-                                                        ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
-                                                        </option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    <?php
-                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
-                                                    while ($row1 = mysqli_fetch_array($select_program)) {
-                                                        ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option value="<?php echo $row1['role_id'] ?>">
+                                                            <?php echo $row1['role'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="firstname">Batch</label>
-                                                <input type="text" class="form-control" id="batch" name="batch"
-                                                    value="<?php echo $row['batch'] ?>" placeholder="Batch" 
-                                                    >
-                                            </div>
                                         </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="campus">Campus</label>
+                                            <select required class="form-control select2" id="campus" name="campus">
+                                                <option value="" disabled selected>Select Campus</option>
+                                                <?php
+                                                $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus");
+                                                while ($row1 = mysqli_fetch_array($select_campus)) {
+                                                    ?>
+                                                    <option value="<?php echo $row1['campus_id'] ?>">
+                                                        <?php echo $row1['campus'] ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                        <label for="gender">Gender</label>
+                                                <select required class="form-control select2" id="gender" name="gender">
+                                                    <?php
+                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id = '$row[gender_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_gender)) {
+                                                        ?>
+                                                        <option value="<?php echo $row1['gender_id'] ?>">
+                                                            <?php echo $row1['gender'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE NOT gender_id = '$row[gender_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_gender)) {
+                                                        ?>
+                                                        <option value="<?php echo $row1['gender_id'] ?>">
+                                                            <?php echo $row1['gender'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                        </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
