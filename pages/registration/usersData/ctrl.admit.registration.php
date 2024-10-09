@@ -8,13 +8,14 @@ if(isset($_POST['submit'])) {
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
-    $campus = mysqli_real_escape_string($conn, $_POST['campus']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact_no']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
+    $program = mysqli_real_escape_string($conn, $_POST['program']);
+    $attained = mysqli_real_escape_string($conn, $_POST['attained']);
+    $batch = mysqli_real_escape_string($conn, $_POST['batch']);
+    
 
   $select_user = mysqli_query($conn, "SELECT * FROM tbl_users WHERE username = '$username'");
 
@@ -23,9 +24,9 @@ if(isset($_POST['submit'])) {
   if ($check == 0) {
     $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
     $insert_reg = mysqli_query($conn, "INSERT INTO tbl_users
-    (firstname, middlename, lastname, campus_id, role_id, contact, email, username, password, gender_id)
+    (firstname, middlename, lastname, role_id, contact, email, username, password, attained_id, program_id, batch )
     VALUES
-    ('$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass', '$gender')");
+    ('$firstname', '$middlename', '$lastname', 1, '$contact', '$email', '$username', '$hashed_pass', '$attained', '$program','$batch' )");
 
     $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET status = 'Approved' WHERE reg_id = '$reg_id'");
 
