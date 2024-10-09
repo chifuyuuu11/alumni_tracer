@@ -9,7 +9,7 @@ if (isset($_GET['user_id'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">a
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
