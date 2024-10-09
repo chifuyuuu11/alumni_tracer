@@ -35,7 +35,7 @@ require '../../includes/conn.php';
           <div class="row">
             <div class="col-md-4 form-group mb-3">
               <label>First Name</label>
-              <input type="text" name="firstname" class="form-control">
+              <input type="text" name="firstname" class="form-control ">
 
             </div>
             <div class="col-md-4 form-group mb-3">
@@ -46,39 +46,61 @@ require '../../includes/conn.php';
             <div class="col-md-4 form-group mb-3">
               <label>Last Name</label>
               <input type="text" name="lastname" class="form-control">
-
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 form-group mb-3">
-              <label for="role">Role</label>
-              <select required class="form-control select2" id="role" name="role">
-                <option value="" disabled selected>Select Role</option>
+            <div class="form-group col-md-4">
+              <label for="firstname">Highest Level Attained at SFAC</label>
+              <select required class="form-control select2" id="attained" name="attained">
+                <option disabled selected>Highest Level Attained at SFAC</option>
+
                 <?php
-                $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles");
-                while ($row = mysqli_fetch_array($select_role)) {
+                $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
+                while ($row1 = mysqli_fetch_array($select_attained)) {
                   ?>
-                  <option value="<?php echo $row['role_id'] ?>"><?php echo $row['role'] ?>
+
+                  <?php
+                }
+                ?>
+                <?php
+                $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
+                while ($row1 = mysqli_fetch_array($select_attained)) {
+                  ?>
+                  <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                  </option>
+                  <?php
+                }
+                ?>
+
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="firstname">Program</label>
+              <select required class="form-control select2" id="program" name="program">
+                <option disabled selected>Select Program</option>
+
+                <?php
+                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
+                while ($row1 = mysqli_fetch_array($select_program)) {
+                  ?>
+                  <?php
+                }
+                ?>
+                <?php
+                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
+                while ($row1 = mysqli_fetch_array($select_program)) {
+                  ?>
+                  <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                   </option>
                   <?php
                 }
                 ?>
               </select>
             </div>
-            <div class="col-md-6 form-group mb-3">
-            <label for="gender">Gender</label>
-              <select required class="form-control select2" id="gender" name="gender">
-                <option value="" disabled selected>Select Gender</option>
-                <?php
-                $select_role = mysqli_query($conn, "SELECT * FROM tbl_genders");
-                while ($row = mysqli_fetch_array($select_role)) {
-                  ?>
-                  <option value="<?php echo $row['gender_id'] ?>"><?php echo $row['gender'] ?>
-                  </option>
-                  <?php
-                }
-                ?>
-              </select>
+            <div class="form-group col-md-4">
+              <label for="batch">Batch</label>
+              <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" min="1000"
+                max="9999" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4)">
             </div>
           </div>
           <div class="row">
@@ -89,28 +111,31 @@ require '../../includes/conn.php';
             </div>
             <div class="col-md-4 form-group mb-3">
               <label>Contact Number</label>
-              <input type="text" name="contact_no" class="form-control">
+              <input type="number" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" min="00000000000001"
+                max="9999999999999" oninput="if(this.value.length > 13) this.value = this.value.slice(0, 13)">
 
             </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember" required>
-                <label for="remember">
-                  I agree that the data collected from this online registration shall be subjected to the school's <a class="text-primary">Data Privacy Policy</a>.
-                </label>
+
+
+            <div class="row mt-3">
+              <div class="col">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="remember" required>
+                  <label for="remember">
+                    I agree that the data collected from this online registration shall be subjected to the school's <a
+                      class="text-primary">Data Privacy Policy</a>.
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
             <!-- /.col -->
-          <div class="row mt-3 float-right">
-            <div class="col-auto">
-              <a href="../login/login.php" class="btn btn-danger">Log In</a>
-              <button type="submit" name="submit" class="btn btn-primary">Register</button>
+            <div class="row mt-3 float-right">
+              <div class="col-auto">
+                <a href="../login/login.php" class="btn btn-danger">Log In</a>
+                <button type="submit" name="submit" class="btn btn-primary">Register</button>
+              </div>
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
-          </div>
         </form>
       </div>
       <!-- /.card-body -->
@@ -124,13 +149,13 @@ require '../../includes/conn.php';
   <?php require '../../includes/script.php'; ?>
   <script>
     <?php
-      if ($_SESSION['success_register']) {
-    ?>
-    toastr.success('Registration Success!<p><strong> Please wait for the email.</strong></p>');
-    <?php
-      }
+    if ($_SESSION['success_register']) {
+      ?>
+      toastr.success('Registration Success!<p><strong> Please wait for the email.</strong></p>');
+      <?php
+    }
 
-      unset($_SESSION['success_register']);
+    unset($_SESSION['success_register']);
     ?>
   </script>
 </body>
