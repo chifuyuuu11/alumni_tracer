@@ -132,32 +132,8 @@ if (isset($_GET['user_id'])) {
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="role">Role</label>
-                                            <select required class="form-control select2" id="role" name="role">
-                                                <?php
-                                                $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
-                                                while ($row1 = mysqli_fetch_array($select_role)) {
-                                                    ?>
-                                                    <option selected value="<?php echo $row1['role_id'] ?>">
-                                                        <?php echo $row1['role'] ?>
-                                                    </option>
-                                                    <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE NOT role_id = '$row[role_id]'");
-                                                while ($row1 = mysqli_fetch_array($select_role)) {
-                                                    ?>
-                                                    <option value="<?php echo $row1['role_id'] ?>">
-                                                        <?php echo $row1['role'] ?>
-                                                    </option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                   
+                                        <div>
                                         <div class="form-group col-md-6">
                                             <label for="campus">Campus</label>
                                             <select required class="form-control select2" id="campus" name="campus">
