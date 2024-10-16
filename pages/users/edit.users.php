@@ -133,8 +133,8 @@ if (isset($_GET['user_id'])) {
                                     </div>
 
                                    
-                                        <div>
-                                        <div class="form-group col-md-6">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
                                             <label for="campus">Campus</label>
                                             <select required class="form-control select2" id="campus" name="campus">
                                                 <?php
