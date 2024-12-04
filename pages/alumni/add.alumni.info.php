@@ -89,8 +89,8 @@ if (isset($_GET['user_id'])) {
                                         <hr>
                                         <div class="row">
                                             <div class="form-group col-md-4">
-                                                <label for="firstname">Highest Level Attained at SFAC</label>
-                                                <select required class="form-control select2" id="attained" name="attained">
+                                                <label for="firstname">Highest attained</label>
+                                                <select required disabled class="form-control select2" id="attained" name="attained">
                                                     <?php
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
@@ -104,7 +104,7 @@ if (isset($_GET['user_id'])) {
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option disabled value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -113,7 +113,7 @@ if (isset($_GET['user_id'])) {
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Program</label>
-                                                <select required class="form-control select2" id="program" name="program">
+                                                <select disabled required class="form-control select2" id="program" name="program">
                                                     <?php
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
