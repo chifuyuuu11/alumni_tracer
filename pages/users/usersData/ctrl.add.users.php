@@ -41,7 +41,7 @@ if (isset($_POST ['submit'])) {
 
         }
 
-        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'ctrl.add.users.php')");
+        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'add.users.php')");
 
         $_SESSION['success'] = true;
         // header("location: ../add.users.php");
