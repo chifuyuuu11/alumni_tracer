@@ -11,7 +11,6 @@ require '../../includes/conn.php';
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alumni Tracer | Online Registration</title>
 
-  <!-- Google Font: Source Sans Pro -->
   <?php require '../../includes/link.php'; ?>
   
   <script>
@@ -19,10 +18,9 @@ require '../../includes/conn.php';
       var gradeSelect = document.getElementById("attained");
       var combinedSelect = document.getElementById("select_combined");
 
-      // Clear previous options
+   
       combinedSelect.innerHTML = '';
 
-      // Create a placeholder option
       var placeholderOption = document.createElement("option");
       placeholderOption.value = "";
       placeholderOption.disabled = true;
@@ -30,13 +28,15 @@ require '../../includes/conn.php';
       placeholderOption.text = "Select Strand/Program"; 
       combinedSelect.add(placeholderOption); 
 
+
+
       if (gradeSelect.value === "2") {
         var strands = <?php
           $select_strand = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = 4;");
           $strands = [];
           while ($row = mysqli_fetch_array($select_strand)) {
             $strands[] = [
-              'value' => $row['dept_id'],
+              'value' => $row['program_id'],
               'desc' => $row['program_desc']
             ];
           }
@@ -49,6 +49,8 @@ require '../../includes/conn.php';
           option.text = strand.desc;
           combinedSelect.add(option);
         });
+
+
       } else if (gradeSelect.value === "3") {
         var programs = <?php
           $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = 5;");
@@ -68,6 +70,49 @@ require '../../includes/conn.php';
           option.text = program.desc;
           combinedSelect.add(option);
         });
+
+
+         } else if (gradeSelect.value === "4") {
+        var masterals = <?php
+          $select_masteral = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = 6;");
+          $masterals = [];
+          while ($row = mysqli_fetch_array($select_masteral)) {
+            $masterals[] = [
+              'value' => $row['program_id'],
+              'desc' => $row['program_desc']
+            ];
+          }
+          echo json_encode($masterals);
+        ?>;
+
+        masterals.forEach(function(masteral) {
+          var option = document.createElement("option");
+          option.value = masteral.value;
+          option.text = masteral.desc;
+          combinedSelect.add(option);
+        });
+
+      } else if (gradeSelect.value === "5") {
+        var tesdas = <?php
+          $select_tesda = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = 7;");
+          $tesdas = [];
+          while ($row = mysqli_fetch_array($select_tesda)) {
+            $tesdas[] = [
+              'value' => $row['program_id'],
+              'desc' => $row['program_desc']
+            ];
+          }
+          echo json_encode($tesdas);
+        ?>;
+
+        tesdas.forEach(function(tesda) {
+          var option = document.createElement("option");
+          option.value = tesda.value;
+          option.text = tesda.desc;
+          combinedSelect.add(option);
+        });
+
+
       }
     }
   </script>
@@ -107,7 +152,7 @@ require '../../includes/conn.php';
             <div class="form-group col-md-4">
               <label for="attained">Highest Level Attained at SFAC</label>
               <select required class="form-control select2" id="attained" name="attained" onchange="showOptions()">
-                <option disabled selected>Highest Level Attained at SFAC</option>
+                <option selected>Highest Level Attained at SFAC</option>
                 <?php
                 $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained");
                 while ($row1 = mysqli_fetch_array($select_attained)) {
@@ -120,8 +165,8 @@ require '../../includes/conn.php';
             </div>
             <div class="form-group col-md-4">
               <label for="select_combined">Strand/Program</label>
-              <select required class="form-control select2" id="select_combined" name="combined">
-                <option value="" disabled selected>Select Strand/Program</option>
+              <select class="form-control select2" id="select_combined" name="program">
+                <option value="1" disabled selected>Select Strand/Program</option>
 
               </select>
             </div>
