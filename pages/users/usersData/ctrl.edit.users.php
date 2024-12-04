@@ -20,7 +20,6 @@ if (isset($_POST['upload'])){
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
     $campus = mysqli_real_escape_string($conn, $_POST['campus']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $civilstat = mysqli_real_escape_string($conn, $_POST['civilstat']);
@@ -35,7 +34,7 @@ if (isset($_POST['upload'])){
     
     if ($check == 0) {
     $insert_data = mysqli_query($conn, "UPDATE tbl_users SET firstname = '$firstname', middlename = '$middlename',
-        lastname = '$lastname', role_id = '$role', campus_id = '$campus', gender_id = '$gender', civil_id = '$civilstat', 
+        lastname = '$lastname', campus_id = '$campus', gender_id = '$gender', civil_id = '$civilstat', 
         birthdate = '$birthdate', address = '$address', email = '$email', contact = '$contact' WHERE user_id = '$user_id'");
         $_SESSION['updated'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);

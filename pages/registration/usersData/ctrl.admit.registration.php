@@ -27,7 +27,10 @@ if(isset($_POST['submit'])) {
     (firstname, middlename, lastname, role_id, contact, email, username, password, attained_id, program_id, batch )
     VALUES
     ('$firstname', '$middlename', '$lastname', 1, '$contact', '$email', '$username', '$hashed_pass', '$attained', '$program','$batch' )");
+    $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
+    $id = mysqli_fetch_array($select_user);
 
+    $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES        ('$id[user_id]')");
     $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET status = 'Approved' WHERE reg_id = '$reg_id'");
 
     $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Admit Users', '$firstname $lastname', 'ctrl.admit.registration.php')");
