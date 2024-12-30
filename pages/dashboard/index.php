@@ -8,956 +8,225 @@ require '../../includes/conn.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alumni Tracer | Dashboard</title>
-
+  <title>Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="../../dist/img/sfac.png">
   <!-- Google Font: Source Sans Pro -->
   <?php require '../../includes/link.php'; ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-  <?php if ($_SESSION['user_role'] == "Super Admin") { ?>
-    <div class="wrapper">
+  <div class="wrapper">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100"
+        width="100">
+    </div>
 
-      <!-- Preloader -->
-      <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100"
-          width="100">
+    <!-- Navbar -->
+    <?php require '../../includes/navbar.php'; ?>
+    <!-- /.navbar -->
+
+    <!-- Sidebar -->
+    <?php require '../../includes/sidebar.php'; ?>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
       </div>
-
-      <!-- Navbar -->
-      <?php require '../../includes/navbar.php'; ?>
-      <!-- /.navbar -->
-
-      <!-- Sidebar -->
-      <?php require '../../includes/sidebar.php'; ?>
-
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
-              </div><!-- /.col -->
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
+      <!-- /.content-header -->
+      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") { ?>
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
             <div class="row">
+              <div class="col-md-12">
+                <a href="list.alumni.php">
+                  <div class="bg-info alumni shadow-sm card">
+                    <div class="row p-3 justify-content-center">
+                      <div class="col-md-2 my-auto text-center">
+                        <?php
+                        $select_alumni = mysqli_query($conn, "SELECT * FROM tbl_alumni");
+                        $count = mysqli_num_rows($select_alumni);
+                        ?>
+                        <h1 class="my-n2 display-3 font-weight-bold"><?php echo $count; ?></h1>
+                        <p>Total Alumni Users</p>
 
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-danger">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
+                      </div>
+                      <div class="col-md-8 my-auto text-center">
+                        <div class="row">
+                          <?php
+                          $select_alumni = mysqli_query($conn, "SELECT * FROM tbl_alumni");
+                          $count = mysqli_num_rows($select_alumni);
+                          ?>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Pre-school</p>
+                          </div>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Gradeschool</p>
+                          </div>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Junior</p>
+                          </div>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Senior</p>
+                          </div>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Undergrad</p>
+                          </div>
+                          <div class="col-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Graduate</p>
+                          </div>
+                          <div class="co-4 col-sm">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>TESDA</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-6">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Bacoor</p>
+                          </div>
+                          <div class="col-6">
+                            <h4 class="font-weight-bold">0</h4>
+                            <p>Las Pinas</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2 my-auto text-center text-warning">
+                        <h1 class="my-n2 display-3 font-weight-bold">0.0</h1>
+                        <p>Average satisfaction score</p>
 
-                    <h3><?php echo $row ?></h3>
+                      </div>
+                      <!-- <div class="col-md-3">
+                        <div class="row">
+                          <div class="col-8">
+                            <div class="chart-responsive mx-auto">
+                              <canvas id="pieChart" height="250"></canvas>
+                            </div>
+                          </div>
+                          <div class="col-4 my-auto">
+                            <ul class="chart-legend clearfix ">
+                              <li><i class="fas fa-square text-danger"></i> Chrome</li>
+                              <li><i class="fas fa-square text-success"></i> IE</li>
+                              <li><i class="fas fa-square text-warning"></i> FireFox</li>
+                              <li><i class="fas fa-square text-info"></i> Safasi</li>
+                              <li><i class="fas fa-square text-primary"></i> Opera</li>
+                              <li><i class="fas fa-square text-secondary"></i> Navigator</li>
+                            </ul>
+                          </div>
+                        </div>
 
-                    <p>Total Users</p>
+                      </div> -->
+                    </div>
                   </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-3">
+                <a href="../users/list.users.php" class="text-dark">
+                  <div class="info-box alumni">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                    <div class="info-box-content">
+                      <?php
+                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
+                      $count = mysqli_num_rows($select_users);
+                      ?>
+                      <span class="info-box-text">Users</span>
+                      <span class="info-box-number">
+                        <?php echo $count; ?>
+                      </span>
+                    </div>
+                    <!-- /.info-box-content -->
                   </div>
-                  <a href="list.users.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
+                  <!-- /.info-box -->
+                </a>
               </div>
 
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-olive">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=1");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box alumni mb-3">
+                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
 
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Alumni</p>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Linkages</span>
+                    <span class="info-box-number">0</span>
                   </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.alumni.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
+                  <!-- /.info-box-content -->
                 </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box alumni mb-3">
+                  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Community Extension</span>
+                    <span class="info-box-number">0</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-12 col-sm-6 col-md-3">
+                <a href="../registration/list.registration.php" class="text-dark">
+                  <div class="info-box mb-3 alumni">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe"></i></span>
+
+                    <div class="info-box-content">
+                      <?php
+                      $select_reg = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending'");
+                      $result = mysqli_num_rows($select_reg);
+                      ?>
+                      <span class="info-box-text">Online Registrations</span>
+                      <span class="info-box-number"><?php echo $result; ?></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+                  <!-- /.info-box -->
+                </a>
               </div>
 
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-gray">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Student</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.student.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-purple">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Super Admin</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.superadmin.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <!-- ./col -->
-
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Admin</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.admin.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-
-
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-lightblue">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Registrar</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.registrar.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-success">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=6");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Program Chairperson</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="list.program.chairperson.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-
-
-              <!-- ./col -->
-              <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-warning">
-                  <div class="inner">
-                    <?php
-                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
-                    $row = mysqli_num_rows($select_users);
-                    ?>
-
-                    <h3><?php echo $row ?></h3>
-
-                    <p>Online Registration</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-person"></i>
-                  </div>
-                  <a href="../registration/list.registration.php" class="small-box-footer">More info <i
-                      class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <!-- ./col -->
+              <!-- /.col -->
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
         </section>
-        <!-- right col -->
-      </div>
-      <!-- /.row (main row) -->
+        <?php
+      }
+      ?>
     </div><!-- /.container-fluid -->
-    </section>
     <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <?php require '../../includes/footer.php'; ?>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-    <?php
-  } else if ($_SESSION["user_role"] == "Student") {
-    ?>
-      <div class="wrapper">
-
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100"
-            width="100">
-        </div>
-
-        <!-- Navbar -->
-      <?php require '../../includes/navbar.php'; ?>
-        <!-- /.navbar -->
-
-        <!-- Sidebar -->
-      <?php require '../../includes/sidebar.php'; ?>
-
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-          <!-- Content Header (Page header) -->
-          <div class="content-header">
-            <div class="container-fluid">
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <h1 class="m-0">Dashboard</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                  </ol>
-                </div><!-- /.col -->
-              </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-          </div>
-          <!-- /.content-header -->
-
-          <!-- Main content -->
-          <section class="content">
-            <div class="container-fluid">
-              <!-- Small boxes (Stat box) -->
-              <div class="row">
-
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-danger">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Total Users</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                   
-                  </div>
-                </div>
-
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-olive">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=1");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Alumni</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-gray">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Student</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-purple">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Super Admin</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-                <!-- ./col -->
-
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-info">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Admin</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-
-
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-lightblue">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Registrar</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-success">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=6");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Program Chairperson</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-
-
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                  <!-- small box -->
-                  <div class="small-box bg-warning">
-                    <div class="inner">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
-                      $row = mysqli_num_rows($select_users);
-                      ?>
-
-                      <h3><?php echo $row ?></h3>
-
-                      <p>Online Registration</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-person"></i>
-                    </div>
-                    
-                  </div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </section>
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
-    <?php require '../../includes/footer.php'; ?>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-      </aside>
-      <!-- /.control-sidebar -->
-      </div>
-    <?php
-  } else if($_SESSION["user_role"] == "Alumni") {
-  ?>
-  <div class="wrapper">
-
-<!-- Preloader -->
-<div class="preloader flex-column justify-content-center align-items-center">
-  <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100"
-    width="100">
-</div>
-
-<!-- Navbar -->
-<?php require '../../includes/navbar.php'; ?>
-<!-- /.navbar -->
-
-<!-- Sidebar -->
-<?php require '../../includes/sidebar.php'; ?>
-
-
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
   </div>
-  <!-- /.content-header -->
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Total Users</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-           
-          </div>
-        </div>
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-olive">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=1");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Alumni</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-gray">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Student</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-purple">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Super Admin</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-        <!-- ./col -->
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Admin</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-lightblue">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Registrar</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=6");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Program Chairperson</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Online Registration</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-  </section>
-  <!-- right col -->
-</div>
-<!-- /.row (main row) -->
-</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<?php require '../../includes/footer.php'; ?>
-
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-<!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<?php 
-  } else if ($_SESSION["user_role"] == "Registrar") {
-    ?>
-      <div class="wrapper">
-
-<!-- Preloader -->
-<div class="preloader flex-column justify-content-center align-items-center">
-  <img class="animation__shake" src="../../docs/assets/img/SFAC-Logo.jpg" alt="AdminLTELogo" height="100"
-    width="100">
-</div>
-
-<!-- Navbar -->
-<?php require '../../includes/navbar.php'; ?>
-<!-- /.navbar -->
-
-<!-- Sidebar -->
-<?php require '../../includes/sidebar.php'; ?>
-
-
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Total Users</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-           
-          </div>
-        </div>
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-olive">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=1");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Alumni</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-gray">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=2");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Student</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-purple">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=3");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Super Admin</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-        <!-- ./col -->
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=4");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Admin</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-lightblue">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=5");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Registrar</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_users WHERE role_id=6");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Program Chairperson</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-
-
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <?php
-              $select_users = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending' ");
-              $row = mysqli_num_rows($select_users);
-              ?>
-
-              <h3><?php echo $row ?></h3>
-
-              <p>Online Registration</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-  </section>
-  <!-- right col -->
-</div>
-<!-- /.row (main row) -->
-</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<?php require '../../includes/footer.php'; ?>
-
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-<!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<?php
-  }
-  ?>
-  
+  <!-- /.content-wrapper -->
+  <?php require '../../includes/footer.php'; ?>
+  <!-- ./wrapper -->
   <!-- jQuery -->
   <?php require '../../includes/script.php'; ?>
 </body>

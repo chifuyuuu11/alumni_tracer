@@ -90,12 +90,12 @@ if (isset($_GET['user_id'])) {
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Highest Level Attained at SFAC</label>
-                                                <select required class="form-control select2" id="attained" name="attained">
+                                                <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                                                     <?php
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -104,7 +104,7 @@ if (isset($_GET['user_id'])) {
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -118,7 +118,7 @@ if (isset($_GET['user_id'])) {
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -127,7 +127,7 @@ if (isset($_GET['user_id'])) {
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }

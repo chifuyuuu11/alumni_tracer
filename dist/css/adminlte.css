@@ -34990,7 +34990,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .register-box {
-  width: 860px;
+  width: 960px;
 }
 
 @media (max-width: 576px) {

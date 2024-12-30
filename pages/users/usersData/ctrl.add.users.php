@@ -31,20 +31,15 @@ if (isset($_POST ['submit'])) {
             $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
             $id = mysqli_fetch_array($select_user);
 
-            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES        ('$id[user_id]')");
-
-        } elseif ($role == 2) {
-            $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
-            $id = mysqli_fetch_array($select_user);
-
-            $insert_student = mysqli_query($conn, "INSERT INTO tbl_students (user_id) VALUES        ('$id[user_id]')");
-
+            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES ('$id[user_id]')");
         }
 
-        $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Add Users', '$firstname $lastname', 'ctrl.add.users.php')");
+        //insert to tbl_logs for changes
+        $action = "Add User - $firstname $middlename $lastname";
+        createlogs($conn, $_SESSION['user_id'], $action, $_SESSION['user_role']);
 
         $_SESSION['success'] = true;
-        // header("location: ../add.users.php");
+        header("location: ../add.users.php");
 
     } else {
         if ($check != 0 && $check2 != 0) {

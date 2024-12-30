@@ -8,8 +8,8 @@ session_start();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
-
+  <title>Sign In</title>
+  <link rel="icon" type="image/x-icon" href="../../dist/img/sfac.png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -23,16 +23,7 @@ session_start();
   <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
-  <style>
-    .login-page {
-      background-image: url('../../dist/img/bg.jpg');
-      background-size: cover;
-    }
-
-    .card {
-      background-image: url("../../dist/img/white.jpg");
-    }
-  </style>
+ 
 </head>
 
 <body class="hold-transition login-page">
@@ -46,7 +37,7 @@ session_start();
         <a href="https://stfrancis.edu.ph/" style="color: black;">
           <h4><b>Saint Francis of Assisi College</b></h4>
         </a>
-        <p>Online Alumni Tracking System</p>
+        <p><h5>Alumni Tracking System</h5></p>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to your account.</p>
@@ -56,11 +47,11 @@ session_start();
             <p class="error username-error"></p>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-1">
             <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
             <p class="error password-error"></p>
             <div class="input-group-append">
@@ -69,18 +60,19 @@ session_start();
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col"></div>
+          <p class="mb-4">
+            <a href="forgot.password.php">I forgot my password</a>
+          </p>
+          <div class="row mb-1">
             <!-- /.col -->
-            <div class="col-md-auto">
-              <a href="../registration/add.registration.php" name="signin" class="btn btn-primary ">Register</a>
-              <button type="submit" name="signin" class="btn btn-danger">Sign In</button>
-              <p class="success-message"></p>
+            <div class="input-group col-md-12">
+              <!-- <a href="../registration/add.registration.php" name="signin" class="btn btn-default">Register</a> -->
+              <button type="submit" name="signin" class="btn-block btn btn-primary">Sign In</button>
             </div>
             <!-- /.col -->
           </div>
-          <p class="mb-1">
-            <a href="forgot.password.php">I forgot my password</a>
+          <p class="mb-3 text-center">
+            Need an account? <a href="../registration/add.registration.php">Register here.</a>
           </p>
         </form>
       </div>

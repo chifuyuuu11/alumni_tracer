@@ -52,11 +52,12 @@ $reg_id = $_GET['reg_id'];
                             <div class="card-header">
                                 <h3 class="card-title">User Info</h3>
                             </div>
+                            
                             <form class="form" enctype="multipart/form-data" method="POST" action="usersData/ctrl.admit.registration.php?reg_id=<?php echo $reg_id?>">
-                            <?php
-                    $info = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE reg_id = '$reg_id'");
-                    while ($row = mysqli_fetch_array($info)) {
-                    ?>
+                                <?php
+                                $info = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE reg_id = '$reg_id'");
+                                while ($row = mysqli_fetch_array($info)) {
+                                ?>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-md-4">
@@ -79,25 +80,21 @@ $reg_id = $_GET['reg_id'];
                                     <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Highest Level Attained</label>
-                                                <select required class="form-control select2" id="attained" name="attained">
+                                                <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                                                     <?php
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option class="<?php echo $row1['dept_id']?>" selected value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                     <?php
-                                                    $attained_id = $row1['attained_id'];
-                                                    $select_attained = mysqli_query($conn, "SELECT tbl_attained.attained_id, tbl_attained.attained 
-                                                    FROM tbl_attained 
-                                                    LEFT JOIN tbl_registrations ON tbl_attained.attained_id = tbl_registrations.attained_id
-                                                    WHERE tbl_attained.attained_id != '$attained_id'");
+                                                    $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id != '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?></option>
+                                                        <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?></option>
                                                         </option>
                                                         <?php
                                                     }
@@ -106,25 +103,21 @@ $reg_id = $_GET['reg_id'];
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Program</label>
-                                                <select required class="form-control select2" id="program" name="program">
+                                                <select required class="form-control select2" id="program"  name="program">
                                                     <?php
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option selected class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                     <?php
-                                                    $program_id = $row1['program_id'];
-                                                    $select_program = mysqli_query($conn, "SELECT tbl_programs.program_id, tbl_programs.program_desc
-                                                    FROM tbl_programs 
-                                                    LEFT JOIN tbl_registrations ON tbl_programs.program_id = tbl_registrations.program_id
-                                                    WHERE tbl_programs.program_id != '$program_id'");
+                                                    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id != '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?></option>
+                                                        <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -167,7 +160,7 @@ $reg_id = $_GET['reg_id'];
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn btn-primary">Admit</button>
+                                    <button type="submit" id="submit" name="submit" class="btn btn-primary">Admit</button>
                                 </div>
                                 <?php
                         }

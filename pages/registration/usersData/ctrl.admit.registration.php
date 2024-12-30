@@ -1,6 +1,6 @@
 <?php
-session_start();
-require '../../../includes/conn.php'; 
+require '../../../includes/conn.php';
+require '../../../includes/session.php';
 
 $reg_id = $_GET['reg_id'];
 
@@ -17,28 +17,54 @@ if(isset($_POST['submit'])) {
     $batch = mysqli_real_escape_string($conn, $_POST['batch']);
     
 
-  $select_user = mysqli_query($conn, "SELECT * FROM tbl_users WHERE username = '$username'");
+  $select_username = mysqli_query($conn, "SELECT username FROM tbl_users WHERE username = '$username'");
+  $result_username = mysqli_num_rows($select_username);
 
-  $check = mysqli_num_rows($select_user);
-
-  if ($check == 0) {
+  $select_email = mysqli_query($conn, "SELECT email FROM tbl_users WHERE email = '$email'");
+  $result_email = mysqli_num_rows($select_email);
+  
+  if ($result_email == 0 && $result_username == 0) {
+    //password hash
     $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
-    $insert_reg = mysqli_query($conn, "INSERT INTO tbl_users
-    (firstname, middlename, lastname, role_id, contact, email, username, password, attained_id, program_id, batch )
+
+    //insert to tbl_users
+    $insert_user = mysqli_query($conn, "INSERT INTO tbl_users
+    (firstname, middlename, lastname, role_id, contact, email, username, password )
     VALUES
-    ('$firstname', '$middlename', '$lastname', 1, '$contact', '$email', '$username', '$hashed_pass', '$attained', '$program','$batch' )");
+    ('$firstname', '$middlename', '$lastname', 1, '$contact', '$email', '$username', '$hashed_pass')");
 
-    $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET status = 'Approved' WHERE reg_id = '$reg_id'");
+    //get id 
+    $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
+    $id = mysqli_fetch_array($select_user);
 
-    $insert_log = mysqli_query($conn, "INSERT INTO tbl_logs (username, role, action, sp_action, link) VALUES ('$_SESSION[username]', '$_SESSION[user_role]', 'Admit Users', '$firstname $lastname', 'ctrl.admit.registration.php')");
+    //insert to tbl_alumni
+    $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id, program_id, attained_id, batch) VALUES ('$id[user_id]', '$program', '$attained', '$batch')");
+
+    //update status for reg
+    $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', email = '$email', contact_no = '$contact', status = 'Approved' WHERE reg_id = '$reg_id'");
+
+    //insert to tbl_logs for changes
+    $action = "Admitted Registration, $firstname $middlename $lastname";
+    createlogs($conn, $_SESSION['user_id'], $action, $_SESSION['user_role']);
 
     $_SESSION['success_admit'] = true;
-    header("location: ../../email/approved.user.acc.php?reg_id=". $reg_id."&username=". $username);
+    header("location: ../../email/approved.user.acc.php?user_id=". $id['user_id'] . "&username=". $username ."&password=". $password);
 
 } else {
-    echo 1;
-    $_SESSION['username_exist'] = true;
-    header("location: ../list.registration.php?reg_id=". $reg_id);
+    //clown
+    if ($result_email > 0 && $result_username > 0) {
+      $_SESSION['username&email_exist'] = true;
+
+    } elseif ( $result_username > 0) {
+      $_SESSION['username_exist'] = true;
+
+    } else {
+      $_SESSION['email_exist'] = true;
+
+    }
+    
+    header("location: ../admit.registration.php?reg_id=". $reg_id);
+    
 }
   
 }

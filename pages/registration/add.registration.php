@@ -9,7 +9,8 @@ require '../../includes/conn.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alumni Tracer | Online Registration</title>
+  <title>Online Registration</title>
+  <link rel="icon" type="image/x-icon" href="../../dist/img/sfac.png">
 
   <!-- Google Font: Source Sans Pro -->
   <?php require '../../includes/link.php'; ?>
@@ -31,42 +32,33 @@ require '../../includes/conn.php';
       <div class="card-body">
         <p class="login-box-msg">Fill up this form to register.</p>
 
-        <form action="usersData/ctrl.add.registration.php" method="POST">
+        <form id="regform" action="usersData/ctrl.add.registration.php" method="POST">
           <div class="row">
             <div class="col-md-4 form-group mb-3">
               <label>First Name</label>
-              <input type="text" name="firstname" class="form-control ">
+              <input type="text" name="firstname" placeholder="First Name" class="form-control" required>
 
             </div>
             <div class="col-md-4 form-group mb-3">
               <label>Middle Name</label>
-              <input type="text" name="middlename" class="form-control">
+              <input type="text" name="middlename" placeholder="Middle Name" class="form-control">
 
             </div>
             <div class="col-md-4 form-group mb-3">
               <label>Last Name</label>
-              <input type="text" name="lastname" class="form-control">
+              <input type="text" name="lastname" placeholder="Last Name" class="form-control" required>
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-sm-12 col-md-4">
               <label for="firstname">Highest Level Attained at SFAC</label>
-              <select required class="form-control select2" id="attained" name="attained">
+              <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                 <option disabled selected>Highest Level Attained at SFAC</option>
-
                 <?php
-                $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
+                $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained");
                 while ($row1 = mysqli_fetch_array($select_attained)) {
                   ?>
-
-                  <?php
-                }
-                ?>
-                <?php
-                $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
-                while ($row1 = mysqli_fetch_array($select_attained)) {
-                  ?>
-                  <option value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                  <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['attained_id']; ?>"><?php echo $row1['attained']; ?>
                   </option>
                   <?php
                 }
@@ -74,23 +66,15 @@ require '../../includes/conn.php';
 
               </select>
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-sm-12 col-md-4">
               <label for="firstname">Program</label>
               <select required class="form-control select2" id="program" name="program">
-                <option disabled selected>Select Program</option>
-
+                <option class="0" disabled selected>Select Program</option>
                 <?php
-                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
+                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs");
                 while ($row1 = mysqli_fetch_array($select_program)) {
                   ?>
-                  <?php
-                }
-                ?>
-                <?php
-                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
-                while ($row1 = mysqli_fetch_array($select_program)) {
-                  ?>
-                  <option value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                  <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
                   </option>
                   <?php
                 }
@@ -104,38 +88,41 @@ require '../../includes/conn.php';
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 form-group mb-3">
+            <div class="col-md-8 form-group mb-1">
               <label>Email</label>
-              <input type="email" name="email" class="form-control">
-
+              <input type="email" oninput="checkEmail()" id="email" name="email" placeholder="Email" class="form-control" required>
+              <small><span id="message" style="color:red"></span></small>
             </div>
-            <div class="col-md-4 form-group mb-3">
+            <div class="col-md-4 form-group mb-1">
               <label>Contact Number</label>
-              <input type="number" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number" min="00000000000001"
-                max="9999999999999" oninput="if(this.value.length > 13) this.value = this.value.slice(0, 13)">
+              <input type="number" class="form-control" id="contact_no" name="contact_no" placeholder="Contact Number"
+                min="00000000000001" max="9999999999999"
+                oninput="if(this.value.length > 13) this.value = this.value.slice(0, 13)" required>
 
             </div>
+          </div>
 
-
-            <div class="row mt-3">
-              <div class="col">
-                <div class="icheck-primary">
-                  <input type="checkbox" id="remember" required>
-                  <label for="remember">
-                    I agree that the data collected from this online registration shall be subjected to the school's <a
-                      class="text-primary">Data Privacy Policy</a>.
-                  </label>
-                </div>
+          <div class="row mb-3">
+            <div class="col-12"> 
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember" name="yamete" required>
+                <label for="remember">
+                  I agree that the data collected from this online registration shall be subjected to the school's <a href=""
+                    class="text-primary">Data Privacy Policy</a>.
+                </label>
               </div>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="row mb-1 justify-content-center">
+            <div class="col-md-auto">
+              <button type="submit" id="submit" name="submit" class="btn btn-primary">Register</button>
             </div>
             <!-- /.col -->
-            <div class="row mt-3 float-right">
-              <div class="col-auto">
-                <a href="../login/login.php" class="btn btn-danger">Log In</a>
-                <button type="submit" name="submit" class="btn btn-primary">Register</button>
-              </div>
-              <!-- /.col -->
-            </div>
+          </div>
+          <p class="mb-4 text-center">
+            Already have an account? <a href="../login/login.php">Sign in here.</a>
+          </p>
         </form>
       </div>
       <!-- /.card-body -->
@@ -147,17 +134,6 @@ require '../../includes/conn.php';
   ?>
   <!-- jQuery -->
   <?php require '../../includes/script.php'; ?>
-  <script>
-    <?php
-    if ($_SESSION['success_register']) {
-      ?>
-      toastr.success('Registration Success!<p><strong> Please wait for the email.</strong></p>');
-      <?php
-    }
-
-    unset($_SESSION['success_register']);
-    ?>
-  </script>
 </body>
 
 </html>

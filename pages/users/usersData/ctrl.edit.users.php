@@ -5,13 +5,12 @@ require '../../../includes/session.php';
 $user_id = $_GET['user_id'];
 
 if (isset($_POST['upload'])){
-
     if (empty($_FILES['img']['tmp_name'])) {
         header('location: ../edit.user.php?user_id=' . $user_id);
     } else {
         $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
         $_SESSION['img'] = true;
-        $insert_data = mysqli_query($conn, "UPDATE tbl_users SET img = '$img' WHERE user_id = '$user_id'");
+        $update_user = mysqli_query($conn, "UPDATE tbl_users SET img = '$img' WHERE user_id = '$user_id'");
         header("location: ../edit.users.php?user_id=". $user_id);
     }
 
@@ -34,9 +33,14 @@ if (isset($_POST['upload'])){
     $check = mysqli_num_rows($select_user);
     
     if ($check == 0) {
-    $insert_data = mysqli_query($conn, "UPDATE tbl_users SET firstname = '$firstname', middlename = '$middlename',
+        $update_user = mysqli_query($conn, "UPDATE tbl_users SET firstname = '$firstname', middlename = '$middlename',
         lastname = '$lastname', role_id = '$role', campus_id = '$campus', gender_id = '$gender', civil_id = '$civilstat', 
         birthdate = '$birthdate', address = '$address', email = '$email', contact = '$contact' WHERE user_id = '$user_id'");
+
+        //insert to tbl_logs for changes
+        $action = "Update User - $firstname $middlename $lastname";
+        createlogs($conn, $_SESSION['user_id'], $action, $_SESSION['user_role']);
+
         $_SESSION['updated'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);
     } else {
@@ -54,7 +58,12 @@ if (isset($_POST['upload'])){
 
     if ($check == 0) {
         $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
-        $insert_data = mysqli_query($conn, "UPDATE tbl_users SET username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
+        $update_user = mysqli_query($conn, "UPDATE tbl_users SET username = '$username', password = '$hashed_pass' WHERE user_id = '$user_id'");
+        
+        //insert to tbl_logs for changes
+        $action = "Add User Credentials - $username";
+        createlogs($conn, $_SESSION['user_id'], $action, $_SESSION['user_role']);
+        
         $_SESSION['updated'] = true;
         header("location: ../edit.users.php?user_id=". $user_id);
 

@@ -11,6 +11,13 @@
 <!-- InputMask -->
 <script src="../../plugins/moment/moment.min.js"></script>
 <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- ChartJS -->
+<script src="../../plugins/chart.js/Chart.min.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- date-range-picker -->
 <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
@@ -45,6 +52,11 @@
 <script src="../../plugins/toastr/toastr.min.js"></script>
 
 <script>
+
+  $('.form').on("submit", function(event) {
+    $(".card").append('<div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>');
+  });
+
   $(function () {
     bsCustomFileInput.init();
   });
@@ -91,10 +103,86 @@
       "responsive": true,
     });
   });
-</script>
-<script>
-  $(function () {
 
+  //mema lolers
+  function programSelect() {
+    var dept_id = $('#attained option:selected').attr("class");
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('GET', '../registration/usersData/ctrl.ajax.php?dept_id=' + dept_id);
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var result = JSON.parse(this.responseText);
+        var html = `<option class="0" disabled selected>Select Program</option>`;
+        for (var i in result) {
+          html += `
+            <option class="${result[i].dept_id}" value="${result[i].program_id}">${result[i].program_desc}</option>
+            `;
+        }
+
+        document.getElementById('program').innerHTML = html;
+      }
+    }
+
+    xhttp.send();
+  }
+
+  function checkEmail() {
+    var email = $('#email').val();
+    var regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+    if (regex.test(email)) {
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.open('GET', 'usersData/ctrl.ajax.php?email=' + email);
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var result = parseInt(this.responseText);
+          if (result > 0) {
+            $('#submit').prop("disabled", true);
+            $('#message').append("Email already registered.");
+            $('#email').addClass("is-invalid");
+          } else {
+            $('#submit').prop("disabled", false);
+            $('#message').text('');
+            $('#email').removeClass("is-invalid");
+          }
+        }
+      }
+
+      xhttp.send();
+    }
+
+  }
+  var dept = $('#attained option:selected').attr("class");
+
+  if (dept == 1 || dept == 2 || dept == 3) {
+    $('#program').prop("disabled", true);
+  } else {
+    $('#program').prop("disabled", false);
+  }
+
+
+  //for attained, disables program select
+  //down side needs revision kapag may binago sa program
+  $('#attained').change(function () {
+    var dept = $('#attained option:selected').attr("class");
+    if (dept == 1 || dept == 2 || dept == 3) {
+      $('#program').prop("disabled", true);
+    } else {
+      $('#program').prop("disabled", false);
+    }
+  });
+
+  //mema effect
+  $(".alumni").mouseover(function () {
+    $(this).addClass("shadow-lg");
+    $(this).css("transform", "scale(1.009)");
+  });
+  $(".alumni").mouseout(function () {
+    $(this).removeClass("shadow-lg");
+    $(this).css("transform", "scale(1.00)");
   });
 
   <?php
@@ -268,21 +356,21 @@
     ?>
     $(function () {
       toastr.error("Username and Email already exists.", 'Error')
-
     });
     <?php
   } elseif (isset($_SESSION['email_exist'])) {
     ?>
     $(function () {
       toastr.error("Email already exists.", 'Error')
-
+    });
+    <?php
+  } elseif (isset($_SESSION['success_register'])) {
+    ?>
+    $(function () {
+      toastr.success('Please wait for an email to confirm your request', 'Registration Success');
     });
     <?php
   }
-
-
-
-
 
   unset($_SESSION['success']);
   unset($_SESSION['username_exist']);
@@ -313,7 +401,7 @@
   unset($_SESSION['img']);
   unset($_SESSION['username&email_exist']);
   unset($_SESSION['email_exist']);
+  unset($_SESSION['success_register']);
   ?>
-
 
 </script>

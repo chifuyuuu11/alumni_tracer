@@ -26,7 +26,7 @@ $mail->SMTPDebug = 0;
 $mail->SMTPAuth  = true;
 $mail->SMTPSecure ='tls';
 $mail->Host      = 'smtp.gmail.com';
-$mail->Port      =587;
+$mail->Port      = 587;
 $mail->Username  = 'stfrancisbacoor.pass.reset@gmail.com';
 $mail->Password  = 'islqiaavsjlrgoyf';
 $mail->setFrom('sfacbacoor1981@gmail.com','SFAC-Bacoor');
@@ -61,7 +61,7 @@ $mail->send();
 
 
 $_SESSION['email_update'] = true;
-header("location: ../users/list.users.php");
+// header("location: ../users/list.users.php");
  
 ?>
 

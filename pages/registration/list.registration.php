@@ -8,8 +8,8 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Student List</title>
-
+    <title>Registration List</title>
+    <link rel="icon" type="image/x-icon" href="../../dist/img/sfac.png">
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
 </head>
@@ -68,6 +68,8 @@ require '../../includes/session.php';
                             <thead>
                                 <tr>
                                     <th>Fullname</th>
+                                    <th>Highed Lvl Attained.</th>
+                                    <th>Batch</th>
                                     <th>Email</th>
                                     <th>Contact Number</th>
                                     <th>Remark</th>
@@ -79,12 +81,21 @@ require '../../includes/session.php';
                                 if (isset($_GET['search'])) {
                                     $search = mysqli_real_escape_string($conn, $_GET['search']);
 
-                                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname FROM tbl_registrations
-                    ORDER BY lastname ");
+                                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname
+                                    FROM tbl_registrations
+                                    LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_registrations.attained_id
+                                    WHERE (firstname LIKE '%$search%'
+                                    OR lastname LIKE '%$search%'
+                                    OR middlename LIKE '%$search%'
+                                    OR batch LIKE '%$search%'
+                                    OR attained LIKE '%$search%')
+                                    ORDER BY lastname ");
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <a>
                                             <td><?php echo $row['fullname']; ?></td>
+                                            <td><?php echo $row['attained']?></td>
+                                            <td><?php echo $row['batch']?></td>
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact_no']; ?></td>
                                             <td>
@@ -157,7 +168,9 @@ require '../../includes/session.php';
 
         </section>
         <!-- /.content -->
-        <?php require '../../includes/footer.php'; ?>
+        <?php 
+       
+        require '../../includes/footer.php'; ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

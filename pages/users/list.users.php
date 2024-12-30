@@ -118,12 +118,9 @@ require '../../includes/session.php';
                                                     class="btn my-1 btn-info">Update</a>
                                                 <?php if (($row['role'] == 'Alumni')) { ?>
                                                     <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Alumni Info</a>
-                                                    <button type="button" class="btn my-1 btn-primary" data-toggle="modal"
+                                                    <button type="button" class="btn my-1 btn-primary" disabled data-toggle="modal"
                                                         data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
                                                         Email</button>
-                                                <?php } ?>
-                                                <?php if (($row['role'] == 'Student')) { ?>
-                                                    <a href="../student/add.student.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Student Info</a>
                                                 <?php } ?>
                                                 <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>

@@ -1,6 +1,6 @@
 <?php
-session_start();
 require '../../../includes/conn.php';
+require '../../../includes/session.php';
 
 
 if(isset($_POST['submit'])) {
@@ -13,9 +13,8 @@ if(isset($_POST['submit'])) {
   $attained = mysqli_real_escape_string($conn, $_POST['attained']);
   $batch = mysqli_real_escape_string($conn, $_POST['batch']);
 
-
-  $insert_reg = mysqli_query($conn, "INSERT INTO tbl_registrations (firstname, middlename, lastname, email, contact_no, role_id, attained_id, program_id, batch, status)
-  VALUES ('$firstname', '$middlename', '$lastname', '$email', '$contact_no', 1, '$attained', '$program','$batch', 'Pending')");
+  $insert_reg = mysqli_query($conn, "INSERT INTO tbl_registrations (firstname, middlename, lastname, email, contact_no, attained_id, program_id, batch, status, created_at)
+  VALUES ('$firstname', '$middlename', '$lastname', '$email', '$contact_no', '$attained', '$program','$batch', 'Pending', CURRENT_TIMESTAMP())");
   
   $_SESSION['success_register'] = true;
   header('location: ../add.registration.php');
