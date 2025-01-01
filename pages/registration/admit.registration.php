@@ -67,7 +67,7 @@ $reg_id = $_GET['reg_id'];
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="middlename">Middle Name</label>
-                                            <input type="text" class="form-control" id="middlename" name="middlename" value="<?php echo $row['middlename']?>"
+                                            <input type="text" class="form-control" id="middlename" name="middlename" value="<?php echo $row['middlename']; ?>"
                                                 placeholder="Middle Name">
                                         </div>
                                         <div class="form-group col-md-4">
@@ -78,7 +78,7 @@ $reg_id = $_GET['reg_id'];
                                     </div>
 
                                     <div class="row">
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-6">
                                                 <label for="firstname">Highest Level Attained</label>
                                                 <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                                                     <?php
@@ -101,7 +101,7 @@ $reg_id = $_GET['reg_id'];
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-6">
                                                 <label for="firstname">Program</label>
                                                 <select required class="form-control select2" id="program"  name="program">
                                                     <?php
@@ -124,14 +124,38 @@ $reg_id = $_GET['reg_id'];
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="firstname">Batch</label>
-                                                <input type="text" class="form-control" id="batch" name="batch"
-                                                    value="<?php echo $row['batch'] ?>" placeholder="Batch" 
-                                                    >
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                        <label for="firstname">Program</label>
+                                                <select required class="form-control select2" id="campus"  name="campus">
+                                                    <?php
+                                                    $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus_id = '$row[campus_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_campus)) {
+                                                        ?>
+                                                        <option selected value="<?php echo $row1['campus_id'] ?>"><?php echo $row1['campus'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus_id != '$row[campus_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_campus)) {
+                                                        ?>
+                                                        <option value="<?php echo $row1['campus_id'] ?>"><?php echo $row1['campus'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
                                         </div>
-
+                                        <div class="form-group col-md-6">
+                                        <label for="firstname">Batch</label>
+                                                <input type="text" class="form-control" id="batch" name="batch"
+                                                    value="<?php echo $row['batch'] ?>" placeholder="Batch">
+                                        </div>
+                                    </div>
+                                    
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="email">Email address</label>

@@ -72,7 +72,7 @@ session_start();
             <!-- /.col -->
           </div>
           <p class="mb-3 text-center">
-            Need an account? <a href="../registration/add.registration.php">Register here.</a>
+            Are you an alumni? <a href="../registration/add.registration.php">Register here.</a>
           </p>
         </form>
       </div>

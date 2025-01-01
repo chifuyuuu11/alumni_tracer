@@ -1,6 +1,7 @@
 <?php
 require '../../../includes/conn.php';
-require '../../../includes/session.php';
+session_start();
+ob_start();
 
 if (isset($_GET['dept_id'])) {
 

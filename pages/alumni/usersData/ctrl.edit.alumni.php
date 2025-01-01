@@ -18,8 +18,10 @@ if (isset($_POST['submit'])) {
     $scale = mysqli_real_escape_string($conn, $_POST['scale']);
     $experience = mysqli_real_escape_string($conn, $_POST['experience']);
     $suggestion = mysqli_real_escape_string($conn, $_POST['suggestion']);
+    $estatus = mysqli_real_escape_string($conn, $_POST['estatus']);
+    $alligned = mysqli_real_escape_string($conn, $_POST['alligned']);
 
-    $insert_data = mysqli_query($conn, "UPDATE tbl_alumni SET attained_id = '$attained', program_id = '$program', batch = '$batch', aftergrad_id = '$aftergrad', work_id = '$work', current_work = '$current_work', company_name = '$company_name', company_address = '$company_address', scale = '$scale', experience = '$experience', suggestion = '$suggestion' WHERE user_id = '$user_id'");
+    $insert_data = mysqli_query($conn, "UPDATE tbl_alumni SET estatus_id = '$estatus', attained_id = '$attained', program_id = '$program', batch = '$batch', alligned = '$alligned', aftergrad_id = '$aftergrad', work_id = '$work', current_work = '$current_work', company_name = '$company_name', company_address = '$company_address', scale = '$scale', experience = '$experience', suggestion = '$suggestion' WHERE user_id = '$user_id'");
     
     //insert to tbl_logs for changes
     $action = "Updated Alumni, $firstname $middlename $lastname";

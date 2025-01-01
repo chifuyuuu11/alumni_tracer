@@ -9,7 +9,7 @@ require '../../includes/conn.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Online Registration</title>
+  <title>Alumni Online Registration</title>
   <link rel="icon" type="image/x-icon" href="../../dist/img/sfac.png">
 
   <!-- Google Font: Source Sans Pro -->
@@ -50,7 +50,7 @@ require '../../includes/conn.php';
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-sm-12 col-md-4">
+            <div class="form-group col-sm-12 col-md-6">
               <label for="firstname">Highest Level Attained at SFAC</label>
               <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                 <option disabled selected>Highest Level Attained at SFAC</option>
@@ -58,7 +58,8 @@ require '../../includes/conn.php';
                 $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained");
                 while ($row1 = mysqli_fetch_array($select_attained)) {
                   ?>
-                  <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['attained_id']; ?>"><?php echo $row1['attained']; ?>
+                  <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['attained_id']; ?>">
+                    <?php echo $row1['attained']; ?>
                   </option>
                   <?php
                 }
@@ -66,7 +67,7 @@ require '../../includes/conn.php';
 
               </select>
             </div>
-            <div class="form-group col-sm-12 col-md-4">
+            <div class="form-group col-sm-12 col-md-6">
               <label for="firstname">Program</label>
               <select required class="form-control select2" id="program" name="program">
                 <option class="0" disabled selected>Select Program</option>
@@ -74,14 +75,34 @@ require '../../includes/conn.php';
                 $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs");
                 while ($row1 = mysqli_fetch_array($select_program)) {
                   ?>
-                  <option class="<?php echo $row1['dept_id']?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                  <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_id'] ?>">
+                    <?php echo $row1['program_desc'] ?>
                   </option>
                   <?php
                 }
                 ?>
               </select>
             </div>
-            <div class="form-group col-md-4">
+
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstname">Campus</label>
+              <select required class="form-control select2" id="campus" name="campus">
+                <option class="0" disabled selected>Select Campus</option>
+                <?php
+                $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus");
+                while ($row1 = mysqli_fetch_array($select_campus)) {
+                  ?>
+                  <option value="<?php echo $row1['campus_id'] ?>">
+                    <?php echo $row1['campus'] ?>
+                  </option>
+                  <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
               <label for="batch">Batch</label>
               <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" min="1000"
                 max="9999" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4)">
@@ -90,7 +111,8 @@ require '../../includes/conn.php';
           <div class="row">
             <div class="col-md-8 form-group mb-1">
               <label>Email</label>
-              <input type="email" oninput="checkEmail()" id="email" name="email" placeholder="Email" class="form-control" required>
+              <input type="email" oninput="checkEmail()" id="email" name="email" placeholder="Email"
+                class="form-control" required>
               <small><span id="message" style="color:red"></span></small>
             </div>
             <div class="col-md-4 form-group mb-1">
@@ -103,12 +125,12 @@ require '../../includes/conn.php';
           </div>
 
           <div class="row mb-3">
-            <div class="col-12"> 
+            <div class="col-12">
               <div class="icheck-primary">
                 <input type="checkbox" id="remember" name="yamete" required>
                 <label for="remember">
-                  I agree that the data collected from this online registration shall be subjected to the school's <a href=""
-                    class="text-primary">Data Privacy Policy</a>.
+                  I agree that the data collected from this online registration shall be subjected to the school's <a
+                    href="" class="text-primary">Data Privacy Policy</a>.
                 </label>
               </div>
             </div>

@@ -12,9 +12,10 @@ if(isset($_POST['submit'])) {
   $program = mysqli_real_escape_string($conn, $_POST['program']);
   $attained = mysqli_real_escape_string($conn, $_POST['attained']);
   $batch = mysqli_real_escape_string($conn, $_POST['batch']);
+  $campus = mysqli_real_escape_string($conn, $_POST['campus']);
 
-  $insert_reg = mysqli_query($conn, "INSERT INTO tbl_registrations (firstname, middlename, lastname, email, contact_no, attained_id, program_id, batch, status, created_at)
-  VALUES ('$firstname', '$middlename', '$lastname', '$email', '$contact_no', '$attained', '$program','$batch', 'Pending', CURRENT_TIMESTAMP())");
+  $insert_reg = mysqli_query($conn, "INSERT INTO tbl_registrations (firstname, middlename, lastname, email, contact_no, attained_id, program_id, campus_id, batch, status, created_at)
+  VALUES ('$firstname', '$middlename', '$lastname', '$email', '$contact_no', '$attained', '$program', '$campus', '$batch', 'Pending', CURRENT_TIMESTAMP())");
   
   $_SESSION['success_register'] = true;
   header('location: ../add.registration.php');

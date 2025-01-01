@@ -69,6 +69,7 @@ require '../../includes/session.php';
                                 <tr>
                                     <th>Fullname</th>
                                     <th>Highed Lvl Attained.</th>
+                                    <th>Campus</th>
                                     <th>Batch</th>
                                     <th>Email</th>
                                     <th>Contact Number</th>
@@ -84,6 +85,7 @@ require '../../includes/session.php';
                                     $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname
                                     FROM tbl_registrations
                                     LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_registrations.attained_id
+                                    LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_registrations.campus_id
                                     WHERE (firstname LIKE '%$search%'
                                     OR lastname LIKE '%$search%'
                                     OR middlename LIKE '%$search%'
@@ -95,6 +97,7 @@ require '../../includes/session.php';
                                         <a>
                                             <td><?php echo $row['fullname']; ?></td>
                                             <td><?php echo $row['attained']?></td>
+                                            <td><?php echo $row['campus']?></td>
                                             <td><?php echo $row['batch']?></td>
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact_no']; ?></td>
