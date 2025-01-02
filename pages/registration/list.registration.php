@@ -86,7 +86,10 @@ require '../../includes/session.php';
                                     FROM tbl_registrations
                                     LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_registrations.attained_id
                                     LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_registrations.campus_id
+<<<<<<< HEAD
                                     LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_registrations.program_id
+=======
+>>>>>>> 7bbf87c64ee6fb625b5a1a981f8047b6e96887b6
                                     WHERE (firstname LIKE '%$search%'
                                     OR lastname LIKE '%$search%'
                                     OR middlename LIKE '%$search%'
@@ -97,7 +100,11 @@ require '../../includes/session.php';
                                         ?>
                                         <a>
                                             <td><?php echo $row['fullname']; ?></td>
+<<<<<<< HEAD
                                             <td><?php echo $row['attained'] .' <br> '. $row['program_abv']?></td>
+=======
+                                            <td><?php echo $row['attained']?></td>
+>>>>>>> 7bbf87c64ee6fb625b5a1a981f8047b6e96887b6
                                             <td><?php echo $row['campus']?></td>
                                             <td><?php echo $row['batch']?></td>
                                             <td><?php echo $row['email']; ?></td>
