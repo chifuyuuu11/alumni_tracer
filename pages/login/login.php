@@ -72,7 +72,11 @@ session_start();
             <!-- /.col -->
           </div>
           <p class="mb-3 text-center">
+<<<<<<< HEAD
             Are you an alumni? <a href="../registration/alumni.registration.php">Register here.</a>
+=======
+            Are you an alumni? <a href="../registration/add.registration.php">Register here.</a>
+>>>>>>> 7bbf87c64ee6fb625b5a1a981f8047b6e96887b6
           </p>
         </form>
       </div>
