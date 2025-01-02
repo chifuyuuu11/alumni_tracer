@@ -2,10 +2,12 @@
 require '../../includes/conn.php';
 require '../../includes/session.php';
 
-if (isset($_GET['user_id'])) {
+if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") {
     $user_id = $_GET['user_id'];
+    $disabled = "";
 } else {
     $user_id = $_SESSION['user_id'];
+    $disabled = "disabled";
 }
 ?>
 <!DOCTYPE html>
@@ -135,7 +137,7 @@ if (isset($_GET['user_id'])) {
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="role">Role</label>
-                                            <select required class="form-control select2" id="role" name="role">
+                                            <select required class="form-control select2" id="role" name="role" <?php echo $disabled;?>>
                                                 <?php
                                                 $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
                                                 while ($row1 = mysqli_fetch_array($select_role)) {

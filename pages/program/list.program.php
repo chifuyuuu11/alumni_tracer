@@ -63,7 +63,7 @@ require '../../includes/session.php';
                             </thead>
                             <tbody>
                                 <?php
-                                $info = mysqli_query($conn, "SELECT * FROM tbl_programs LEFT JOIN tbl_department ON tbl_department.dept_id = tbl_programs.dept_id");
+                                $info = mysqli_query($conn, "SELECT * FROM tbl_programs LEFT JOIN tbl_department ON tbl_department.dept_id = tbl_programs.dept_id ORDER BY tbl_programs.dept_id, program_desc");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>

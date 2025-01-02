@@ -76,26 +76,27 @@ if (isset($_GET['user_id'])) {
                                             <div class="form-group col-md-8">
                                                 <label for="firstname">Fullname</label>
                                                 <input type="text" class="form-control" id="fullname" name="fullname"
-                                                    value="<?php echo $row['fullname'] ?>" placeholder="Full Name" readonly
-                                                    >
+                                                    value="<?php echo $row['fullname'] ?>" placeholder="Full Name" readonly>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Role</label>
                                                 <input type="text" class="form-control" id="role" name="role"
-                                                    value="<?php echo $row['role'] ?>" placeholder="Role" readonly
-                                                    >
+                                                    value="<?php echo $row['role'] ?>" placeholder="Role" readonly>
                                             </div>
                                         </div>
                                         <hr>
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Highest Level Attained at SFAC</label>
-                                                <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
+                                                <select required class="form-control select2" id="attained"
+                                                    onchange="programSelect()" name="attained">
                                                     <?php
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>"
+                                                            value="<?php echo $row1['attained_id'] ?>">
+                                                            <?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -104,7 +105,9 @@ if (isset($_GET['user_id'])) {
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE NOT attained_id = '$row[attained_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_attained)) {
                                                         ?>
-                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['attained_id'] ?>"><?php echo $row1['attained'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>"
+                                                            value="<?php echo $row1['attained_id'] ?>">
+                                                            <?php echo $row1['attained'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -118,7 +121,9 @@ if (isset($_GET['user_id'])) {
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>"
+                                                            value="<?php echo $row1['program_id'] ?>">
+                                                            <?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -127,7 +132,9 @@ if (isset($_GET['user_id'])) {
                                                     $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE NOT program_id = '$row[program_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_program)) {
                                                         ?>
-                                                        <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_id'] ?>"><?php echo $row1['program_desc'] ?>
+                                                        <option class="<?php echo $row1['dept_id'] ?>"
+                                                            value="<?php echo $row1['program_id'] ?>">
+                                                            <?php echo $row1['program_desc'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -137,19 +144,21 @@ if (isset($_GET['user_id'])) {
                                             <div class="form-group col-md-4">
                                                 <label for="firstname">Batch</label>
                                                 <input type="text" class="form-control" id="batch" name="batch"
-                                                    value="<?php echo $row['batch'] ?>" placeholder="Batch" 
-                                                    >
+                                                    value="<?php echo $row['batch'] ?>" placeholder="Batch">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="firstname">After graduating or leaving SFAC, which of the following scenarios did you do?</label>
-                                                <select required class="form-control select2" id="aftergrad" name="aftergrad">
+                                                <label for="firstname">After graduating or leaving SFAC, which of the
+                                                    following scenarios did you do?</label>
+                                                <select required class="form-control select2" id="aftergrad"
+                                                    name="aftergrad">
                                                     <?php
                                                     $select_aftergrad = mysqli_query($conn, "SELECT * FROM tbl_aftergrad WHERE aftergrad_id = '$row[aftergrad_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_aftergrad)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['aftergrad_id'] ?>"><?php echo $row1['aftergrad'] ?>
+                                                        <option value="<?php echo $row1['aftergrad_id'] ?>">
+                                                            <?php echo $row1['aftergrad'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -158,24 +167,88 @@ if (isset($_GET['user_id'])) {
                                                     $select_aftergrad = mysqli_query($conn, "SELECT * FROM tbl_aftergrad WHERE NOT aftergrad_id = '$row[aftergrad_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_aftergrad)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['aftergrad_id'] ?>"><?php echo $row1['aftergrad'] ?>
+                                                        <option value="<?php echo $row1['aftergrad_id'] ?>">
+                                                            <?php echo $row1['aftergrad'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>         
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Employability Status</label>
+                                                <select name="estatus" id="estatus" class="form-control select2">
+
+                                                    <?php
+                                                    $select_estatus = mysqli_query($conn, "SELECT * FROM tbl_employment_status WHERE estatus_id = '$row[estatus_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_estatus)) {
+                                                        ?>
+                                                        <option value="<?php echo $row1['estatus_id'] ?>">
+                                                            <?php echo $row1['employment_status'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    $select_estatus = mysqli_query($conn, "SELECT * FROM tbl_employment_status WHERE NOT estatus_id = '$row[estatus_id]'");
+                                                    while ($row1 = mysqli_fetch_array($select_estatus)) {
+                                                        ?>
+                                                        <option value="<?php echo $row1['estatus_id'] ?>">
+                                                            <?php echo $row1['employment_status'] ?>
+                                                        </option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="current_work">Current Work</label>
+                                                <input type="text" class="form-control" id="current_work"
+                                                    name="current_work" value="<?php echo $row['current_work'] ?>"
+                                                    placeholder="Current Work">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Is your current work alligned to your program at SFAC?</label>
+                                                <select name="alligned" id="alligned" class="form-control select2">
+                                                    <?php
+                                                    if ($row['alligned'] == "No") {
+                                                        ?>
+                                                        <option value="Yes">Yes</option>
+                                                        <option selected value="No">No</option>
+                                                        <option value="Not Applicable">Not Applicable</option>
+                                                        <?php
+                                                    } elseif ($row['alligned'] == "Not Applicable") {
+                                                        ?>
+                                                        <option selected value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                        <option selected value="Not Applicable">Not Applicable</option>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <option selected value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Not Applicable">Not Applicable</option>
+                                                        <?php
+                                                    }
+                                                    ?>
+
+                                                </select>
+                                                <!-- <span class="small"><i>Select <strong>Not Applicable</strong> for levels junior highschool and below</i></span> -->
+                                            </div>
+                                            <div class="form-group col-md-6">
                                                 <label for="firstname">Nature of Work</label>
                                                 <select required class="form-control select2" id="work" name="work">
                                                     <?php
                                                     $select_work = mysqli_query($conn, "SELECT * FROM tbl_work WHERE work_id = '$row[work_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_work)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['work_id'] ?>"><?php echo $row1['work'] ?>
+                                                        <option value="<?php echo $row1['work_id'] ?>">
+                                                            <?php echo $row1['work'] ?>
                                                         </option>
                                                         <?php
                                                     }
@@ -184,57 +257,57 @@ if (isset($_GET['user_id'])) {
                                                     $select_work = mysqli_query($conn, "SELECT * FROM tbl_work WHERE NOT work_id = '$row[work_id]'");
                                                     while ($row1 = mysqli_fetch_array($select_work)) {
                                                         ?>
-                                                        <option value="<?php echo $row1['work_id'] ?>"><?php echo $row1['work'] ?>
+                                                        <option value="<?php echo $row1['work_id'] ?>">
+                                                            <?php echo $row1['work'] ?>
                                                         </option>
                                                         <?php
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>  
-                                            <div class="form-group col-md-4">
-                                                <label for="current_work">Current Work</label>
-                                                <input type="text" class="form-control" id="current_work" name="current_work"
-                                                    value="<?php echo $row['current_work'] ?>" placeholder="Current Work" 
-                                                    >
-                                            </div>        
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="company_name">Name of Company</label>
-                                                <input type="text" class="form-control" id="company_name" name="company_name"
-                                                    value="<?php echo $row['company_name'] ?>" placeholder="Company Name" 
-                                                    >
-                                            </div>    
+                                                <input type="text" class="form-control" id="company_name"
+                                                    name="company_name" value="<?php echo $row['company_name'] ?>"
+                                                    placeholder="Company Name">
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="company_address">Address of Company</label>
-                                                <input type="text" class="form-control" id="company_address" name="company_address"
-                                                    value="<?php echo $row['company_address'] ?>" placeholder="Company Address" 
-                                                    >
-                                            </div>    
+                                                <input type="text" class="form-control" id="company_address"
+                                                    name="company_address" value="<?php echo $row['company_address'] ?>"
+                                                    placeholder="Company Address">
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="scale">From 1-10 (1 is the lowest and 10 is the highest) rate your level of satisfaction during your stay at SFAC:</label>
-                                                <input type="number" class="form-control" id="scale" name="scale" min="1" max="10"
-                                                value="<?php echo $row['scale'] ?>" placeholder="1 to 10">   
-                                            </div>    
+                                            <div class="form-group col-md-12">
+                                                <label for="scale">From 1-10 (1 is the lowest and 10 is the highest) rate
+                                                    your level of satisfaction during your stay at SFAC:</label>
+                                                <input type="number" class="form-control" id="scale" name="scale" min="1"
+                                                    max="10" value="<?php echo $row['scale'] ?>" placeholder="1 to 10">
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="experience">Briefly describe your unforgettable moments at SFAC/SAS.</label>
+                                                <label for="experience">Briefly describe your unforgettable moments at
+                                                    SFAC/SAS.</label>
                                                 <input type="text" class="form-control" id="experience" name="experience"
-                                                value="<?php echo $row['experience'] ?>" placeholder="When I was at SFAC/SAS ...">  
-                                            </div>    
+                                                    value="<?php echo $row['experience'] ?>"
+                                                    placeholder="When I was at SFAC/SAS ...">
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="suggestion">What do you want SFAC to improve? Please give us your suggestions.</label>
+                                                <label for="suggestion">What do you want SFAC to improve? Please give us
+                                                    your suggestions.</label>
                                                 <input type="text" class="form-control" id="suggestion" name="suggestion"
-                                                value="<?php echo $row['suggestion'] ?>" placeholder="My suggestions for SFAC/SAS ...">  
-                                            </div>    
+                                                    value="<?php echo $row['suggestion'] ?>"
+                                                    placeholder="My suggestions for SFAC/SAS ...">
+                                            </div>
                                         </div>
 
                                 </div>

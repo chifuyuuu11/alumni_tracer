@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="dropdown-divider"></div>
-        <a href="../users/edit.users.php" class="dropdown-item">
+        <a href="../users/edit.users.php?user_id=<?php echo $_SESSION['user_id']?>" class="dropdown-item">
           <i class="fas fa-user mr-2"></i> Edit Account
         </a>
         <div class="dropdown-divider"></div>
