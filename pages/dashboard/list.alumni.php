@@ -78,7 +78,7 @@ require '../../includes/session.php';
                                 <tr>
                                     <th>Image</th>
                                     <th>Fullname</th>
-                                    <th>Role</th>
+                                    <th>Program</th>
                                     <th>Campus</th>
                                     <th>Email</th>
                                     <th>Contact Number</th>
@@ -91,6 +91,9 @@ require '../../includes/session.php';
                                     $search = mysqli_real_escape_string($conn, $_GET['search']);
 
                                     $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
+                                JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
+                                LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_alumni.attained_id
+                                LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_alumni.program_id
                                 LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
                                 LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
                                 WHERE tbl_users.role_id = 1 AND (lastname LIKE '%$search%'
@@ -110,7 +113,7 @@ require '../../includes/session.php';
                                                 } ?>
                                             </td>
                                             <td><?php echo $row['fullname']; ?></td>
-                                            <td><?php echo $row['role']; ?></td>
+                                            <td><?php echo $row['attained'] .'<br>'. $row['program_desc']; ?></td>
                                             <td><?php echo $row['campus']; ?></td>
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact']; ?></td>

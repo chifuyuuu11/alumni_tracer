@@ -69,6 +69,7 @@ require '../../includes/session.php';
                                 <tr>
                                     <th>Fullname</th>
                                     <th>Highed Lvl Attained.</th>
+                                    <th>Campus</th>
                                     <th>Batch</th>
                                     <th>Email</th>
                                     <th>Contact Number</th>
@@ -84,17 +85,20 @@ require '../../includes/session.php';
                                     $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrations.lastname, ', ', tbl_registrations.firstname, ' ', tbl_registrations.middlename) AS fullname
                                     FROM tbl_registrations
                                     LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_registrations.attained_id
+                                    LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_registrations.campus_id
+                                    LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_registrations.program_id
                                     WHERE (firstname LIKE '%$search%'
                                     OR lastname LIKE '%$search%'
                                     OR middlename LIKE '%$search%'
                                     OR batch LIKE '%$search%'
                                     OR attained LIKE '%$search%')
-                                    ORDER BY lastname ");
+                                    ORDER BY status DESC, created_at DESC, lastname ASC");
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <a>
                                             <td><?php echo $row['fullname']; ?></td>
-                                            <td><?php echo $row['attained']?></td>
+                                            <td><?php echo $row['attained'] .' <br> '. $row['program_abv']?></td>
+                                            <td><?php echo $row['campus']?></td>
                                             <td><?php echo $row['batch']?></td>
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact_no']; ?></td>
@@ -117,12 +121,12 @@ require '../../includes/session.php';
                                                 if ($row['status'] == "Pending") {
                                                     ?>
                                                     <a href="admit.registration.php?reg_id=<?php echo $row['reg_id']; ?>"
-                                                        type=button class="btn btn-primary mx-1">Admit</a>
+                                                        type=button class="btn btn-primary mx-1 my-1">Admit</a>
                                                     <?php
                                                 }
                                                 ?>
 
-                                                <buttype="button" class="btn btn-danger" data-toggle="modal"
+                                                <buttype="button" class="btn btn-danger mx-1 my-1" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['reg_id']; ?>">Delete
                                         </a>
                                         </tr>

@@ -1,12 +1,13 @@
 <?php
 require '../../../includes/conn.php';
-require '../../../includes/session.php';
+session_start();
+ob_start();
 
 if (isset($_GET['dept_id'])) {
 
     $dept_id = mysqli_real_escape_string($conn, $_GET['dept_id']);
 
-    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = '$dept_id'");
+    $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE dept_id = '$dept_id' ORDER BY program_desc");
     $array = [];
 
     while ($row = mysqli_fetch_array($select_program)) {

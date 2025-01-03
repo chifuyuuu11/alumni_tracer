@@ -19,7 +19,12 @@ if (isset($_POST['upload'])){
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
+    if ($_SESSION['user_role'] == "Alumni") {
+        $role = 1;
+    } else {
+        $role = mysqli_real_escape_string($conn, $_POST['role']);
+    }
+    
     $campus = mysqli_real_escape_string($conn, $_POST['campus']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $civilstat = mysqli_real_escape_string($conn, $_POST['civilstat']);

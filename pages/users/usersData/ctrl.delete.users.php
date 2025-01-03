@@ -9,7 +9,14 @@ $select_user = mysqli_query($conn, "SELECT * FROM tbl_users WHERE user_id = '$us
 $row = mysqli_fetch_array($select_user); 
 //delete user and alumni
 $delete_user = mysqli_query($conn, "DELETE FROM tbl_users WHERE user_id = '$user_id'");
-$delete_alumni = mysqli_query($conn, "DELETE FROM tbl_alumni WHERE user_id = '$user_id'");
+
+if ($row['role_id'] == 1) {
+    $delete_alumni = mysqli_query($conn, "DELETE FROM tbl_alumni WHERE user_id = '$user_id'");
+} elseif ($row['role_id'] == 6) {
+    $delete_pc = mysqli_query($conn, "DELETE FROM tbl_program_chairperson WHERE user_id = '$user_id'");
+}
+
+
 
 //insert to tbl_logs for changes
 $action = "Delete User - ". $row['firstname'] .'' . $row['middlename'] . ' ' . $row['lastname'];

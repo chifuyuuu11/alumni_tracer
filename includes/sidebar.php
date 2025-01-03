@@ -145,6 +145,31 @@
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
+                  <i class="fas fa-school nav-icon"></i>
+                  <p>
+                    School
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../school/add.school.php" class="nav-link">
+                      <i class="fas fa-plus-circle nav-icon"></i>
+                      <p>Add School</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="../school/list.school.php" class="nav-link">
+                      <i class="fas fa-list nav-icon"></i>
+                      <p>School List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
                   <i class="fas fa-star-half-alt nav-icon"></i>
                   <p>
                     Civil Status

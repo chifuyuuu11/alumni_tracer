@@ -27,16 +27,28 @@ if (isset($_POST ['submit'])) {
         VALUES
         ('$firstname', '$middlename', '$lastname', '$campus', '$role', '$contact', '$email', '$username', '$hashed_pass')");
 
-        if ($role == 1) {
-            $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
-            $id = mysqli_fetch_array($select_user);
-
-            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES ('$id[user_id]')");
-        }
-
         //insert to tbl_logs for changes
         $action = "Add User - $firstname $middlename $lastname";
         createlogs($conn, $_SESSION['user_id'], $action, $_SESSION['user_role']);
+
+        if ($role == 1) {
+            $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' ORDER BY user_id DESC LIMIT 1");
+            $id = mysqli_fetch_array($select_user);
+
+            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES ('$id[user_id]')");
+
+        } elseif ($role == 6) {
+            $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' ORDER BY user_id DESC LIMIT 1");
+            $id = mysqli_fetch_array($select_user);
+
+            $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_program_chairperson (user_id) VALUES ('$id[user_id]')");
+
+            $_SESSION['success'] = true;
+            header("location: ../../program_chairperson/add.program.chairperson.info.php?user_id=". $id['user_id']);
+            exit;
+        }
+
+        
 
         $_SESSION['success'] = true;
         header("location: ../add.users.php");

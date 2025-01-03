@@ -68,50 +68,63 @@ require '../../includes/conn.php';
 
                       </div>
                       <div class="col-md-8 my-auto text-center">
-                        <div class="row">
+                        <div class=" justify-content-center row">
                           <?php
-                          $select_alumni = mysqli_query($conn, "SELECT * FROM tbl_alumni");
-                          $count = mysqli_num_rows($select_alumni);
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(attained) as attained_count, attained FROM tbl_alumni LEFT JOIN tbl_attained
+                          ON tbl_attained.attained_id = tbl_alumni.attained_id WHERE NOT tbl_alumni.attained_id = '' GROUP BY tbl_alumni.attained_id");
+                          while ($row = mysqli_fetch_array($select_alumni)) {
+                            ?>
+                            <div class="col-4 col-sm">
+                              <h4 class="font-weight-bold"><?php echo $row['attained_count']; ?></h4>
+                              <p><?php echo $row['attained']; ?></p>
+                            </div>
+                            <?php
+                          }
                           ?>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Pre-school</p>
-                          </div>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Gradeschool</p>
-                          </div>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Junior</p>
-                          </div>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Senior</p>
-                          </div>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Undergrad</p>
-                          </div>
-                          <div class="col-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Graduate</p>
-                          </div>
-                          <div class="co-4 col-sm">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>TESDA</p>
-                          </div>
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Pre-school</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Gradeschool</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Junior</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Senior</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Undergrad</p>-->
+                          <!--</div>-->
+                          <!--<div class="col-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>Graduate</p>-->
+                          <!--</div>-->
+                          <!--<div class="co-4 col-sm">-->
+                          <!--  <h4 class="font-weight-bold">0</h4>-->
+                          <!--  <p>TESDA</p>-->
+                          <!--</div>-->
                         </div>
                         <hr>
-                        <div class="row">
-                          <div class="col-6">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Bacoor</p>
-                          </div>
-                          <div class="col-6">
-                            <h4 class="font-weight-bold">0</h4>
-                            <p>Las Pinas</p>
-                          </div>
+                        <div class=" justify-content-center row">
+                          <?php
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
+                          LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
+                          WHERE role_id = 1 AND tbl_users.campus_id NOT IN (0) GROUP BY tbl_users.campus_id");
+                          while ($row = mysqli_fetch_array($select_alumni)) {
+                            ?>
+                            <div class="col-4 col-sm">
+                              <h4 class="font-weight-bold"><?php echo $row['count']; ?></h4>
+                              <p><?php echo $row['campus']; ?></p>
+                            </div>
+                            <?php
+                          }
+                          ?>
                         </div>
                       </div>
                       <div class="col-md-2 my-auto text-center text-warning">
@@ -219,6 +232,42 @@ require '../../includes/conn.php';
           <!-- /.card -->
         </section>
         <?php
+      } elseif ($_SESSION['user_role'] == "Alumni") {
+          ?>
+          <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box alumni mb-3">
+                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Linkages</span>
+                    <span class="info-box-number">0</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box alumni mb-3">
+                  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
+
+                  <div class="info-box-content">
+                    <span class="info-box-text">Community Extension</span>
+                    <span class="info-box-number">0</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </div>
+              <!-- /.col -->
+                </div> 
+            </div>
+          </section>
+          <?php
       }
       ?>
     </div><!-- /.container-fluid -->

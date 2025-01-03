@@ -53,7 +53,7 @@
 
 <script>
 
-  $('.form').on("submit", function(event) {
+  $('.form').on("submit", function (event) {
     $(".card").append('<div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>');
   });
 
@@ -173,6 +173,31 @@
     } else {
       $('#program').prop("disabled", false);
     }
+  });
+  
+  var dept = $('#department').val();
+
+    $('.form-check-input').each(function () {
+      if ($(this).hasClass(dept)) {
+        $(this).prop("disabled", false);
+      } else {
+        $(this).prop("disabled", true);
+        $(this).prop("checked", false);
+      }
+    })
+
+  $('#department').change(function () {
+    var dept = $('#department').val();
+
+    $('.form-check-input').each(function () {
+      if ($(this).hasClass(dept)) {
+        $(this).prop("disabled", false);
+      } else {
+        $(this).prop("disabled", true);
+        $(this).prop("checked", false);
+      }
+    })
+
   });
 
   //mema effect
@@ -370,7 +395,13 @@
       toastr.success('Please wait for an email to confirm your request', 'Registration Success');
     });
     <?php
-  }
+  } elseif (isset($_SESSION['school_exist'])) {
+    ?>
+    $(function () {
+      toastr.error("School already exists.", 'Error')
+    });
+    <?php
+  } 
 
   unset($_SESSION['success']);
   unset($_SESSION['username_exist']);
@@ -402,6 +433,7 @@
   unset($_SESSION['username&email_exist']);
   unset($_SESSION['email_exist']);
   unset($_SESSION['success_register']);
+  unset($_SESSION['school_exist']);
   ?>
 
 </script>

@@ -116,12 +116,17 @@ require '../../includes/session.php';
                                             <td><?php echo $row['contact']; ?></td>
                                             <td><a href="edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
                                                     class="btn my-1 btn-info">Update</a>
-                                                <?php if (($row['role'] == 'Alumni')) { ?>
+
+                                                <?php if ($row['role'] == 'Alumni') { ?>
                                                     <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Alumni Info</a>
                                                     <button type="button" class="btn my-1 btn-primary" disabled data-toggle="modal"
                                                         data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
                                                         Email</button>
+                                                <?php } elseif ($row['role'] == 'Program Chairperson') { ?>
+                                                    <a href="../program_chairperson/add.program.chairperson.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">PC Info</a>
+
                                                 <?php } ?>
+
                                                 <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
                                             </td>

@@ -78,7 +78,7 @@ while ($row = mysqli_fetch_array($select_alumni)) {
     while ($pdf->GetStringWidth($fullname) > $cellWidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
-    $pdf->Cell(69, 7, $row['fullname'], 0, 0);
+    $pdf->Cell(69, 7, $fullname, 0, 0);
 
     $pdf->SetFont('Arial', '', 11);
     $fontsize = 9;

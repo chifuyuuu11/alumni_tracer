@@ -8,7 +8,7 @@ require '../../includes/session.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alumni Tracer | Program List</title>
+    <title>Alumni Tracer | School List</title>
 
     <!-- Google Font: Source Sans Pro -->
     <?php require '../../includes/link.php'; ?>
@@ -31,12 +31,12 @@ require '../../includes/session.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Program List</h1>
+                            <h1>School List</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="../dashboard/index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Program List</li>
+                                <li class="breadcrumb-item active">School List</li>
                             </ol>
                         </div>
                     </div>
@@ -48,35 +48,44 @@ require '../../includes/session.php';
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Program List and Settings</h3>
+                        <h3 class="card-title">School List and Settings</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Program Abbreviation</th>
-                                    <th>Program Description</th>
-                                    <th>Program Department</th>
+                                    <th>School</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $info = mysqli_query($conn, "SELECT * FROM tbl_programs LEFT JOIN tbl_department ON tbl_department.dept_id = tbl_programs.dept_id ORDER BY tbl_programs.dept_id, program_desc");
+                                $info = mysqli_query($conn, "SELECT * FROM tbl_schools");
                                 while ($row = mysqli_fetch_array($info)) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $row['program_abv']; ?></td>
-                                        <td><?php echo $row['program_desc']; ?></td>
-                                        <td><?php echo $row['department']; ?></td>
-                                        <td><a href="edit.program.php?program_id=<?php echo $row['program_id']; ?>" type="button"
-                                                    class="btn my-1 btn-info">Update</a>
-                                                <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
-                                                    data-target="#modal-default<?php echo $row['program_id']; ?>">Delete</a>
-                                            </td>
+                                        <td>
+                                            <?php echo $row['school']; ?><br>
+                                            
+                                            <?php
+                                            $program = explode(', ', $row['program_id']);
+                                            foreach ($program as $id) {
+                                                $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs WHERE program_id = '$id'");
+                                                $row2 = mysqli_fetch_array($select_program);
+                                                ?>
+                                                <span class="badge badge-info"><?php echo $row2['program_abv'];?></span>
+                                                <?php
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><a href="edit.school.php?school_id=<?php echo $row['school_id']; ?>" type="button"
+                                                class="btn btn-primary btn-sm m-1">Update</a>
+                                            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                                                data-target="#modal-default<?php echo $row['school_id']; ?>">Delete</a>
+                                        </td>
                                     </tr>
-                                    <div class="modal fade" id="modal-default<?php echo $row['program_id']; ?>" tabindex="-1"
+                                    <div class="modal fade" id="modal-default<?php echo $row['school_id']; ?>" tabindex="-1"
                                         aria-labelledby="modal-defaultLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -88,12 +97,12 @@ require '../../includes/session.php';
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p> Are you sure you want to delete <b><?php echo $row['program_desc']?></b> program?</p>
+                                                    <p> Are you sure you want to delete <b><?php echo $row['school']?></b>?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Cancel</button>
-                                                    <a href="usersData/ctrl.delete.program.php?program_id=<?php echo $row['program_id']; ?>"
+                                                    <a href="usersData/ctrl.delete.school.php?school_id=<?php echo $row['school_id']; ?>"
                                                         type="button" class="btn btn-danger">Delete</a>
                                                 </div>
                                             </div>

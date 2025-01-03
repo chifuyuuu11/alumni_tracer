@@ -15,6 +15,7 @@ if(isset($_POST['submit'])) {
     $program = mysqli_real_escape_string($conn, $_POST['program']);
     $attained = mysqli_real_escape_string($conn, $_POST['attained']);
     $batch = mysqli_real_escape_string($conn, $_POST['batch']);
+    $campus = mysqli_real_escape_string($conn, $_POST['campus']);
     
 
   $select_username = mysqli_query($conn, "SELECT username FROM tbl_users WHERE username = '$username'");
@@ -29,9 +30,9 @@ if(isset($_POST['submit'])) {
 
     //insert to tbl_users
     $insert_user = mysqli_query($conn, "INSERT INTO tbl_users
-    (firstname, middlename, lastname, role_id, contact, email, username, password )
+    (firstname, middlename, lastname, role_id, campus_id, contact, email, username, password )
     VALUES
-    ('$firstname', '$middlename', '$lastname', 1, '$contact', '$email', '$username', '$hashed_pass')");
+    ('$firstname', '$middlename', '$lastname', 1, '$campus', '$contact', '$email', '$username', '$hashed_pass')");
 
     //get id 
     $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users ORDER BY user_id DESC LIMIT 1");
@@ -41,7 +42,7 @@ if(isset($_POST['submit'])) {
     $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id, program_id, attained_id, batch) VALUES ('$id[user_id]', '$program', '$attained', '$batch')");
 
     //update status for reg
-    $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', email = '$email', contact_no = '$contact', status = 'Approved' WHERE reg_id = '$reg_id'");
+    $update_query = mysqli_query($conn, "UPDATE tbl_registrations SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', email = '$email', contact_no = '$contact', status = 'Approved', campus_id = '$campus' WHERE reg_id = '$reg_id'");
 
     //insert to tbl_logs for changes
     $action = "Admitted Registration, $firstname $middlename $lastname";
