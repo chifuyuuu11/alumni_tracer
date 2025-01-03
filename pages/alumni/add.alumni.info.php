@@ -295,28 +295,16 @@ if (isset($_GET['user_id'])) {
                                             <div class="form-group col-md-12">
                                                 <label for="experience">Briefly describe your unforgettable moments at
                                                     SFAC/SAS.</label>
-<<<<<<< HEAD
                                                 <textarea type="text" class="form-control" id="experience" name="experience"
                                                     placeholder="When I was at SFAC/SAS ..."><?php echo $row['experience'] ?></textarea>
-=======
-                                                <input type="text" class="form-control" id="experience" name="experience"
-                                                    value="<?php echo $row['experience'] ?>"
-                                                    placeholder="When I was at SFAC/SAS ...">
->>>>>>> 94f1be250920b4fe39401582e39ad1714b5c30b1
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="suggestion">What do you want SFAC to improve? Please give us
                                                     your suggestions.</label>
-<<<<<<< HEAD
                                                 <textarea type="text" class="form-control" id="suggestion" name="suggestion"
                                                     placeholder="My suggestions for SFAC/SAS ..."><?php echo $row['suggestion'] ?></textarea>
-=======
-                                                <input type="text" class="form-control" id="suggestion" name="suggestion"
-                                                    value="<?php echo $row['suggestion'] ?>"
-                                                    placeholder="My suggestions for SFAC/SAS ...">
->>>>>>> 94f1be250920b4fe39401582e39ad1714b5c30b1
                                             </div>
                                         </div>
 
