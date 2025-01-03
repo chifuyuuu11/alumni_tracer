@@ -111,7 +111,11 @@ require '../../includes/conn.php';
                           <!--</div>-->
                         </div>
                         <hr>
+<<<<<<< HEAD
                         <div class=" justify-content-center row">
+=======
+                        <div class="row">
+>>>>>>> 94f1be250920b4fe39401582e39ad1714b5c30b1
                           <?php
                           $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
                           LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
