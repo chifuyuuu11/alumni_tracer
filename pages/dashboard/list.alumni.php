@@ -90,17 +90,44 @@ require '../../includes/session.php';
                                 if (isset($_GET['search'])) {
                                     $search = mysqli_real_escape_string($conn, $_GET['search']);
 
-                                    $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
-                                JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
-                                LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_alumni.attained_id
-                                LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_alumni.program_id
-                                LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
-                                LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
-                                WHERE tbl_users.role_id = 1 AND (lastname LIKE '%$search%'
-                                OR firstname LIKE '%$search%'
-                                OR middlename LIKE '%$search%'
-                                OR role LIKE '%$search%'
-                                OR campus LIKE '%$search%') ORDER BY lastname");
+                                    if ($_SESSION['user_role'] == "Program Chairperson") {
+                                        $select_info = mysqli_query($conn, "SELECT program_id FROM tbl_program_chairperson
+                                        LEFT JOIN tbl_schools ON tbl_schools.school_id = tbl_program_chairperson.school_id
+                                        WHERE user_id = '$_SESSION[user_id]'");
+                                        $row2 = mysqli_fetch_array($select_info);
+
+                                        $program = explode(', ', $row2['program_id']);
+                                        $program = join("', '", $program);
+
+                                        $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
+                                        JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
+                                        LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_alumni.attained_id
+                                        LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_alumni.program_id
+                                        LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
+                                        LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
+                                        WHERE tbl_users.role_id = 1 AND tbl_alumni.program_id IN ('$program') AND (lastname LIKE '%$search%'
+                                        OR firstname LIKE '%$search%'
+                                        OR middlename LIKE '%$search%'
+                                        OR role LIKE '%$search%'
+                                        OR campus LIKE '%$search%') ORDER BY lastname");
+
+                                    } else {
+                                        $info = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
+                                        JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
+                                        LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_alumni.attained_id
+                                        LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_alumni.program_id
+                                        LEFT JOIN tbl_roles ON tbl_roles.role_id = tbl_users.role_id
+                                        LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
+                                        WHERE tbl_users.role_id = 1 AND (lastname LIKE '%$search%'
+                                        OR firstname LIKE '%$search%'
+                                        OR middlename LIKE '%$search%'
+                                        OR role LIKE '%$search%'
+                                        OR campus LIKE '%$search%') ORDER BY lastname");
+
+                                    }
+
+                                    
+
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <tr>
@@ -113,20 +140,30 @@ require '../../includes/session.php';
                                                 } ?>
                                             </td>
                                             <td><?php echo $row['fullname']; ?></td>
-                                            <td><?php echo $row['attained'] .'<br>'. $row['program_desc']; ?></td>
-                                            <td><?php echo $row['campus']; ?></td>
+                                            <td><?php echo $row['attained'] . '<br>' . $row['program_desc']; ?></td>
+                                            <td><?php echo $row['campus'] .'<br>'. $row['batch']; ?></td>
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['contact']; ?></td>
-                                            <td><a href="../users/edit.users.php?user_id=<?php echo $row['user_id']; ?>" type="button"
-                                                    class="btn my-1 btn-info">Update</a>
+                                            <td>
+                                                <?php
+                                                if ($_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Super Admin") {
+                                                ?>
+                                                <a href="../users/edit.users.php?user_id=<?php echo $row['user_id']; ?>"
+                                                    type="button" class="btn my-1 btn-info">Update</a>
                                                 <?php if (($row['role'] == 'Alumni')) { ?>
-                                                    <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id']?>" class="btn my-1 btn-info">Alumni Info</a>
+                                                    <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id'] ?>"
+                                                        class="btn my-1 btn-info">Alumni Info</a>
                                                     <button type="button" class="btn my-1 btn-primary" disabled data-toggle="modal"
                                                         data-target="#confirmModal<?php echo $row['user_id']; ?>">Send
                                                         Email</button>
                                                 <?php } ?>
                                                 <button type="button" class="btn my-1 btn-danger" data-toggle="modal"
                                                     data-target="#modal-default<?php echo $row['user_id']; ?>">Delete</a>
+                                                <?php
+                                                } else {
+                                                    echo "<b class='font-italic'>You don't have any access avaible</b>";
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="modal-default<?php echo $row['user_id']; ?>" tabindex="-1"
