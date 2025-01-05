@@ -28,7 +28,7 @@
       </div>
       <div class="info">
         <a class="d-block"><?php echo $_SESSION['fullname']; ?></a>
-        <a class="d-block"><b><?php echo $_SESSION['user_role']; ?></b></a>
+        <a class="d-block text-break"><b><?php echo $_SESSION['user_role']; ?></b></a>
         <small class="d-block" style="color:#c2c7d0">
           <b>
             <?php
@@ -38,13 +38,13 @@
 
               echo "Batch " . $row['batch'];
 
-            } elseif ($_SESSION['user_role'] == "Program Chairperson") {
+            } elseif ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
               $select_pc = mysqli_query($conn, "SELECT * FROM tbl_program_chairperson
               LEFT JOIN tbl_schools ON tbl_schools.school_id = tbl_program_chairperson.school_id
               WHERE user_id = '$_SESSION[user_id]'");
               $row = mysqli_fetch_array($select_pc);
 
-              echo $row['school'];
+              echo $row['school_abv'];
             }
             
             ?>

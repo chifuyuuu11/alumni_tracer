@@ -37,7 +37,7 @@ if (isset($_POST ['submit'])) {
 
             $insert_alumni = mysqli_query($conn, "INSERT INTO tbl_alumni (user_id) VALUES ('$id[user_id]')");
 
-        } elseif ($role == 6) {
+        } elseif ($role == 6 || $role == 8 || $role == 9) {
             $select_user = mysqli_query($conn, "SELECT user_id FROM tbl_users WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' ORDER BY user_id DESC LIMIT 1");
             $id = mysqli_fetch_array($select_user);
 

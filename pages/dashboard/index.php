@@ -49,7 +49,7 @@ require '../../includes/conn.php';
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson") { ?>
+      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") { ?>
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
@@ -60,7 +60,7 @@ require '../../includes/conn.php';
                     <div class="row p-3 justify-content-center">
                       <div class="col-md-2 my-auto text-center">
                         <?php
-                        if ($_SESSION['user_role'] == "Program Chairperson") {
+                        if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
                           $select_info = mysqli_query($conn, "SELECT program_id FROM tbl_program_chairperson
                           LEFT JOIN tbl_schools ON tbl_schools.school_id = tbl_program_chairperson.school_id
                           WHERE user_id = '$_SESSION[user_id]'");
@@ -85,7 +85,7 @@ require '../../includes/conn.php';
                       <div class="col-md-8 my-auto text-center">
                         <div class=" justify-content-center row">
                           <?php
-                          if ($_SESSION['user_role'] == "Program Chairperson") {
+                          if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
                             $select_alumni = mysqli_query($conn, "SELECT COUNT(program_abv) as alumni_count, program_abv as title FROM tbl_alumni LEFT JOIN tbl_programs
                             ON tbl_programs.program_id = tbl_alumni.program_id WHERE NOT tbl_alumni.program_id = '' AND tbl_alumni.program_id IN ('$program') GROUP BY tbl_alumni.program_id");
                             
@@ -107,7 +107,7 @@ require '../../includes/conn.php';
                         <hr>
                         <div class=" justify-content-center row">
                           <?php
-                          if ($_SESSION['user_role'] == "Program Chairperson") {
+                          if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
                             $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
                             LEFT JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
                             LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id

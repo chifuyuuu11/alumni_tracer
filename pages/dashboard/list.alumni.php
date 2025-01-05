@@ -90,7 +90,7 @@ require '../../includes/session.php';
                                 if (isset($_GET['search'])) {
                                     $search = mysqli_real_escape_string($conn, $_GET['search']);
 
-                                    if ($_SESSION['user_role'] == "Program Chairperson") {
+                                    if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
                                         $select_info = mysqli_query($conn, "SELECT program_id FROM tbl_program_chairperson
                                         LEFT JOIN tbl_schools ON tbl_schools.school_id = tbl_program_chairperson.school_id
                                         WHERE user_id = '$_SESSION[user_id]'");
