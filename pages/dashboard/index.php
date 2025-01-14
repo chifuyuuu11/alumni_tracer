@@ -49,11 +49,7 @@ require '../../includes/conn.php';
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-<<<<<<< HEAD
-      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head" || $_SESSION['user_role'] == "Dean") { ?>
-=======
       <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") { ?>
->>>>>>> c93dd5397eb3543cfe7d0f77a6160da411cd5b3c
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
