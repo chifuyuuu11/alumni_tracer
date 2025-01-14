@@ -71,10 +71,16 @@ if (isset($_GET['program'])) {
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </span>
                         </form>
+                        <?php
+                        if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") {
+                        ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#confirmModalfilter">
                             Filter
                         </button>
+                        <?php
+                        }
+                        ?>
                         <div class="modal fade" id="confirmModalfilter" tabindex="-1"
                             aria-labelledby="confirmModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
