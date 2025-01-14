@@ -28,8 +28,8 @@
       </div>
       <div class="info">
         <a class="d-block"><?php echo $_SESSION['fullname']; ?></a>
-        <a class="d-block "><b><?php echo $_SESSION['user_role']; ?></b></a>
-        <small class="text-break" style="color:#c2c7d0">
+        <a class="d-block text-break"><b><?php echo $_SESSION['user_role']; ?></b></a>
+        <small class="d-block" style="color:#c2c7d0">
           <b>
             <?php
             if ($_SESSION['user_role'] == "Alumni") {
