@@ -68,12 +68,20 @@ $pdf->SetFont('Arial', '', 11);
 $x = 1;
 $select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users WHERE role_id = 1 ORDER BY lastname");
 while ($row = mysqli_fetch_array($select_alumni)) {
-    $pdf->Cell(6, 7, $x. '.', 0, 0);
-
+    
     $fontsize = 9;
     $tempFontSize = $fontsize;
-    $cellWidth = 69;
-    $fullname = utf8_decode($row['fullname']);
+    $cellWidth = 5;
+    while ($pdf->GetStringWidth($x) > $cellWidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(6, 7, $x. '.', 0, 0);
+
+    $pdf->SetFont('Arial', '', 11);
+    $fontsize = 11;
+    $tempFontSize = $fontsize;
+    $cellWidth = 68;
+    $fullname = ucwords(strtolower(utf8_decode($row['fullname'])));
 
     while ($pdf->GetStringWidth($fullname) > $cellWidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);

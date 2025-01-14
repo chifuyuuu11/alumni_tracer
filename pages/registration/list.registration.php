@@ -96,9 +96,8 @@ require '../../includes/session.php';
                                     while ($row = mysqli_fetch_array($info)) {
                                         ?>
                                         <a>
-                                            <td><?php echo $row['fullname']; ?></td>
+                                            <td><?php echo ucwords(strtolower($row['fullname'])); ?></td>
                                             <td><?php echo $row['attained'] .' <br> '. $row['program_abv']?></td>
-                                            <td><?php echo $row['attained']?></td>
                                             <td><?php echo $row['campus']?></td>
                                             <td><?php echo $row['batch']?></td>
                                             <td><?php echo $row['email']; ?></td>

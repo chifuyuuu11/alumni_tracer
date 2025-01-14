@@ -127,7 +127,7 @@ $reg_id = $_GET['reg_id'];
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                        <label for="firstname">Program</label>
+                                        <label for="firstname">Campus</label>
                                                 <select required class="form-control select2" id="campus"  name="campus">
                                                     <?php
                                                     $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus_id = '$row[campus_id]'");

@@ -120,7 +120,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         <div class="form-group col-md-4">
                                             <label for="firstname">First Name</label>
                                             <input type="text" class="form-control" id="firstname" name="firstname"
-                                                value="<?php echo $row['firstname'] ?>" placeholder="First Name" required>
+                                                value="<?php echo $row['firstname'] ?>" placeholder="First Name">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="middlename">Middle Name</label>
@@ -130,14 +130,14 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         <div class="form-group col-md-4">
                                             <label for="lastname">Last Name</label>
                                             <input type="text" class="form-control" id="lastname" name="lastname"
-                                                value="<?php echo $row['lastname'] ?>" placeholder="Last Name" required>
+                                                value="<?php echo $row['lastname'] ?>" placeholder="Last Name">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="role">Role</label>
-                                            <select required class="form-control select2" id="role" name="role" <?php echo $disabled;?>>
+                                            <select class="form-control select2" id="role" name="role" <?php echo $disabled;?>>
                                                 <?php
                                                 $select_role = mysqli_query($conn, "SELECT * FROM tbl_roles WHERE role_id = '$row[role_id]'");
                                                 while ($row1 = mysqli_fetch_array($select_role)) {
@@ -162,7 +162,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="campus">Campus</label>
-                                            <select required class="form-control select2" id="campus" name="campus">
+                                            <select class="form-control select2" id="campus" name="campus">
                                                 <?php
                                                 $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus_id = '$row[campus_id]'");
                                                 while ($row1 = mysqli_fetch_array($select_campus)) {
@@ -190,7 +190,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="gender">Gender</label>
-                                            <select required class="form-control select2" id="gender" name="gender">
+                                            <select class="form-control select2" id="gender" name="gender">
                                                 <?php
                                                 $select_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id = '$row[gender_id]'");
                                                 while ($row1 = mysqli_fetch_array($select_gender)) {
@@ -215,7 +215,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="civilstat">Civil Status</label>
-                                            <select required class="form-control select2" id="civilstat" name="civilstat">
+                                            <select class="form-control select2" id="civilstat" name="civilstat">
                                                 <?php
                                                 $select_status = mysqli_query($conn, "SELECT * FROM tbl_cvlstat WHERE civil_id = '$row[civil_id]'");
                                                 while ($row1 = mysqli_fetch_array($select_status)) {
@@ -241,7 +241,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         <div class="form-group col-md-4">
                                             <label for="birthdate">Birthdate</label>
                                             <input type="text" class="form-control" id="birthdate" name="birthdate"
-                                                value="<?php echo $row['birthdate'] ?>" placeholder="Birthdate" required>
+                                                value="<?php echo $row['birthdate'] ?>" placeholder="Birthdate">
                                         </div>
                                     </div>
 
@@ -251,12 +251,12 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         <div class="form-group col-md-6">
                                             <label for="email">Email address</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                value="<?php echo $row['email'] ?>" placeholder="Enter email" required>
+                                                value="<?php echo $row['email'] ?>" placeholder="Enter email">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="contact">Contact Number</label>
                                             <input type="text" class="form-control" id="contact" name="contact"
-                                                value="<?php echo $row['contact'] ?>" placeholder="Contact Number" required>
+                                                value="<?php echo $row['contact'] ?>" placeholder="Contact Number">
                                         </div>
                                     </div>
 
@@ -264,7 +264,7 @@ if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin"
                                         <div class="form-group col-md-12">
                                             <label for="address">Address</label>
                                             <input type="text" class="form-control" id="address" name="address"
-                                                value="<?php echo $row['address'] ?>" placeholder="Address" required>
+                                                value="<?php echo $row['address'] ?>" placeholder="Address">
                                         </div>
                                     </div>
                                     <?php
