@@ -129,8 +129,8 @@ if (isset($_GET['program'])) {
                                                                 WHERE attained = '$_SESSION[attained_fltr]'  ORDER BY program_desc ASC");
                                                         while ($row1 = mysqli_fetch_array($select_program)) {
                                                             ?>
-                                                            <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_abv'] ?>">
-                                                                <?php echo $row1['program_abv'] ?>
+                                                            <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_desc'] ?>">
+                                                                <?php echo $row1['program_desc'] ?>
                                                             </option>
                                                             <?php
                                                         }
@@ -230,9 +230,9 @@ if (isset($_GET['program'])) {
                                         AND 
                                             CASE WHEN '$_SESSION[program_fltr]' = 'ALL'
                                             THEN
-                                                program_abv <> ('')
+                                                program_desc <> ('')
                                             ELSE
-                                                program_abv LIKE '$_SESSION[program_fltr]'
+                                                program_desc LIKE '$_SESSION[program_fltr]'
                                             END
                                         AND (lastname LIKE '%$search%'
                                         OR firstname LIKE '%$search%'
