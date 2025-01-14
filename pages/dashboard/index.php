@@ -195,12 +195,8 @@ require '../../includes/conn.php';
               <!-- /.col -->
 
               <div class="col-12 col-sm-6 col-md-3">
-<<<<<<< HEAD
                 <a href="<?php echo ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") ? "../registration/list.registration.php" : "#"; ?>"
                   class="text-dark">
-=======
-                <a href="<?php echo ($_SESSION['user_role'] == "Super Admin") ? "../registration/list.registration.php" : "#" ;?>" class="text-dark">
->>>>>>> c93dd5397eb3543cfe7d0f77a6160da411cd5b3c
                   <div class="info-box mb-3 alumni">
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe"></i></span>
 
