@@ -32,7 +32,7 @@ session_start();
     <div class="card card-outline card-danger">
       <div class="card-header text-center">
         <div class="sfac-logo">
-          <img src="../../dist/img/sfac.png" alt="sfac" style="width:80px;height:80px;">
+       <a href = "https://stfrancisbacoor.com" ><img src="../../dist/img/sfac.png" alt="sfac" style="width:80px;height:80px;"></a>
         </div>
         <a href="https://stfrancis.edu.ph/" style="color: black;">
           <h4><b>Saint Francis of Assisi College</b></h4>

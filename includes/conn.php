@@ -4,7 +4,7 @@
     $password = "";
     $dbname = "alumni_tracer";
     
-    //  $server = "localhost";
+    // $server = "localhost";
     // $username = "u733437513_zaimon";
     // $password = "mtXtmIL=f5";
     // $dbname = "u733437513_alumnitracer";

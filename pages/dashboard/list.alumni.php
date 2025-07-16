@@ -4,10 +4,20 @@ require '../../includes/session.php';
 
 if (isset($_GET['attained'])) {
     $_SESSION['attained_fltr'] = mysqli_escape_string($conn, $_GET['attained']);
+} else {
+    $_SESSION['attained_fltr'] = "All";
 }
 
 if (isset($_GET['program'])) {
     $_SESSION['program_fltr'] = mysqli_escape_string($conn, $_GET['program']);
+} else {
+    $_SESSION['program_fltr'] = "All";
+}
+
+if (isset($_GET['campus'])) {
+    $_SESSION['campus_fltr'] = mysqli_escape_string($conn, $_GET['campus']);
+} else {
+    $_SESSION['campus_fltr'] = "All";
 }
 
 ?>
@@ -54,7 +64,8 @@ if (isset($_GET['program'])) {
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Alumni List and Info</h3>
+                        <h3 class="card-title">Alumni List and Info</h3><br>
+                        <p>Attained Level: <b><?php echo $_SESSION['attained_fltr']; ?></b> Program: <b><?php echo $_SESSION['program_fltr']; ?></b> Campus: <b><?php echo $_SESSION['campus_fltr']; ?></b></p>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -70,11 +81,17 @@ if (isset($_GET['program'])) {
                                     <span class="form-group-text">
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </span>
-                        </form>
+                       
+                        <?php
+                        if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") {
+                        ?>
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#confirmModalfilter">
                             Filter
                         </button>
+                        <?php
+                        }
+                        ?>
                         <div class="modal fade" id="confirmModalfilter" tabindex="-1"
                             aria-labelledby="confirmModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -85,12 +102,11 @@ if (isset($_GET['program'])) {
                                             <span aria-hidden="true"></span>
                                         </button>
                                     </div>
-                                    <form method="GET">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="form-group col-md">
                                                     <label for="firstname">Highest Lvl. Attained</label>
-                                                    <select required class="form-control select2" id="attained" onchange="programSelect()"
+                                                    <select required class="form-control select2" id="attained" onchange="programSelect1()"
                                                         name="attained">
                                                         <option value="All">All</option>
                                                         <?php
@@ -121,16 +137,46 @@ if (isset($_GET['program'])) {
                                                     <label for="firstname">Program</label>
                                                     <select required class="form-control select2" id="program"
                                                         name="program">
+                                                        <option selected value="<?php echo $_SESSION['program_fltr']?>"><?php echo $_SESSION['program_fltr']?></option>
                                                         <option value="All">All</option>
                                                         <?php
                                                         $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs
                                                                 LEFT JOIN tbl_department ON tbl_department.dept_id = tbl_programs.dept_id
                                                                 LEFT JOIN tbl_attained ON tbl_attained.dept_id = tbl_department.dept_id
-                                                                WHERE attained = '$_SESSION[attained_fltr]'  ORDER BY program_desc ASC");
+                                                                WHERE program_desc NOT IN ('$_SESSION[program_fltr]') AND attained = '$_SESSION[attained_fltr]'  ORDER BY program_desc ASC");
                                                         while ($row1 = mysqli_fetch_array($select_program)) {
                                                             ?>
                                                             <option class="<?php echo $row1['dept_id'] ?>" value="<?php echo $row1['program_desc'] ?>">
                                                                 <?php echo $row1['program_desc'] ?>
+                                                            </option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md">
+                                                    <label for="firstname">Campus</label>
+                                                    <select required class="form-control select2" id="campus"
+                                                        name="campus">
+                                                        <option value="All">All</option>
+                                                        <?php
+                                                        $select_program = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE campus IN ('$_SESSION[campus_fltr]') ORDER BY campus ASC");
+                                                        while ($row1 = mysqli_fetch_array($select_program)) {
+                                                            ?>
+                                                            <option selected value="<?php echo $row1['campus'] ?>">
+                                                                <?php echo $row1['campus'] ?>
+                                                            </option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                        $select_program = mysqli_query($conn, "SELECT * FROM tbl_campus WHERE NOT campus IN ('$_SESSION[campus_fltr]') ORDER BY campus ASC");
+                                                        while ($row1 = mysqli_fetch_array($select_program)) {
+                                                            ?>
+                                                            <option value="<?php echo $row1['campus'] ?>">
+                                                                <?php echo $row1['campus'] ?>
                                                             </option>
                                                             <?php
                                                         }
@@ -225,14 +271,21 @@ if (isset($_GET['program'])) {
                                             THEN
                                                 attained <> ('')
                                             ELSE
-                                                attained LIKE '$_SESSION[attained_fltr]'
+                                                attained IN ('$_SESSION[attained_fltr]')
                                             END
-                                        AND 
-                                            CASE WHEN '$_SESSION[program_fltr]' = 'ALL'
-                                            THEN
-                                                program_desc <> ('')
+                                        AND
+                                            CASE
+                                            WHEN '$_SESSION[program_fltr]' = 'ALL'
+                                                THEN program_desc <> ('') OR tbl_alumni.program_id = 0
                                             ELSE
-                                                program_desc LIKE '$_SESSION[program_fltr]'
+                                                program_desc IN ('$_SESSION[program_fltr]')
+                                            END
+                                        AND
+                                            CASE
+                                            WHEN '$_SESSION[campus_fltr]' = 'ALL'
+                                                THEN campus <> ('')
+                                            ELSE
+                                                campus IN ('$_SESSION[campus_fltr]')
                                             END
                                         AND (lastname LIKE '%$search%'
                                         OR firstname LIKE '%$search%'

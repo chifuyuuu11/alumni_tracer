@@ -53,7 +53,7 @@ require '../../includes/conn.php';
             <div class="form-group col-sm-12 col-md-6">
               <label for="firstname">Highest Level Attained at SFAC</label>
               <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
-                <option disabled selected>Highest Level Attained at SFAC</option>
+                <option value="" disabled selected>Highest Level Attained at SFAC</option>
                 <?php
                 $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained");
                 while ($row1 = mysqli_fetch_array($select_attained)) {
@@ -70,7 +70,7 @@ require '../../includes/conn.php';
             <div class="form-group col-sm-12 col-md-6">
               <label for="firstname">Program</label>
               <select required class="form-control select2" id="program" name="program">
-                <option class="0" disabled selected>Select Program</option>
+                <option value="" class="0" disabled selected>Select Program</option>
                 <?php
                 $select_program = mysqli_query($conn, "SELECT * FROM tbl_programs ORDER BY dept_id, program_desc");
                 while ($row1 = mysqli_fetch_array($select_program)) {
@@ -89,7 +89,7 @@ require '../../includes/conn.php';
             <div class="form-group col-md-6">
               <label for="firstname">Campus</label>
               <select required class="form-control select2" id="campus" name="campus">
-                <option class="0" disabled selected>Select Campus</option>
+                <option value="" class="0" disabled selected>Select Campus</option>
                 <?php
                 $select_campus = mysqli_query($conn, "SELECT * FROM tbl_campus");
                 while ($row1 = mysqli_fetch_array($select_campus)) {

@@ -352,7 +352,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../form/alumni.list.php" class="nav-link">
+                <a href="../form/alumni.list.settings.php" class="nav-link">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Alumni List</p>
                 </a>
@@ -922,9 +922,9 @@
                 <li class="nav-item">
 
                   <a href="../users/edit.users.php" class="nav-link">
-                    <i class="fas fa-user mr-3"></i>
+                    <i class="fas fa-pen mr-3"></i>
 
-                    Update Info
+                    Update Personal Info:
 
                   </a>
 
@@ -934,7 +934,7 @@
                   <a href="../alumni/add.alumni.info.php?user_id=<?php echo $row['user_id'] ?>" class="nav-link">
                     <i class="fas fa-user mr-3"></i>
 
-                    Alumni Info
+                    Update Graduate Info:
 
                   </a>
                 </li>

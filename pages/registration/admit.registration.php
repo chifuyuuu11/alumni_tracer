@@ -79,7 +79,7 @@ $reg_id = $_GET['reg_id'];
 
                                     <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label for="firstname">Highest Level Attained</label>
+                                                <label for="firstname">Highest Year Level Attained at SFAC | SAS</label>
                                                 <select required class="form-control select2" id="attained" onchange="programSelect()" name="attained">
                                                     <?php
                                                     $select_attained = mysqli_query($conn, "SELECT * FROM tbl_attained WHERE attained_id = '$row[attained_id]'");

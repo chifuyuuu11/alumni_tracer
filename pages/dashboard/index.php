@@ -49,7 +49,7 @@ require '../../includes/conn.php';
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") { ?>
+      <?php if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin" || $_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head" || $_SESSION['user_role'] == "Dean") { ?>
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
@@ -60,203 +60,230 @@ require '../../includes/conn.php';
                   <div class="row p-3 justify-content-center">
 
                     <div class="col-md-2 my-auto text-center">
-                      <a class="text-light " href="list.alumni.php">
-                        <?php
-                        if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
-                          $select_info = mysqli_query($conn, "SELECT program_id FROM tbl_program_chairperson
+                      <?php
+                      if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head" || $_SESSION['user_role'] == "Dean") {
+                        $select_info = mysqli_query($conn, "SELECT program_id FROM tbl_program_chairperson
                           LEFT JOIN tbl_schools ON tbl_schools.school_id = tbl_program_chairperson.school_id
                           WHERE user_id = '$_SESSION[user_id]'");
-                          $row2 = mysqli_fetch_array($select_info);
+                        $row2 = mysqli_fetch_array($select_info);
 
-                          $program = explode(', ' , $row2['program_id']);
-                          $program = join("', '", $program);
+                        $program = explode(', ', $row2['program_id']);
+                        $program = join("', '", $program);
 
-                          $select_alumni = mysqli_query($conn, "SELECT user_id FROM tbl_alumni LEFT JOIN tbl_programs
+                        $select_alumni = mysqli_query($conn, "SELECT user_id FROM tbl_alumni LEFT JOIN tbl_programs
                           ON tbl_programs.program_id = tbl_alumni.program_id WHERE NOT tbl_alumni.program_id = '' AND tbl_alumni.program_id IN ('$program')");
 
-                        } else {
-                          $select_alumni = mysqli_query($conn, "SELECT user_id FROM tbl_alumni");
-                          
-                        }
-                        $count = mysqli_num_rows($select_alumni);
-                        ?>
-                        <h1 class="my-n2 display-3 font-weight-bold"><?php echo $count; ?></h1>
+                      } else {
+                        $select_alumni = mysqli_query($conn, "SELECT user_id FROM tbl_alumni");
 
-                      </div>
-                      <div class="col-md-8 my-auto text-center">
-                        <div class=" justify-content-center row">
-                          <?php
-                          if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
-                            $select_alumni = mysqli_query($conn, "SELECT COUNT(program_abv) as alumni_count, program_abv as title FROM tbl_alumni LEFT JOIN tbl_programs
+                      }
+                      $count = mysqli_num_rows($select_alumni);
+                      ?>
+                      <h1 class="my-n2 display-3 font-weight-bold"><?php echo $count; ?></h1>
+                      <p>Total Alumni</p>
+
+                    </div>
+                    <div class="col-md-8 my-auto text-center">
+                      <div class=" justify-content-center row">
+                        <?php
+                        if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head" || $_SESSION['user_role'] == "Dean") {
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(program_abv) as alumni_count, program_abv as title FROM tbl_alumni LEFT JOIN tbl_programs
                             ON tbl_programs.program_id = tbl_alumni.program_id WHERE NOT tbl_alumni.program_id = '' AND tbl_alumni.program_id IN ('$program') GROUP BY tbl_alumni.program_id");
-                            
-                          } else {
-                            $select_alumni = mysqli_query($conn, "SELECT COUNT(attained) as alumni_count, attained as title FROM tbl_alumni LEFT JOIN tbl_attained
+
+                        } else {
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(attained) as alumni_count, attained as title FROM tbl_alumni LEFT JOIN tbl_attained
                             ON tbl_attained.attained_id = tbl_alumni.attained_id WHERE NOT tbl_alumni.attained_id = '' GROUP BY tbl_alumni.attained_id");
-                          }
-                          
-                          while ($row = mysqli_fetch_array($select_alumni)) {
-                            ?>
-                            <div class="col-4 col-sm">
+                        }
+
+                        while ($row = mysqli_fetch_array($select_alumni)) {
+                          ?>
+                          <div class="col-4 col-sm">
+                            <a class="text-light " href="list.alumni.php?attained=<?php echo $row['title']; ?>">
                               <h4 class="font-weight-bold"><?php echo $row['alumni_count']; ?></h4>
                               <p><?php echo $row['title']; ?></p>
-                            </div>
-                            <?php
-                          }
-                          ?>
-                        </div>
-                        <hr>
-                        <div class=" justify-content-center row">
+                            </a>
+                          </div>
                           <?php
-                          if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head"|| $_SESSION['user_role'] == "Dean") {
-                            $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
+                        }
+                        ?>
+                      </div>
+                      <hr>
+                      <div class=" justify-content-center row">
+                        <?php
+                        if ($_SESSION['user_role'] == "Program Chairperson" || $_SESSION['user_role'] == "Academic Head" || $_SESSION['user_role'] == "Dean") {
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
                             LEFT JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
                             LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
                             WHERE role_id = 1 AND tbl_users.campus_id NOT IN (0) AND program_id IN ('$program') GROUP BY tbl_users.campus_id");
-                          } else {
-                            $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
+                        } else {
+                          $select_alumni = mysqli_query($conn, "SELECT COUNT(tbl_users.campus_id) as count, campus FROM tbl_users
                             LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
                             WHERE role_id = 1 AND tbl_users.campus_id NOT IN (0) GROUP BY tbl_users.campus_id");
-                          }
-                          
-                          while ($row = mysqli_fetch_array($select_alumni)) {
-                            ?>
-                            <div class="col-4 col-sm">
-                              <h4 class="font-weight-bold"><?php echo $row['count']; ?></h4>
-                              <p><?php echo $row['campus']; ?></p>
-                            </div>
-                            <?php
-                          }
+                        }
+
+                        while ($row = mysqli_fetch_array($select_alumni)) {
                           ?>
-                        </div>
+                          <div class="col-4 col-sm">
+                            <a class="text-light " href="list.alumni.php?campus=<?php echo $row['campus']; ?>">
+                            <h4 class="font-weight-bold"><?php echo $row['count']; ?></h4>
+                            <p><?php echo $row['campus']; ?></p>
+                            </a>
+                          </div>
+                          <?php
+                        }
+                        ?>
                       </div>
-                      <div class="col-md-2 my-auto text-center text-warning">
-                        <h1 class="my-n2 display-3 font-weight-bold">0.0</h1>
-                        <p>Average satisfaction score</p>
+                    </div>
+                    <div class="col-md-2 my-auto text-center text-warning">
+                      <h1 class="my-n2 display-3 font-weight-bold">0.0</h1>
+                      <p>Average satisfaction score</p>
 
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-3">
-                <a href="<?php echo ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") ? "../users/list.users.php" : "#"; ?>"
-                  class="text-dark">
-                  <div class="info-box alumni">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
-                    <div class="info-box-content">
-                      <?php
-                      $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
-                      $count = mysqli_num_rows($select_users);
-                      ?>
-                      <span class="info-box-text">Users</span>
-                      <span class="info-box-number">
-                        <?php echo $count; ?>
-                      </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </a>
-              </div>
-
-              <!-- /.col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box alumni mb-3">
-                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
-
-                  <div class="info-box-content">
-                    <span class="info-box-text">Linkages</span>
-                    <span class="info-box-number">0</span>
-                  </div>
-                  <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box alumni mb-3">
-                  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
-
-                  <div class="info-box-content">
-                    <span class="info-box-text">Community Extension</span>
-                    <span class="info-box-number">0</span>
-                  </div>
-                  <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-
-              <div class="col-12 col-sm-6 col-md-3">
-                <a href="<?php echo ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") ? "../registration/list.registration.php" : "#"; ?>"
-                  class="text-dark">
-                  <div class="info-box mb-3 alumni">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe"></i></span>
-
-                    <div class="info-box-content">
-                      <?php
-                      $select_reg = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending'");
-                      $result = mysqli_num_rows($select_reg);
-                      ?>
-                      <span class="info-box-text">Online Registrations</span>
-                      <span class="info-box-number"><?php echo $result; ?></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-                </a>
-              </div>
-
-              <!-- /.col -->
-            </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
-        </section>
-        <?php
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <a href="<?php echo ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") ? "../users/list.users.php" : "#"; ?>"
+                class="text-dark">
+                <div class="info-box alumni">
+                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                  <div class="info-box-content">
+                    <?php
+                    $select_users = mysqli_query($conn, "SELECT * FROM tbl_users");
+                    $count = mysqli_num_rows($select_users);
+                    ?>
+                    <span class="info-box-text">Users</span>
+                    <span class="info-box-number">
+                      <?php echo $count; ?>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </a>
+            </div>
+
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box alumni mb-3">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Linkages</span>
+                  <span class="info-box-number">0</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box alumni mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Community Extension</span>
+                  <span class="info-box-number">0</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-12 col-sm-6 col-md-3">
+              <a href="<?php echo ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") ? "../registration/list.registration.php" : "#"; ?>"
+                class="text-dark">
+                <div class="info-box mb-3 alumni">
+                  <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe"></i></span>
+
+                  <div class="info-box-content">
+                    <?php
+                    $select_reg = mysqli_query($conn, "SELECT * FROM tbl_registrations WHERE status = 'Pending'");
+                    $result = mysqli_num_rows($select_reg);
+                    ?>
+                    <span class="info-box-text">Online Registrations</span>
+                    <span class="info-box-number"><?php echo $result; ?></span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+              </a>
+            </div>
+
+            <!-- /.col -->
+          </div>
+          <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      </section>
+      <?php
       } elseif ($_SESSION['user_role'] == "Alumni") {
         ?>
-        <section class="content">
-          <div class="container-fluid">
-            <div class="row">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
               <!-- /.col -->
-              <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3">
+              <a class="text-dark" href="list.fellow.alumni.php">
                 <div class="info-box alumni mb-3">
-                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
+                  <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-graduate"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Linkages</span>
-                    <span class="info-box-number">0</span>
+                    <?php
+                    $select_alumni = mysqli_query($conn, "SELECT * FROM tbl_alumni WHERE user_id = '$_SESSION[user_id]'");
+                    $row = mysqli_fetch_array($select_alumni);
+
+                    $select_alumni = mysqli_query($conn, "SELECT * FROM tbl_alumni WHERE batch = '$row[batch]' AND attained_id = '$row[attained_id]'");
+                    $count = mysqli_num_rows($select_alumni);
+                    ?>
+                    <span class="info-box-text">Fellow Alumni <small class="text-gray font-italic">(Batch:
+                        <?php echo $row['batch'] ?>)</small></span>
+                    <span class="info-box-number"><?php echo $count ?></span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box alumni mb-3">
-                  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
-
-                  <div class="info-box-content">
-                    <span class="info-box-text">Community Extension</span>
-                    <span class="info-box-number">0</span>
-                  </div>
-                  <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
+              </a>
+              <!-- /.info-box -->
             </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box alumni mb-3">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-handshake"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Linkages</span>
+                  <span class="info-box-number">0</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box alumni mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-hand-holding-heart"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Community Extension</span>
+                  <span class="info-box-number">0</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
           </div>
-        </section>
-        <?php
+        </div>
+      </section>
+      <?php
       }
       ?>
-    </div><!-- /.container-fluid -->
-    <!-- /.content -->
+  </div><!-- /.container-fluid -->
+  <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <?php require '../../includes/footer.php'; ?>

@@ -114,10 +114,35 @@
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var result = JSON.parse(this.responseText);
-        var html = `<option class="0" disabled selected>Select Program</option>`;
+        var html = `<option value="" class="0" disabled selected>Select Program</option>`;
         for (var i in result) {
           html += `
             <option class="${result[i].dept_id}" value="${result[i].program_id}">${result[i].program_desc}</option>
+            `;
+        }
+
+        document.getElementById('program').innerHTML = html;
+      }
+    }
+
+    xhttp.send();
+  }
+  
+  function programSelect1() {
+    var dept_id = $('#attained option:selected').attr("class");
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open('GET', '../registration/usersData/ctrl.ajax.php?dept_id=' + dept_id);
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var result = JSON.parse(this.responseText);
+        var html = `<option value="" class="0" disabled selected>Select Program</option>
+        <option value="All">All</option>
+        `;
+        for (var i in result) {
+          html += `
+            <option class="${result[i].dept_id}" value="${result[i].program_desc}">${result[i].program_desc}</option>
             `;
         }
 
