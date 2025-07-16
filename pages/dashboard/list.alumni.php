@@ -81,7 +81,7 @@ if (isset($_GET['campus'])) {
                                     <span class="form-group-text">
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </span>
-                       
+                        </form>
                         <?php
                         if ($_SESSION['user_role'] == "Super Admin" || $_SESSION['user_role'] == "Admin") {
                         ?>

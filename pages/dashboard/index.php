@@ -226,9 +226,15 @@ require '../../includes/conn.php';
       <section class="content">
         <div class="container-fluid">
           <div class="row">
+<<<<<<< HEAD
               <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
               <a class="text-dark" href="list.fellow.alumni.php">
+=======
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <a href="list.fellow.alumni.php">
+>>>>>>> 82ab059248485b4e185d3846a4aad9f0baa1ed16
                 <div class="info-box alumni mb-3">
                   <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-graduate"></i></span>
 
