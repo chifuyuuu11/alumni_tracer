@@ -55,7 +55,54 @@ class PDF extends FPDF
 if ($_GET['category'] == "All") {
     $select_alumni = mysqli_query($conn, "SELECT *, CONCAT(tbl_users.lastname, ', ', tbl_users.firstname, ' ', tbl_users.middlename) AS fullname FROM tbl_users
     LEFT JOIN tbl_alumni ON tbl_alumni.user_id = tbl_users.user_id
-    WHERE role_id = 1 ORDER BY lastname");
+    LEFT JOIN tbl_attained ON tbl_attained.attained_id = tbl_alumni.attained_id
+    LEFT JOIN tbl_programs ON tbl_programs.program_id = tbl_alumni.program_id
+    LEFT JOIN tbl_employment_status ON tbl_employment_status.estatus_id = tbl_alumni.estatus_id
+    LEFT JOIN tbl_campus ON tbl_campus.campus_id = tbl_users.campus_id
+    WHERE role_id = 1
+    AND 
+        CASE WHEN '$_GET[attained]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            attained IN ('$_GET[attained]')
+        END
+    AND
+        CASE WHEN '$_GET[estatus]' <> 'ALL'
+        THEN
+            employment_status IN ('$_GET[estatus]')
+        ELSE
+            1 = 1
+        END
+    AND
+        CASE WHEN '$_GET[program]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            program_desc IN ('$_GET[program]')
+        END
+    AND
+        CASE WHEN '$_GET[campus]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            campus IN ('$_GET[campus]')
+        END
+    AND
+        CASE WHEN '$_GET[alligned]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            alligned IN ('$_GET[alligned]')
+        END
+    AND
+        CASE WHEN '$_GET[batch]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            batch IN ('$_GET[batch]')
+        END
+    ORDER BY lastname");
 
 } elseif ($_GET['category'] == "campus") {
     $category = $_GET['category'];
@@ -71,23 +118,44 @@ if ($_GET['category'] == "All") {
     AND 
         CASE WHEN '$_GET[attained]' = 'ALL'
         THEN
-            attained <> ('')
+            1 = 1
         ELSE
             attained IN ('$_GET[attained]')
         END
     AND
+        CASE WHEN '$_GET[estatus]' <> 'ALL'
+        THEN
+            employment_status IN ('$_GET[estatus]')
+        ELSE
+            1 = 1
+        END
+    AND
         CASE WHEN '$_GET[program]' = 'ALL'
         THEN
-            program_desc <> ('') OR tbl_alumni.program_id = 0
+            1 = 1
         ELSE
             program_desc IN ('$_GET[program]')
         END
     AND
-        CASE WHEN '$_GET[estatus]' = 'ALL'
+        CASE WHEN '$_GET[campus]' = 'ALL'
         THEN
-            employment_status <> ('')
+            1 = 1
         ELSE
-            employment_status IN ('$_GET[estatus]')
+            campus IN ('$_GET[campus]')
+        END
+    AND
+        CASE WHEN '$_GET[alligned]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            alligned IN ('$_GET[alligned]')
+        END
+    AND
+        CASE WHEN '$_GET[batch]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            batch IN ('$_GET[batch]')
         END
     ORDER BY $category $sort, lastname");
 
@@ -137,7 +205,13 @@ if ($_GET['category'] == "All") {
         ELSE
             alligned IN ('$_GET[alligned]')
         END
-    
+    AND
+        CASE WHEN '$_GET[batch]' = 'ALL'
+        THEN
+            1 = 1
+        ELSE
+            batch IN ('$_GET[batch]')
+        END
     ORDER BY tbl_alumni.$category $sort, lastname");
 }
 

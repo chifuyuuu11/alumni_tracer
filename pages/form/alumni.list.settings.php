@@ -136,6 +136,25 @@ require '../../includes/session.php';
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="form-group col-md-4">
+                                                <label for="">Batch</label>
+                                                <select name="batch" id="batch" class="form-control select2">
+                                                        <option value="All" selected>Select All</option>
+                                                        <?php
+                                                        $select_batch = mysqli_query($conn, "SELECT batch FROM tbl_alumni GROUP BY batch ORDER BY batch ASC");
+                                                        while ($row1 = mysqli_fetch_array($select_batch)) {
+                                                        ?>
+                                                            <option
+                                                            value="<?php echo $row1['batch'] ?>">
+                                                            Batch <?php echo $row1['batch'] ?>
+                                                            </option>
+                                                        <?php  
+                                                        }
+                                                        
+                                                        ?>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
                                                 <label for="">Allignment</label>
                                                 <select name="alligned" id="alligned" class="form-control select2">
                                                         <option value="All" selected>Select All
